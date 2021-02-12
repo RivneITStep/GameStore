@@ -15,10 +15,12 @@ namespace DataAccess.Entity.Role
         public string Id { get; set; }
         [Required]
         public string FullName { get; set; }
-        [Required]
+
+        public string Image { get; set; }
         public int Age { get; set; }
+
         [Required]
-        public string Status { get; set; }
+        public string Description { get; set; }
 
         public virtual User User { get; set; }
 

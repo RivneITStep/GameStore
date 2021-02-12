@@ -13,7 +13,7 @@ using System.Text;
 
 namespace DataAccess
 {
-    class EFContext : IdentityDbContext<User>
+    public class EFContext : IdentityDbContext<User>
     {
         public EFContext(DbContextOptions<EFContext> options) : base(options) { }
 
@@ -23,7 +23,6 @@ namespace DataAccess
         public DbSet<UserGames> UserGames { get; set; }
         public DbSet<UserResponses> UserResponses { get; set; }
         public DbSet<UserFriends> UserFriends { get; set; }
-        public DbSet<Publisher> Publishers { get; set; }
         public DbSet<UserMoreInfo> UserMoreInfo { get; set; }
         public DbSet<GameGanres> GameGanres { get; set; }
         public DbSet<GameLangauges> GameLangauges { get; set; }
