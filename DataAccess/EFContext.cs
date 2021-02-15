@@ -35,6 +35,8 @@ namespace DataAccess
         public DbSet<Response> Responses { get; set; }
         public DbSet<SystemRequirements> SystemRequirements { get; set; }
         public DbSet<SeriesGame> SeriesGames { get; set; }
+        public DbSet<Images> Images { get; set; }
+        public DbSet<GameImages> GameImages { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

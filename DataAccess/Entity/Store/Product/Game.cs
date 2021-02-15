@@ -15,13 +15,11 @@ namespace DataAccess.Entity.Store.Product
         [Required]
         public string Name { get; set; }
         [Required]
-        public string[] Image { get; set; }
+        public string Image { get; set; }
         [Required]
         public double Price { get; set; }
         [Required]
         public string Description { get; set; }       
-        [Required]
-        public string[] Genre { get; set; }
 
         [Required]
         public string[] EvaluationOfPublications { get; set; }
