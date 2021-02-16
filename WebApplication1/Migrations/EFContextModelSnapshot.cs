@@ -64,21 +64,6 @@ namespace APIAngular.Migrations
                     b.ToTable("tblUserResponses");
                 });
 
-            modelBuilder.Entity("DataAccess.Entity.Role.Communication.UserFriends", b =>
-                {
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("FriendId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("UserId", "FriendId");
-
-                    b.HasIndex("FriendId");
-
-                    b.ToTable("tblUserFriends");
-                });
-
             modelBuilder.Entity("DataAccess.Entity.Role.User", b =>
                 {
                     b.Property<string>("Id")
@@ -618,25 +603,6 @@ namespace APIAngular.Migrations
                         .IsRequired();
 
                     b.Navigation("ResponseOf");
-
-                    b.Navigation("UserOf");
-                });
-
-            modelBuilder.Entity("DataAccess.Entity.Role.Communication.UserFriends", b =>
-                {
-                    b.HasOne("DataAccess.Entity.Role.User", "FriendOf")
-                        .WithMany()
-                        .HasForeignKey("FriendId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("DataAccess.Entity.Role.User", "UserOf")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("FriendOf");
 
                     b.Navigation("UserOf");
                 });

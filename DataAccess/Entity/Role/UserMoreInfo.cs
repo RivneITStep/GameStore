@@ -1,5 +1,4 @@
 ﻿using DataAccess.Entity.Communication;
-using DataAccess.Entity.Role.Communication;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -26,12 +25,13 @@ namespace DataAccess.Entity.Role
 
         public virtual User User { get; set; }
 
-
-        //public UserFriends[] UserFriends { get; set; }
-
-        //public UserResponses[] UserResponses { get; set; }
-
-        //public UserGames[] UserGames { get; set; }
-
     }
+
+    //public UserFriends[] UserFriends { get; set; }
+
+    //public UserResponses[] UserResponses { get; set; }
+
+    //public UserGames[] UserGames { get; set; }
+
 }
+

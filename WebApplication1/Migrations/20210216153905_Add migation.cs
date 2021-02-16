@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace APIAngular.Migrations
 {
-    public partial class AddMigration : Migration
+    public partial class Addmigation : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -261,30 +261,6 @@ namespace APIAngular.Migrations
                     table.ForeignKey(
                         name: "FK_tblMoreInfo_AspNetUsers_Id",
                         column: x => x.Id,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "tblUserFriends",
-                columns: table => new
-                {
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    FriendId = table.Column<string>(type: "nvarchar(450)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_tblUserFriends", x => new { x.UserId, x.FriendId });
-                    table.ForeignKey(
-                        name: "FK_tblUserFriends_AspNetUsers_FriendId",
-                        column: x => x.FriendId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_tblUserFriends_AspNetUsers_UserId",
-                        column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -602,11 +578,6 @@ namespace APIAngular.Migrations
                 column: "SeriesGameId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_tblUserFriends_FriendId",
-                table: "tblUserFriends",
-                column: "FriendId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_tblUserGames_GameId",
                 table: "tblUserGames",
                 column: "GameId");
@@ -660,9 +631,6 @@ namespace APIAngular.Migrations
 
             migrationBuilder.DropTable(
                 name: "tblRecSystemRequirements");
-
-            migrationBuilder.DropTable(
-                name: "tblUserFriends");
 
             migrationBuilder.DropTable(
                 name: "tblUserGames");

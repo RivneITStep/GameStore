@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace APIAngular.Migrations
 {
     [DbContext(typeof(EFContext))]
-    [Migration("20210216121217_AddMigration")]
-    partial class AddMigration
+    [Migration("20210216153905_Add migation")]
+    partial class Addmigation
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -64,21 +64,6 @@ namespace APIAngular.Migrations
                     b.HasIndex("ResponseId");
 
                     b.ToTable("tblUserResponses");
-                });
-
-            modelBuilder.Entity("DataAccess.Entity.Role.Communication.UserFriends", b =>
-                {
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("FriendId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("UserId", "FriendId");
-
-                    b.HasIndex("FriendId");
-
-                    b.ToTable("tblUserFriends");
                 });
 
             modelBuilder.Entity("DataAccess.Entity.Role.User", b =>
@@ -620,25 +605,6 @@ namespace APIAngular.Migrations
                         .IsRequired();
 
                     b.Navigation("ResponseOf");
-
-                    b.Navigation("UserOf");
-                });
-
-            modelBuilder.Entity("DataAccess.Entity.Role.Communication.UserFriends", b =>
-                {
-                    b.HasOne("DataAccess.Entity.Role.User", "FriendOf")
-                        .WithMany()
-                        .HasForeignKey("FriendId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("DataAccess.Entity.Role.User", "UserOf")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("FriendOf");
 
                     b.Navigation("UserOf");
                 });

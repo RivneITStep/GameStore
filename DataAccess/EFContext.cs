@@ -1,6 +1,5 @@
 ﻿using DataAccess.Entity.Communication;
 using DataAccess.Entity.Role;
-using DataAccess.Entity.Role.Communication;
 using DataAccess.Entity.Store;
 using DataAccess.Entity.Store.Communication;
 using DataAccess.Entity.Store.Product;
@@ -21,7 +20,6 @@ namespace DataAccess
         public DbSet<PublisherSeriesGames> PublisherSeriesGames {get;set;}
         public DbSet<UserGames> UserGames { get; set; }
         public DbSet<UserResponses> UserResponses { get; set; }
-        public DbSet<UserFriends> UserFriends { get; set; }
         public DbSet<UserMoreInfo> UserMoreInfo { get; set; }
         public DbSet<GameGanres> GameGanres { get; set; }
         public DbSet<GameLangauges> GameLangauges { get; set; }
@@ -62,8 +60,6 @@ namespace DataAccess
             .HasKey(c => new { c.UserId, c.GameId });
             builder.Entity<UserResponses>()
             .HasKey(c => new { c.UserId, c.ResponseId });
-            builder.Entity<UserFriends>()
-            .HasKey(c => new { c.UserId, c.FriendId });
             builder.Entity<GameGanres>()
             .HasKey(c => new { c.GameId, c.GanreId }); 
             builder.Entity<GameLangauges>()
