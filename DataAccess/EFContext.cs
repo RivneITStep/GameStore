@@ -18,7 +18,6 @@ namespace DataAccess
         public EFContext(DbContextOptions<EFContext> options) : base(options) { }
 
 
-        public DbSet<PublisherGames> PublisherGames { get; set; }
         public DbSet<PublisherSeriesGames> PublisherSeriesGames {get;set;}
         public DbSet<UserGames> UserGames { get; set; }
         public DbSet<UserResponses> UserResponses { get; set; }
@@ -33,7 +32,8 @@ namespace DataAccess
         public DbSet<Ganre> Ganres { get; set; }
         public DbSet<Language> Languages { get; set; }
         public DbSet<Response> Responses { get; set; }
-        public DbSet<SystemRequirements> SystemRequirements { get; set; }
+        public DbSet<RecSystemRequirements> RecSystemRequirements { get; set; }
+        public DbSet<MinSystemRequirements> MinSystemRequirements { get; set; }
         public DbSet<SeriesGame> SeriesGames { get; set; }
         public DbSet<Images> Images { get; set; }
         public DbSet<GameImages> GameImages { get; set; }
@@ -46,13 +46,16 @@ namespace DataAccess
                 .WithOne(t => t.User)
                 .HasForeignKey<UserMoreInfo>(uid => uid.Id);
 
-            builder.Entity<User>()
-                .HasOne(u => u.userMoreInfo)
-                .WithOne(t => t.User)
-                .HasForeignKey<UserMoreInfo>(uid => uid.Id);
+            builder.Entity<Game>()
+                .HasOne(u => u.MinSystemRequirementProduct)
+                .WithOne(t => t.GameOf)
+                .HasForeignKey<MinSystemRequirements>(sid => sid.Id);
 
-            builder.Entity<PublisherGames>()
-            .HasKey(c => new { c.PublisherId, c.GameId });
+            builder.Entity<Game>()
+                .HasOne(u => u.RecSystemRequirementProduct)
+                .WithOne(t => t.GameOf)
+                .HasForeignKey<RecSystemRequirements>(sid => sid.Id);
+
             builder.Entity<PublisherSeriesGames>()
             .HasKey(c => new { c.PublisherId, c.SeriesGameId });
             builder.Entity<UserGames>()
@@ -68,8 +71,10 @@ namespace DataAccess
             builder.Entity<GameResponses>()
             .HasKey(c => new { c.GameId, c.ResponseId });
             builder.Entity<GameSeriesGames>()
-            .HasKey(c => new { c.GameId, c.SeriesGameId });   
-            
+            .HasKey(c => new { c.GameId, c.SeriesGameId });
+            builder.Entity<GameImages>()
+            .HasKey(c => new { c.GameId, c.ImageId });
+
             base.OnModelCreating(builder);
         }
     }

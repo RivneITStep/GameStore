@@ -22,9 +22,9 @@ namespace DataAccess.Entity.Store.Product
         public string Description { get; set; }       
 
         [Required]
-        public string[] EvaluationOfPublications { get; set; }
+        public int EvaluationOfSCS { get; set; }
         [Required]
-        public string[] Reviews { get; set; }
+        public string Reviews { get; set; }
 
         [Required]
         public DateTime Data { get; set; }
@@ -33,9 +33,9 @@ namespace DataAccess.Entity.Store.Product
 
 
         [Required]
-        public SystemRequirements MinSystemRequirementProduct { get; set; }
+        public MinSystemRequirements MinSystemRequirementProduct { get; set; }
         [Required]
-        public SystemRequirements RecSystemRequirementProduct { get; set; }
+        public RecSystemRequirements RecSystemRequirementProduct { get; set; }
 
     }
 }

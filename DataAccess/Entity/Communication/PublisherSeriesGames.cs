@@ -12,7 +12,7 @@ namespace DataAccess.Entity.Communication
     public class PublisherSeriesGames
     {
         [Key, ForeignKey("PublisherOf"), Column(Order = 1)]
-        public int PublisherId { get; set; }
+        public string PublisherId { get; set; }
         public virtual User PublisherOf { get; set; }
 
 

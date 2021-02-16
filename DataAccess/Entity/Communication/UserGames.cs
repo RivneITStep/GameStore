@@ -12,7 +12,7 @@ namespace DataAccess.Entity.Communication
     public class UserGames
     {
         [Key, ForeignKey("UserOf"), Column(Order = 1)]
-        public int UserId { get; set; }
+        public string UserId { get; set; }
         public virtual User UserOf { get; set; }
 
 

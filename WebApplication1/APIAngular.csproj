@@ -41,11 +41,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\CourseworkDomain\CourseworkDomain.csproj" />
+    <ProjectReference Include="..\CourseworkDTO\CourseworkDTO.csproj" />
     <ProjectReference Include="..\DataAccess\DataAccess.csproj" />
   </ItemGroup>
 

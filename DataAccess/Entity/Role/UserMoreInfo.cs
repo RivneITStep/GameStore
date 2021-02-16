@@ -19,6 +19,8 @@ namespace DataAccess.Entity.Role
         public string Image { get; set; }
         public int Age { get; set; }
 
+        public string Address { get; set; }
+
         [Required]
         public string Description { get; set; }
 

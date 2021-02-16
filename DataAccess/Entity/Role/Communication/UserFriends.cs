@@ -11,12 +11,12 @@ namespace DataAccess.Entity.Role.Communication
     {
 
         [Key, ForeignKey("UserOf"), Column(Order = 1)]
-        public int UserId { get; set; }
+        public string UserId { get; set; }
         public virtual User UserOf { get; set; }
 
 
         [Key, ForeignKey("FriendOf"), Column(Order = 2)]
-        public int FriendId { get; set; }
+        public string FriendId { get; set; }
         public virtual User FriendOf { get; set; }
 
     }

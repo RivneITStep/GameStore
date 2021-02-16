@@ -6,9 +6,11 @@ using System.Text;
 
 namespace DataAccess.Entity.Store.Product
 {
-    [Table("tblSystemRequirements")]
-    public class SystemRequirements
+    [Table("tblRecSystemRequirements")]
+    public class RecSystemRequirements
     {
+        [Key, ForeignKey("GameOf")]
+        public int Id { get; set; }
         [Required]
         public string OS { get; set; }
         [Required]
@@ -19,9 +21,6 @@ namespace DataAccess.Entity.Store.Product
         public string Graphics { get; set; }
         [Required]
         public string Storege { get; set; }
-
-        [Key, ForeignKey("GameOf")]
-        public int GameId { get; set; }
         public virtual Game GameOf { get; set; }
     }
 }
