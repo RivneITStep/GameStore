@@ -1,7 +1,7 @@
-﻿using CourseworkDTO.Models;
-using CourseworkDTO.Models.Results;
-using DataAccess;
+﻿using DataAccess;
 using DataAccess.Entity.Role;
+using DTO.Models;
+using DTO.Models.Results;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;

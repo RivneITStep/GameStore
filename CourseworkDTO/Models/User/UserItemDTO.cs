@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CourseworkDTO.Models
+namespace DTO.Models
 {
     public class UserItemDTO
     {

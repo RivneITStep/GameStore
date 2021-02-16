@@ -41,8 +41,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CourseworkDomain\CourseworkDomain.csproj" />
-    <ProjectReference Include="..\CourseworkDTO\CourseworkDTO.csproj" />
+    <ProjectReference Include="..\CourseworkDomain\Domain.csproj" />
+    <ProjectReference Include="..\CourseworkDTO\DTO.csproj" />
     <ProjectReference Include="..\DataAccess\DataAccess.csproj" />
   </ItemGroup>
 

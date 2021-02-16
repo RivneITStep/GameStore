@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CourseworkAPIAngular.Helper
+namespace APIAngular.Helper
 {
         public class CustomEmail : ValidationAttribute
         {

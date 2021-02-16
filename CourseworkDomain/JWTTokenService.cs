@@ -1,6 +1,6 @@
-﻿using CourseworkDomain.Interfaces;
-using DataAccess;
+﻿using DataAccess;
 using DataAccess.Entity.Role;
+using Domain.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
@@ -11,7 +11,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 
-namespace CourseworkDomain
+namespace Domain
 {
     public class JWTTokenService : IJWTTokenService
     {

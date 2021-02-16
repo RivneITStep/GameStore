@@ -1,5 +1,5 @@
-using CourseworkDomain;
-using CourseworkDomain.Interfaces;
+using Domain;
+using Domain.Interfaces;
 using DataAccess;
 using DataAccess.Entity.Role;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -34,7 +34,7 @@ namespace WebApplication1
 
             services.AddDbContext<EFContext>(options =>
             options.UseSqlServer(Configuration["ConnectionString"],
-            b => b.MigrationsAssembly("CourseworkAPIAngular"))
+            b => b.MigrationsAssembly("APIAngular"))
             );
 
             services.AddIdentity<User, IdentityRole>()

@@ -7,9 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APIAngular", "WebApplicatio
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccess", "DataAccess\DataAccess.csproj", "{16F16BCA-979B-4092-8F72-216C4076CA1D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CourseworkDomain", "CourseworkDomain\CourseworkDomain.csproj", "{DB9915CF-C1EB-46F2-9E73-2ED7A0958295}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "CourseworkDomain\Domain.csproj", "{DB9915CF-C1EB-46F2-9E73-2ED7A0958295}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CourseworkDTO", "CourseworkDTO\CourseworkDTO.csproj", "{EFAD1773-6CBF-4B52-B7FE-BFB8C31558FF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DTO", "CourseworkDTO\DTO.csproj", "{EFAD1773-6CBF-4B52-B7FE-BFB8C31558FF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using DataAccess.Entity.Role;
 
-namespace CourseworkDomain.Interfaces
+namespace Domain.Interfaces
 {
     public interface IJWTTokenService
     {

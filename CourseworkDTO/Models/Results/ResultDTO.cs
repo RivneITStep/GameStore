@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CourseworkDTO.Models.Results
+namespace DTO.Models.Results
 {
     public class ResultDTO
     {

@@ -1,10 +1,10 @@
-﻿using CourseworkAPIAngular.Helper;
+﻿using APIAngular.Helper;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace CourseworkDTO.Models
+namespace DTO.Models
 {
     public class UserRegisterDTO
     {
