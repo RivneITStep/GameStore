@@ -1,6 +1,7 @@
-<body>
-  <app-nav-menu></app-nav-menu>
-  <div class="container">
-    <router-outlet></router-outlet>
-  </div>
-</body>
+<app-nav-menu></app-nav-menu>
+<div class="container-fluid">
+  <router-outlet></router-outlet>
+</div>
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="large" color="#e9a60a" type="square-jelly-box" [fullScreen]="true">
+</ngx-spinner>
+<notifier-container></notifier-container>
