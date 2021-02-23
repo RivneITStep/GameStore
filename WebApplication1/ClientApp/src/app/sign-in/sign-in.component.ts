@@ -23,6 +23,7 @@ export class SignInComponent implements OnInit {
 
   model = new SignInModel();
 
+  decoded :any;
   login() {
     this.spinner.show();
     this.notifier.hideAll();
@@ -41,17 +42,18 @@ export class SignInComponent implements OnInit {
           console.log(data);
           if (data.status === 200) {
             window.localStorage.setItem('token', data.token);
-            var decoded = jwt_decode(data.token);
-            if (decoded.roles === "Admin") {
+            this.decoded = jwt_decode(data.token);
+       
+            if (this.decoded.roles === "Admin") {
               this.router.navigate(['/admin-panel']);
             }
-            else if (decoded.roles === "User") {
+            else if (this.decoded.roles === "User") {
               this.router.navigate(['/client-panel']);
             }
-            else if (decoded.roles === "Publisher") {
+            else if (this.decoded.roles === "Publisher") {
               this.router.navigate(['/publisher-panel']);
             }
-            localStorage.setItem("role", decoded.roles);
+            localStorage.setItem("role", this.decoded.roles);
             this.authService.statusLogin.emit(true);
 
           }
