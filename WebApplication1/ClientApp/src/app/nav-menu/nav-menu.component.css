@@ -4,6 +4,20 @@ a.navbar-brand {
   word-break: break-all;
 }
 
+nav{
+  margin-bottom: 0px !important;
+  background-color: black!important;
+  color: beige!important;
+}
+
+a{
+  color: beige!important;
+}
+
+a.text-light:focus, a.text-light:hover {
+    color: darkorchid!important;
+}
+
 html {
   font-size: 14px;
 }

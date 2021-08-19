@@ -19,6 +19,8 @@ import { SignInComponent } from './sign-in/sign-in.component';
 
 import { TokenInterceptor } from './interceptor';
 
+import { DemoMaterialModule } from './material.module';
+
 const configNotifier: NotifierOptions = {
   position: {
     horizontal: {
@@ -48,6 +50,7 @@ const configNotifier: NotifierOptions = {
     AppRoutingModule,
     NgxSpinnerModule,
     BrowserAnimationsModule,
+    DemoMaterialModule
   ],
   providers: [
     NgxSpinnerService,

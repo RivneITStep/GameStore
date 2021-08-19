@@ -1,3 +1,14 @@
 body{
     background: url('https://images.wallpaperscraft.ru/image/zvyozdy_tumannost_svechenie_94217_1920x1080.jpg');
+    background-position:center;
+    background-attachment: scroll;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    width: 100%;
+    height: auto;
+}
+
+.container-fluid{
+    padding: 0px;
 }

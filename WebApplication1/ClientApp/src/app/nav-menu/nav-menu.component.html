@@ -1,6 +1,6 @@
 <header>
   <nav
-    class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3"
+    class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-white border-bottom box-shadow mb-3"
   >
     <div class="container">
       <a class="navbar-brand" [routerLink]="['/']">SGS</a>
@@ -25,25 +25,25 @@
             [routerLinkActive]="['link-active']"
             [routerLinkActiveOptions]="{ exact: true }"
           >
-            <a class="nav-link text-dark" [routerLink]="['/']">Home</a>
+            <a class="nav-link text-light" [routerLink]="['/']">Home</a>
           </li>
           <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/counter']"
+            <a class="nav-link text-light" [routerLink]="['/counter']"
               >Counter</a
             >
           </li>
           <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/fetch-data']"
+            <a class="nav-link text-light" [routerLink]="['/fetch-data']"
               >Fetch data</a
             >
           </li>
           <li *ngIf="isLogin === false" class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/sign-in']"
+            <a class="nav-link text-light" [routerLink]="['/sign-in']"
               >Sing in</a
             >
           </li>
           <li *ngIf="isLogin === true" class="nav-item logout">
-            <a class="nav-link text-dark" (click)="Logout()">Logout</a>
+            <a class="nav-link text-light" (click)="Logout()">Logout</a>
           </li>
 
         </ul>
