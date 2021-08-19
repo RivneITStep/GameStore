@@ -1,9 +1,26 @@
-.example-card {
-    max-width: 325px;
-    max-height: 325px;
+.ant-card{
+
+}
+.cardGame{
+    max-width: 325px !important;
+    max-height: 325px!important;
     background-color: black;
-    color: beige;
-    margin-bottom: 45px;
+    margin-bottom: 45px!important;
+}
+.nz-card-meta{
+    color: beige!important;
+}
+.ant-card-meta-title{
+    color: beige!important;
+}
+.ng-star-inserted{
+    color: beige!important;
+}
+.ant-card{
+    color: beige!important;
+}
+.nzTitle{
+    color: beige!important; 
 }
 hr{
     background-color: beige;
@@ -17,8 +34,4 @@ H1{
     margin-bottom: 30px;
     background-color: black;
     color: beige;
-}
-
-.mat-grid-list{
-    margin-top: 45px;
 }

@@ -20,6 +20,12 @@ import { SignInComponent } from './sign-in/sign-in.component';
 import { TokenInterceptor } from './interceptor';
 
 import { DemoMaterialModule } from './material.module';
+import { NgZorroAntdModule } from './ng-zorro-antd.module';
+import { NZ_I18N, en_US } from 'ng-zorro-antd/i18n';
+import { registerLocaleData } from '@angular/common';
+import en from '@angular/common/locales/en';
+
+registerLocaleData(en);
 
 const configNotifier: NotifierOptions = {
   position: {
@@ -50,10 +56,12 @@ const configNotifier: NotifierOptions = {
     AppRoutingModule,
     NgxSpinnerModule,
     BrowserAnimationsModule,
-    DemoMaterialModule
+    DemoMaterialModule,
+    NgZorroAntdModule
   ],
   providers: [
     NgxSpinnerService,
+    { provide: NZ_I18N, useValue: en_US },
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
