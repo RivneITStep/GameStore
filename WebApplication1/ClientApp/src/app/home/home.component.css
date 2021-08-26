@@ -1,37 +1,38 @@
 .ant-card{
-
-}
-.cardGame{
-    max-width: 325px !important;
-    max-height: 325px!important;
     background-color: black;
-    margin-bottom: 45px!important;
 }
-.nz-card-meta{
-    color: beige!important;
+
+.divGameTrend{
+    padding: 15px;
 }
-.ant-card-meta-title{
-    color: beige!important;
+
+[nz-carousel-content] {
+    text-align: center;
+    width: auto;
+    max-height: 215px !important;
+    line-height: 200px;
+    height: 215px !important;
+    background: black;
+    color: beige;
+    overflow: hidden;
+  }
+
+img{
+    max-height: 215px !important;
+    min-width: 50px !important;
+    max-width: 450px !important;
 }
-.ng-star-inserted{
-    color: beige!important;
-}
-.ant-card{
-    color: beige!important;
-}
-.nzTitle{
-    color: beige!important; 
-}
+
 hr{
     background-color: beige;
-    height: 1px;
+    color:beige;
+    height: 15px;
     margin: 0px;
 }
-H1{
+h1{
     padding: 10px;
     padding-left: 16px;
-
-    margin-bottom: 30px;
+    margin-bottom: 0px;
     background-color: black;
     color: beige;
 }

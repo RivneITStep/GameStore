@@ -22,19 +22,19 @@ export class SignInComponent implements OnInit {
     private router: Router) { }
 
   model = new SignInModel();
-
   decoded :any;
   login() {
-    this.spinner.show();
+    this.spinner.show('mySpinner');
+   //this.spinner.show();
     this.notifier.hideAll();
 
     if (!this.model.isValid()) {
       this.notifier.notify('error', "Please, enter all field for login!");
-      this.spinner.hide();
+      this.spinner.hide('mySpinner');
     }
     else if (!this.model.isEmail()) {
       this.notifier.notify('error', "Please, enter correct email!");
-      this.spinner.hide();
+      this.spinner.hide('mySpinner');
     }
     else {
       this.authService.SignIn(this.model).subscribe(
@@ -45,7 +45,7 @@ export class SignInComponent implements OnInit {
             this.decoded = jwt_decode(data.token);
        
             if (this.decoded.roles === "Admin") {
-              this.router.navigate(['/admin-panel']);
+              this.router.navigate(['/admin']);
             }
             else if (this.decoded.roles === "User") {
               this.router.navigate(['/client-panel']);
@@ -63,7 +63,7 @@ export class SignInComponent implements OnInit {
             }
           }
           setTimeout(() => {
-            this.spinner.hide()
+            this.spinner.hide('mySpinner');
           }, 1000);
         }
       )

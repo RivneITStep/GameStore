@@ -1,259 +1,131 @@
 <hr>
 <H1>New</H1>
 
-<div nz-row [nzGutter]="16">
-  <div nz-col class="gutter-row" [nzSpan]="6"><div class="inner-box">
 
+<nz-carousel style=" height: 215px;" nzAutoPlay nzAutoPlaySpeed=6000>
+  <div  nz-carousel-content *ngFor="let index of array">
+    <div nz-row>
+      <div nz-col nzFlex="2" >
+        <img  src="{{ arrayImage[index] }}">
+      </div>
+      <div nz-col nzFlex="3">
+        <h1>{{ arrayName[index] }}</h1>
+        <p>{{arrayGenre[index]}}</p>
+      </div>
+    </div>
+  </div>
+</nz-carousel>
 
-    <mat-card class="example-card">
-      <mat-card-header>
-        <mat-card-title>Battlefield™ 2042</mat-card-title>
-      </mat-card-header>
-      <img mat-card-image src="https://cdn.akamai.steamstatic.com/steam/apps/1517290/header.jpg?t=1628787459" alt="Photo of a Shiba Inu">
-      <mat-card-content>
-          <p>
-             Action, Shooter, Multiplayer, War
-          </p>
-        </mat-card-content>
-      <mat-card-actions>
-        <button mat-button>Add to cart</button>
-        <button mat-button>More</button>
-      </mat-card-actions>
-    </mat-card>
-
-  </div></div>
-  <div nz-col class="gutter-row" [nzSpan]="6"><div class="inner-box">
-
-    
-    <mat-card class="example-card">
-      <mat-card-header>
-        <mat-card-title>S.T.A.L.K.E.R. 2</mat-card-title>
-      </mat-card-header>
-      <img mat-card-image src="https://cdn.akamai.steamstatic.com/steam/apps/1643320/header.jpg?t=1628240324" alt="Photo of a Shiba Inu">
-      <mat-card-content>
-          <p>
-              Open World, Adwenture, Story Rich, Western
-          </p>
-        </mat-card-content>
-      <mat-card-actions>
-        <button mat-button>Add to cart</button>
-        <button mat-button>More</button>
-      </mat-card-actions>
-    </mat-card>
-
-  </div></div>
-  <div nz-col class="gutter-row" [nzSpan]="6"><div class="inner-box">
-
-    <mat-card class="example-card">
-      <mat-card-header>
-        <mat-card-title>HUMANKIND</mat-card-title>
-      </mat-card-header>
-      <img mat-card-image src="https://cdn.akamai.steamstatic.com/steam/apps/1124300/header.jpg?t=1629304781" alt="Photo of a Shiba Inu">
-      <mat-card-content>
-          <p>
-              Open World, Adwenture, Story Rich, Western
-          </p>
-        </mat-card-content>
-      <mat-card-actions>
-        <button mat-button>Add to cart</button>
-        <button mat-button>More</button>
-      </mat-card-actions>
-    </mat-card>
-
-
-  </div></div>
-  <div nz-col class="gutter-row" [nzSpan]="6"><div class="inner-box">
-
-    <mat-card class="example-card">
-      <mat-card-header>
-        <mat-card-title>Forza Horizon 5</mat-card-title>
-      </mat-card-header>
-      <img mat-card-image src="https://cdn.cloudflare.steamstatic.com/steam/apps/1551360/header.jpg?t=1625262842" alt="Photo of a Shiba Inu">
-      <mat-card-content>
-          <p>
-              Open World, Adwenture, Racing
-          </p>
-        </mat-card-content>
-      <mat-card-actions>
-        <button mat-button>Add to cart</button>
-        <button mat-button>More</button>
-      </mat-card-actions>
-    </mat-card>
-
-  </div></div>
-</div>
-
+<hr>
 <H1>Trending</H1>
 
-
+<div class="divGameTrend">
 <div nz-row [nzGutter]="[16, 24]">
   <div nz-col class="gutter-row" [nzSpan]="6"><div class="inner-box">
 
-    <mat-card class="example-card">
-      <mat-card-header>
-        <mat-card-title>Red Dead Redemption 2</mat-card-title>
-      </mat-card-header>
-      <img mat-card-image src="https://cdn.akamai.steamstatic.com/steam/apps/1174180/header.jpg?t=1618851907" alt="Photo of a Shiba Inu">
-      <mat-card-content>
-          <p>
-              Open World, Adwenture, Story Rich, Western
-          </p>
-        </mat-card-content>
-      <mat-card-actions>
-        <button mat-button>Add to cart</button>
-        <button mat-button>More</button>
-      </mat-card-actions>
-    </mat-card>
+
+    <div class="cardGame">
+      <nz-card nzHoverable [nzCover]="coverTemplate1">
+        <nz-card-meta nzTitle="Red Dead Redemption 2" nzDescription="Open World, Story Rich, Western"></nz-card-meta>
+      </nz-card>
+      <ng-template #coverTemplate1>
+        <img alt="example" src="https://cdn.akamai.steamstatic.com/steam/apps/1174180/header.jpg?t=1618851907" />
+      </ng-template></div>
 
   </div></div>
 
   <div nz-col class="gutter-row" [nzSpan]="6"><div class="inner-box">
 
-    <mat-card class="example-card">
-      <mat-card-header>
-        <mat-card-title>Grand Theft Auto V</mat-card-title>
-      </mat-card-header>
-      <img mat-card-image src="https://cdn.cloudflare.steamstatic.com/steam/apps/271590/header.jpg?t=1618856444" alt="Photo of a Shiba Inu">
-      <mat-card-content>
-          <p>
-              Open World, Adwenture, Story Rich, Action
-          </p>
-        </mat-card-content>
-      <mat-card-actions>
-        <button mat-button>Add to cart</button>
-        <button mat-button>More</button>
-      </mat-card-actions>
-    </mat-card>
+    <div class="cardGame">
+      <nz-card nzHoverable [nzCover]="coverTemplate2">
+        <nz-card-meta nzTitle="Grand Theft Auto V" nzDescription="Open World, Adwenture, Story Rich, Action"></nz-card-meta>
+      </nz-card>
+      <ng-template #coverTemplate2>
+        <img alt="example" src="https://cdn.cloudflare.steamstatic.com/steam/apps/271590/header.jpg?t=1618856444" />
+      </ng-template></div>
 
   </div></div>
 
   <div nz-col class="gutter-row" [nzSpan]="6"><div class="inner-box">
 
-    <mat-card class="example-card">
-      <mat-card-header>
-        <mat-card-title>Counter-Strike: Global Offensive</mat-card-title>
-      </mat-card-header>
-      <img mat-card-image src="https://cdn.cloudflare.steamstatic.com/steam/apps/730/header.jpg?t=1629301045" alt="Photo of a Shiba Inu">
-      <mat-card-content>
-          <p>
-              Action, FPS, Story Rich, Western
-          </p>
-        </mat-card-content>
-      <mat-card-actions>
-        <button mat-button>Add to cart</button>
-        <button mat-button>More</button>
-      </mat-card-actions>
-    </mat-card>
+    <div class="cardGame">
+      <nz-card nzHoverable  [nzCover]="coverTemplate3">
+        <nz-card-meta nzTitle="Counter-Strike: Global Offensive" nzDescription="Action, FPS, Story Rich, Western"></nz-card-meta>
+      </nz-card>
+      <ng-template #coverTemplate3>
+        <img alt="example" src="https://cdn.cloudflare.steamstatic.com/steam/apps/730/header.jpg?t=1629301045" />
+      </ng-template></div>
 
   </div></div>
 
   <div nz-col class="gutter-row" [nzSpan]="6"><div class="inner-box">
 
-    <mat-card class="example-card">
-      <mat-card-header>
-        <mat-card-title>DOOM Eternal</mat-card-title>
-      </mat-card-header>
-      <img mat-card-image src="https://cdn.cloudflare.steamstatic.com/steam/apps/782330/header.jpg?t=1628183141" alt="Photo of a Shiba Inu">
-      <mat-card-content>
-          <p>
-              Core, Action, Story Rich, FPS
-          </p>
-        </mat-card-content>
-      <mat-card-actions>
-        <button mat-button>Add to cart</button>
-        <button mat-button>More</button>
-      </mat-card-actions>
-    </mat-card>
+    <div class="cardGame">
+      <nz-card nzHoverable  [nzCover]="coverTemplate4">
+        <nz-card-meta nzTitle="DOOM Eternal" nzDescription="Core, Action, Story Rich, FPS"></nz-card-meta>
+      </nz-card>
+      <ng-template #coverTemplate4>
+        <img alt="example" src="https://cdn.cloudflare.steamstatic.com/steam/apps/782330/header.jpg?t=1628183141" />
+      </ng-template></div>
 
   </div></div>
 
   <div nz-col class="gutter-row" [nzSpan]="6"><div class="inner-box">
 
-    <mat-card class="example-card">
-      <mat-card-header>
-        <mat-card-title>Halo: The Master Chief Collection</mat-card-title>
-      </mat-card-header>
-      <img mat-card-image src="https://cdn.cloudflare.steamstatic.com/steam/apps/976730/header.jpg?t=1624467656" alt="Photo of a Shiba Inu">
-      <mat-card-content>
-          <p>
-              Open World, Adwenture, Story Rich, FPS
-          </p>
-        </mat-card-content>
-      <mat-card-actions>
-        <button mat-button>Add to cart</button>
-        <button mat-button>More</button>
-      </mat-card-actions>
-    </mat-card>
+    <div class="cardGame">
+      <nz-card nzHoverable [nzCover]="coverTemplate5">
+        <nz-card-meta nzTitle="Halo: The Master Chief Collection" nzDescription="Open World, Adwenture, Story Rich, Western"></nz-card-meta>
+      </nz-card>
+      <ng-template #coverTemplate5>
+        <img alt="example" src="https://cdn.cloudflare.steamstatic.com/steam/apps/976730/header.jpg?t=1624467656" />
+      </ng-template></div>
 
   </div></div>
 
   <div nz-col class="gutter-row" [nzSpan]="6"><div class="inner-box">
 
-    <mat-card class="example-card">
-      <mat-card-header>
-        <mat-card-title>Forza Horizon 4</mat-card-title>
-      </mat-card-header>
-      <img mat-card-image src="https://cdn.cloudflare.steamstatic.com/steam/apps/1293830/header.jpg?t=1622068013" alt="Photo of a Shiba Inu">
-      <mat-card-content>
-          <p>
-              Open World, Adwenture, Story Rich, Western
-          </p>
-        </mat-card-content>
-      <mat-card-actions>
-        <button mat-button>Add to cart</button>
-        <button mat-button>More</button>
-      </mat-card-actions>
-    </mat-card>
+    <div class="cardGame">
+      <nz-card nzHoverable [nzCover]="coverTemplate6">
+        <nz-card-meta nzTitle="Forza Horizon 4" nzDescription="Open World, Adwenture, Story Rich, Western"></nz-card-meta>
+      </nz-card>
+      <ng-template #coverTemplate6>
+        <img alt="example" src="https://cdn.cloudflare.steamstatic.com/steam/apps/1293830/header.jpg?t=1622068013" />
+      </ng-template></div>
 
   </div></div>
 
   <div nz-col class="gutter-row" [nzSpan]="6"><div class="inner-box">
 
-    <mat-card class="example-card">
-      <mat-card-header>
-        <mat-card-title>The Elder Scrolls® Online</mat-card-title>
-      </mat-card-header>
-      <img mat-card-image src="https://cdn.cloudflare.steamstatic.com/steam/apps/306130/header.jpg?t=1629139056" alt="Photo of a Shiba Inu">
-      <mat-card-content>
-          <p>
-              Open World, Adwenture, Story Rich, Western
-          </p>
-        </mat-card-content>
-      <mat-card-actions>
-        <button mat-button>Add to cart</button>
-        <button mat-button>More</button>
-      </mat-card-actions>
-    </mat-card>
+    <div class="cardGame">
+      <nz-card nzHoverable [nzCover]="coverTemplate7">
+        <nz-card-meta nzTitle="The Elder Scrolls® Online" nzDescription="Open World, Adwenture, Story Rich, Western"></nz-card-meta>
+      </nz-card>
+      <ng-template #coverTemplate7>
+        <img alt="example" src="https://cdn.cloudflare.steamstatic.com/steam/apps/306130/header.jpg?t=1629139056" />
+      </ng-template></div>
 
   </div></div>
 
   <div nz-col class="gutter-row" [nzSpan]="6"><div class="inner-box">
 
-    <mat-card class="example-card">
-      <mat-card-header>
-        <mat-card-title>Cyberpunk 2077</mat-card-title>
-      </mat-card-header>
-      <img mat-card-image src="https://cdn.cloudflare.steamstatic.com/steam/apps/1091500/header.jpg?t=1621944801" alt="Photo of a Shiba Inu">
-      <mat-card-content>
-          <p>
-              Open World, Adwenture, Story Rich, Western
-          </p>
-        </mat-card-content>
-      <mat-card-actions>
-        <button mat-button>Add to cart</button>
-        <button mat-button>More</button>
-      </mat-card-actions>
-    </mat-card>
+
+      <div class="cardGame">
+        <nz-card nzHoverable  [nzCover]="coverTemplate8">
+          <nz-card-meta nzTitle="Cyberpunk 2077" nzDescription="Open World, Adwenture, Story Rich, Western"></nz-card-meta>
+        </nz-card>
+        <ng-template #coverTemplate8>
+          <img alt="example" src="https://cdn.cloudflare.steamstatic.com/steam/apps/1091500/header.jpg?t=1621944801" />
+        </ng-template></div>
 
   </div></div>
 
   
 
 </div>
-<div class="cardGame">
-<nz-card nzHoverable style="width:325px" [nzCover]="coverTemplate">
-  <nz-card-meta nzTitle="Halo: The Master Chief Collection" nzDescription="Open World, Adwenture, Story Rich, Western"></nz-card-meta>
-</nz-card>
-<ng-template #coverTemplate>
-  <img alt="example" src="https://cdn.cloudflare.steamstatic.com/steam/apps/976730/header.jpg?t=1624467656" />
-</ng-template></div>
+
+</div>
+
+<H1>All Games</H1>
+<hr>
+
+

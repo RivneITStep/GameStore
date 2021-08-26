@@ -27,20 +27,17 @@
           >
             <a class="nav-link text-light" [routerLink]="['/']">Home</a>
           </li>
-          <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-light" [routerLink]="['/counter']"
-              >Counter</a
-            >
+
+          <li> 
+            <a class="nav-link text-light" [routerLink]="['/admin']">Panel</a>
           </li>
-          <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-light" [routerLink]="['/fetch-data']"
-              >Fetch data</a
-            >
+
+          <li> 
+            <a class="nav-link text-light" [routerLink]="['/library']">Library</a>
           </li>
+
           <li *ngIf="isLogin === false" class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-light" [routerLink]="['/sign-in']"
-              >Sing in</a
-            >
+            <a class="nav-link text-light" [routerLink]="['/sign-in']">Sing in</a>
           </li>
           <li *ngIf="isLogin === true" class="nav-item logout">
             <a class="nav-link text-light" (click)="Logout()">Logout</a>

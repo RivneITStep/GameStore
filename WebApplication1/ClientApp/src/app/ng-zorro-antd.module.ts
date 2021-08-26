@@ -137,6 +137,4 @@ import { NzResizableModule } from 'ng-zorro-antd/resizable';
   ]
 })
 
-export class NgZorroAntdModule {
-
-}
+export class DemoNgZorroAntdModule {}

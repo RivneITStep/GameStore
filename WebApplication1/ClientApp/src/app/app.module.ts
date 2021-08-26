@@ -16,14 +16,18 @@ import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { AppRoutingModule } from './app-routing.module';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { SignInComponent } from './sign-in/sign-in.component';
+import { GameComponent } from './game/game.component';
+import { LibraryComponent } from './library/library.component';
 
 import { TokenInterceptor } from './interceptor';
 
 import { DemoMaterialModule } from './material.module';
-import { NgZorroAntdModule } from './ng-zorro-antd.module';
+import { DemoNgZorroAntdModule } from './ng-zorro-antd.module';
+//import { DemoPrimeNGExport } from './primeng.module';
 import { NZ_I18N, en_US } from 'ng-zorro-antd/i18n';
 import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
+import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 
 registerLocaleData(en);
 
@@ -39,15 +43,18 @@ const configNotifier: NotifierOptions = {
 };
 
 @NgModule({
-  declarations: [
+  declarations: [				
     AppComponent,
     NavMenuComponent,
     HomeComponent,
     CounterComponent,
     FetchDataComponent,
     SignUpComponent,
-    SignInComponent
-  ],
+    SignInComponent,
+    GameComponent,
+    LibraryComponent,
+      AdminPanelComponent
+   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     NotifierModule.withConfig(configNotifier),
@@ -57,7 +64,8 @@ const configNotifier: NotifierOptions = {
     NgxSpinnerModule,
     BrowserAnimationsModule,
     DemoMaterialModule,
-    NgZorroAntdModule
+    DemoNgZorroAntdModule,
+  //  DemoPrimeNGExport
   ],
   providers: [
     NgxSpinnerService,

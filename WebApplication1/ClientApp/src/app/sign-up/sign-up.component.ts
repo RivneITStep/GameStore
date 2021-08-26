@@ -23,14 +23,14 @@ export class SignUpComponent implements OnInit {
   confirmPassword: string;
 
   register() {
-    this.spinner.show();
+    this.spinner.show('mySpinner');
     this.notifier.hideAll();
     if (!this.model.isEmail()) {
-      this.spinner.hide();
+      this.spinner.hide('mySpinner');
       this.notifier.notify('error', "Please, enter correct email!");
     }
     else if (this.model.Password != this.confirmPassword) {
-      this.spinner.hide();
+      this.spinner.hide('mySpinner');
       this.notifier.notify('error', "Password dont match!");
     } else if (this.model.isValid()) {
       this.authService.SignUp(this.model).subscribe(
@@ -45,14 +45,14 @@ export class SignUpComponent implements OnInit {
             }
           }
           setTimeout(() => {
-            this.spinner.hide()
+            this.spinner.hide('mySpinner')
           }, 1000);
 
         }
       )
     }
     else {
-      this.spinner.hide();
+      this.spinner.hide('mySpinner');
       this.notifier.notify('error', "Please, enter all fieald for register!");
     }
   }
