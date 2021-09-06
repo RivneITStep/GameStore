@@ -39,10 +39,6 @@ namespace APIAngular.Helper
                 {
                     Name = "User"
                 }).Result;
-                var resultPublisherRole = roleManager.CreateAsync(new IdentityRole
-                {
-                    Name = "Publisher"
-                }).Result;
             }
 
 
@@ -57,20 +53,12 @@ namespace APIAngular.Helper
                 Email = "cuanid236316@gmail.com",
                 UserName = "cuanid236316@gmail.com"
             };
-            var SEGA = new User
-            {
-                Email = "SEGA@gmail.com",
-                UserName = "SEGA@gmail.com"
-            };
 
             var resultAdmin = userManager.CreateAsync(admin, "Qwerty1-").Result;
             resultAdmin = userManager.AddToRoleAsync(admin, "Admin").Result;
 
             var resultAndrii = userManager.CreateAsync(andrii, "Qwerty1-").Result;
             resultAndrii = userManager.AddToRoleAsync(andrii, "User").Result;
-
-            var resultSEGA = userManager.CreateAsync(SEGA, "Qwerty1-").Result;
-            resultSEGA = userManager.AddToRoleAsync(SEGA, "Publisher").Result;
         }
 
     }

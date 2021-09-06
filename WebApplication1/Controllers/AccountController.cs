@@ -62,14 +62,6 @@ namespace BaseJWTApplication819.Api_Angular.Controllers
                     PhoneNumber = model.phoneNumber
                 };
 
-                var userProfile = new UserMoreInfo()
-                {
-                    Address = model.address,
-                    Image = "default.jpg",
-                    FullName = model.fullName,
-                    Id = user.Id
-                };
-
                 IdentityResult result = await _userManager.CreateAsync(user, model.password);
 
 
@@ -85,7 +77,6 @@ namespace BaseJWTApplication819.Api_Angular.Controllers
                 else
                 {
                     result =  _userManager.AddToRoleAsync(user, "User").Result;
-                    _context.UserMoreInfo.Add(userProfile);
                     _context.SaveChanges();
                 }
 

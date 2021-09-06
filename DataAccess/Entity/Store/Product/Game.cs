@@ -15,27 +15,33 @@ namespace DataAccess.Entity.Store.Product
         [Required]
         public string Name { get; set; }
         [Required]
-        public string Image { get; set; }
+        public string ImageHead { get; set; }
+
+        public string Image1 { get; set; }
+        public string Image2 { get; set; }
+        public string Image3 { get; set; }
+        public string Image4 { get; set; }
+
+
         [Required]
         public double Price { get; set; }
         [Required]
         public string Description { get; set; }       
-
         [Required]
-        public int EvaluationOfSCS { get; set; }
+        public int Evaluation { get; set; }
         [Required]
-        public string Reviews { get; set; }
+        public string Developer { get; set; }
+        [Required]
+        public string Publisher { get; set; }
 
         [Required]
         public DateTime Data { get; set; }
-
-        public virtual Game[] DLC { get; set; }
-
 
         [Required]
         public MinSystemRequirements MinSystemRequirementProduct { get; set; }
         [Required]
         public RecSystemRequirements RecSystemRequirementProduct { get; set; }
+
 
     }
 }

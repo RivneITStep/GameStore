@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace APIAngular.Migrations
 {
-    public partial class Addmigation : Migration
+    public partial class updatedattabase : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -53,23 +53,21 @@ namespace APIAngular.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Image = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ImageHead = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Image1 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Image2 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Image3 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Image4 = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Price = table.Column<double>(type: "float", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    EvaluationOfSCS = table.Column<int>(type: "int", nullable: false),
-                    Reviews = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Data = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    GameId = table.Column<int>(type: "int", nullable: true)
+                    Evaluation = table.Column<int>(type: "int", nullable: false),
+                    Developer = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Publisher = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Data = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_tblGame", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_tblGame_tblGame_GameId",
-                        column: x => x.GameId,
-                        principalTable: "tblGame",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -86,19 +84,6 @@ namespace APIAngular.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "tblImages",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_tblImages", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "tblLanguage",
                 columns: table => new
                 {
@@ -109,33 +94,6 @@ namespace APIAngular.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_tblLanguage", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "tblResponse",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ResponseText = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Rating = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_tblResponse", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "tblSeriesGames",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_tblSeriesGames", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -245,28 +203,6 @@ namespace APIAngular.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "tblMoreInfo",
-                columns: table => new
-                {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    FullName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Image = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Age = table.Column<int>(type: "int", nullable: false),
-                    Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_tblMoreInfo", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_tblMoreInfo_AspNetUsers_Id",
-                        column: x => x.Id,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "tblMinSystemRequirements",
                 columns: table => new
                 {
@@ -359,31 +295,6 @@ namespace APIAngular.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "tblGameImages",
-                columns: table => new
-                {
-                    GameId = table.Column<int>(type: "int", nullable: false),
-                    ImageId = table.Column<int>(type: "int", nullable: false),
-                    ImageOfId = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_tblGameImages", x => new { x.GameId, x.ImageId });
-                    table.ForeignKey(
-                        name: "FK_tblGameImages_tblGame_GameId",
-                        column: x => x.GameId,
-                        principalTable: "tblGame",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_tblGameImages_tblImages_ImageOfId",
-                        column: x => x.ImageOfId,
-                        principalTable: "tblImages",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "tblGameLangauges",
                 columns: table => new
                 {
@@ -403,102 +314,6 @@ namespace APIAngular.Migrations
                         name: "FK_tblGameLangauges_tblLanguage_LanguageId",
                         column: x => x.LanguageId,
                         principalTable: "tblLanguage",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "tblGameResponses",
-                columns: table => new
-                {
-                    GameId = table.Column<int>(type: "int", nullable: false),
-                    ResponseId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_tblGameResponses", x => new { x.GameId, x.ResponseId });
-                    table.ForeignKey(
-                        name: "FK_tblGameResponses_tblGame_GameId",
-                        column: x => x.GameId,
-                        principalTable: "tblGame",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_tblGameResponses_tblResponse_ResponseId",
-                        column: x => x.ResponseId,
-                        principalTable: "tblResponse",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "tblUserResponses",
-                columns: table => new
-                {
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    ResponseId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_tblUserResponses", x => new { x.UserId, x.ResponseId });
-                    table.ForeignKey(
-                        name: "FK_tblUserResponses_AspNetUsers_UserId",
-                        column: x => x.UserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_tblUserResponses_tblResponse_ResponseId",
-                        column: x => x.ResponseId,
-                        principalTable: "tblResponse",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "tblGameSeriesGames",
-                columns: table => new
-                {
-                    GameId = table.Column<int>(type: "int", nullable: false),
-                    SeriesGameId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_tblGameSeriesGames", x => new { x.GameId, x.SeriesGameId });
-                    table.ForeignKey(
-                        name: "FK_tblGameSeriesGames_tblGame_GameId",
-                        column: x => x.GameId,
-                        principalTable: "tblGame",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_tblGameSeriesGames_tblSeriesGames_SeriesGameId",
-                        column: x => x.SeriesGameId,
-                        principalTable: "tblSeriesGames",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "tblPublisherGames",
-                columns: table => new
-                {
-                    PublisherId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    SeriesGameId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_tblPublisherGames", x => new { x.PublisherId, x.SeriesGameId });
-                    table.ForeignKey(
-                        name: "FK_tblPublisherGames_AspNetUsers_PublisherId",
-                        column: x => x.PublisherId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_tblPublisherGames_tblSeriesGames_SeriesGameId",
-                        column: x => x.SeriesGameId,
-                        principalTable: "tblSeriesGames",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -543,19 +358,9 @@ namespace APIAngular.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_tblGame_GameId",
-                table: "tblGame",
-                column: "GameId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_tblGameGanres_GanreId",
                 table: "tblGameGanres",
                 column: "GanreId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_tblGameImages_ImageOfId",
-                table: "tblGameImages",
-                column: "ImageOfId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_tblGameLangauges_LanguageId",
@@ -563,29 +368,9 @@ namespace APIAngular.Migrations
                 column: "LanguageId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_tblGameResponses_ResponseId",
-                table: "tblGameResponses",
-                column: "ResponseId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_tblGameSeriesGames_SeriesGameId",
-                table: "tblGameSeriesGames",
-                column: "SeriesGameId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_tblPublisherGames_SeriesGameId",
-                table: "tblPublisherGames",
-                column: "SeriesGameId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_tblUserGames_GameId",
                 table: "tblUserGames",
                 column: "GameId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_tblUserResponses_ResponseId",
-                table: "tblUserResponses",
-                column: "ResponseId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -609,25 +394,10 @@ namespace APIAngular.Migrations
                 name: "tblGameGanres");
 
             migrationBuilder.DropTable(
-                name: "tblGameImages");
-
-            migrationBuilder.DropTable(
                 name: "tblGameLangauges");
 
             migrationBuilder.DropTable(
-                name: "tblGameResponses");
-
-            migrationBuilder.DropTable(
-                name: "tblGameSeriesGames");
-
-            migrationBuilder.DropTable(
                 name: "tblMinSystemRequirements");
-
-            migrationBuilder.DropTable(
-                name: "tblMoreInfo");
-
-            migrationBuilder.DropTable(
-                name: "tblPublisherGames");
 
             migrationBuilder.DropTable(
                 name: "tblRecSystemRequirements");
@@ -636,31 +406,19 @@ namespace APIAngular.Migrations
                 name: "tblUserGames");
 
             migrationBuilder.DropTable(
-                name: "tblUserResponses");
-
-            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "tblGanre");
 
             migrationBuilder.DropTable(
-                name: "tblImages");
-
-            migrationBuilder.DropTable(
                 name: "tblLanguage");
-
-            migrationBuilder.DropTable(
-                name: "tblSeriesGames");
-
-            migrationBuilder.DropTable(
-                name: "tblGame");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "tblResponse");
+                name: "tblGame");
         }
     }
 }

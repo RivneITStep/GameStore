@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace APIAngular.Migrations
 {
     [DbContext(typeof(EFContext))]
-    [Migration("20210216153905_Add migation")]
-    partial class Addmigation
+    [Migration("20210905175049_update dattabase")]
+    partial class updatedattabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,21 +20,6 @@ namespace APIAngular.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.3")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("DataAccess.Entity.Communication.PublisherSeriesGames", b =>
-                {
-                    b.Property<string>("PublisherId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("SeriesGameId")
-                        .HasColumnType("int");
-
-                    b.HasKey("PublisherId", "SeriesGameId");
-
-                    b.HasIndex("SeriesGameId");
-
-                    b.ToTable("tblPublisherGames");
-                });
 
             modelBuilder.Entity("DataAccess.Entity.Communication.UserGames", b =>
                 {
@@ -49,21 +34,6 @@ namespace APIAngular.Migrations
                     b.HasIndex("GameId");
 
                     b.ToTable("tblUserGames");
-                });
-
-            modelBuilder.Entity("DataAccess.Entity.Communication.UserResponses", b =>
-                {
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("ResponseId")
-                        .HasColumnType("int");
-
-                    b.HasKey("UserId", "ResponseId");
-
-                    b.HasIndex("ResponseId");
-
-                    b.ToTable("tblUserResponses");
                 });
 
             modelBuilder.Entity("DataAccess.Entity.Role.User", b =>
@@ -131,82 +101,6 @@ namespace APIAngular.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("DataAccess.Entity.Role.UserMoreInfo", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Address")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Age")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FullName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Image")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("tblMoreInfo");
-                });
-
-            modelBuilder.Entity("DataAccess.Entity.Store.Communication.GameImages", b =>
-                {
-                    b.Property<int>("GameId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ImageId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("ImageOfId")
-                        .HasColumnType("int");
-
-                    b.HasKey("GameId", "ImageId");
-
-                    b.HasIndex("ImageOfId");
-
-                    b.ToTable("tblGameImages");
-                });
-
-            modelBuilder.Entity("DataAccess.Entity.Store.Communication.GameSeriesGames", b =>
-                {
-                    b.Property<int>("GameId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SeriesGameId")
-                        .HasColumnType("int");
-
-                    b.HasKey("GameId", "SeriesGameId");
-
-                    b.HasIndex("SeriesGameId");
-
-                    b.ToTable("tblGameSeriesGames");
-                });
-
-            modelBuilder.Entity("DataAccess.Entity.Store.Images", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("tblImages");
-                });
-
             modelBuilder.Entity("DataAccess.Entity.Store.Product.Communication.GameGanres", b =>
                 {
                     b.Property<int>("GameId")
@@ -237,40 +131,6 @@ namespace APIAngular.Migrations
                     b.ToTable("tblGameLangauges");
                 });
 
-            modelBuilder.Entity("DataAccess.Entity.Store.Product.Communication.GameResponses", b =>
-                {
-                    b.Property<int>("GameId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ResponseId")
-                        .HasColumnType("int");
-
-                    b.HasKey("GameId", "ResponseId");
-
-                    b.HasIndex("ResponseId");
-
-                    b.ToTable("tblGameResponses");
-                });
-
-            modelBuilder.Entity("DataAccess.Entity.Store.Product.Communication.Response", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("Rating")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ResponseText")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("tblResponse");
-                });
-
             modelBuilder.Entity("DataAccess.Entity.Store.Product.Game", b =>
                 {
                     b.Property<int>("Id")
@@ -285,13 +145,26 @@ namespace APIAngular.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("EvaluationOfSCS")
+                    b.Property<string>("Developer")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Evaluation")
                         .HasColumnType("int");
 
-                    b.Property<int?>("GameId")
-                        .HasColumnType("int");
+                    b.Property<string>("Image1")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Image")
+                    b.Property<string>("Image2")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Image3")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Image4")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImageHead")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -302,13 +175,11 @@ namespace APIAngular.Migrations
                     b.Property<double>("Price")
                         .HasColumnType("float");
 
-                    b.Property<string>("Reviews")
+                    b.Property<string>("Publisher")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("GameId");
 
                     b.ToTable("tblGame");
                 });
@@ -403,22 +274,6 @@ namespace APIAngular.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("tblRecSystemRequirements");
-                });
-
-            modelBuilder.Entity("DataAccess.Entity.Store.SeriesGame", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("tblSeriesGames");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -552,25 +407,6 @@ namespace APIAngular.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("DataAccess.Entity.Communication.PublisherSeriesGames", b =>
-                {
-                    b.HasOne("DataAccess.Entity.Role.User", "PublisherOf")
-                        .WithMany()
-                        .HasForeignKey("PublisherId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("DataAccess.Entity.Store.SeriesGame", "SeriesGameOf")
-                        .WithMany()
-                        .HasForeignKey("SeriesGameId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("PublisherOf");
-
-                    b.Navigation("SeriesGameOf");
-                });
-
             modelBuilder.Entity("DataAccess.Entity.Communication.UserGames", b =>
                 {
                     b.HasOne("DataAccess.Entity.Store.Product.Game", "GameOf")
@@ -588,72 +424,6 @@ namespace APIAngular.Migrations
                     b.Navigation("GameOf");
 
                     b.Navigation("UserOf");
-                });
-
-            modelBuilder.Entity("DataAccess.Entity.Communication.UserResponses", b =>
-                {
-                    b.HasOne("DataAccess.Entity.Store.Product.Communication.Response", "ResponseOf")
-                        .WithMany()
-                        .HasForeignKey("ResponseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("DataAccess.Entity.Role.User", "UserOf")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("ResponseOf");
-
-                    b.Navigation("UserOf");
-                });
-
-            modelBuilder.Entity("DataAccess.Entity.Role.UserMoreInfo", b =>
-                {
-                    b.HasOne("DataAccess.Entity.Role.User", "User")
-                        .WithOne("userMoreInfo")
-                        .HasForeignKey("DataAccess.Entity.Role.UserMoreInfo", "Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("DataAccess.Entity.Store.Communication.GameImages", b =>
-                {
-                    b.HasOne("DataAccess.Entity.Store.Product.Game", "GameOf")
-                        .WithMany()
-                        .HasForeignKey("GameId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("DataAccess.Entity.Store.Images", "ImageOf")
-                        .WithMany()
-                        .HasForeignKey("ImageOfId");
-
-                    b.Navigation("GameOf");
-
-                    b.Navigation("ImageOf");
-                });
-
-            modelBuilder.Entity("DataAccess.Entity.Store.Communication.GameSeriesGames", b =>
-                {
-                    b.HasOne("DataAccess.Entity.Store.Product.Game", "GameOf")
-                        .WithMany()
-                        .HasForeignKey("GameId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("DataAccess.Entity.Store.SeriesGame", "SeriesGameOf")
-                        .WithMany()
-                        .HasForeignKey("SeriesGameId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("GameOf");
-
-                    b.Navigation("SeriesGameOf");
                 });
 
             modelBuilder.Entity("DataAccess.Entity.Store.Product.Communication.GameGanres", b =>
@@ -692,32 +462,6 @@ namespace APIAngular.Migrations
                     b.Navigation("GameOf");
 
                     b.Navigation("LanguageOf");
-                });
-
-            modelBuilder.Entity("DataAccess.Entity.Store.Product.Communication.GameResponses", b =>
-                {
-                    b.HasOne("DataAccess.Entity.Store.Product.Game", "GameOf")
-                        .WithMany()
-                        .HasForeignKey("GameId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("DataAccess.Entity.Store.Product.Communication.Response", "ResponseOf")
-                        .WithMany()
-                        .HasForeignKey("ResponseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("GameOf");
-
-                    b.Navigation("ResponseOf");
-                });
-
-            modelBuilder.Entity("DataAccess.Entity.Store.Product.Game", b =>
-                {
-                    b.HasOne("DataAccess.Entity.Store.Product.Game", null)
-                        .WithMany("DLC")
-                        .HasForeignKey("GameId");
                 });
 
             modelBuilder.Entity("DataAccess.Entity.Store.Product.MinSystemRequirements", b =>
@@ -793,15 +537,8 @@ namespace APIAngular.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("DataAccess.Entity.Role.User", b =>
-                {
-                    b.Navigation("userMoreInfo");
-                });
-
             modelBuilder.Entity("DataAccess.Entity.Store.Product.Game", b =>
                 {
-                    b.Navigation("DLC");
-
                     b.Navigation("MinSystemRequirementProduct")
                         .IsRequired();
 

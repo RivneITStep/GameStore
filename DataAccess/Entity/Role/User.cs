@@ -7,6 +7,6 @@ namespace DataAccess.Entity.Role
 {
     public class User : IdentityUser
     {
-        public virtual UserMoreInfo userMoreInfo { get; set; }
+
     }
 }
