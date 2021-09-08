@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NotifierService } from 'angular-notifier';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ApiResponse } from '../Models/api.response';
+import { LanguageItem } from '../Models/language-item.model';
 import { ProductItem } from '../Models/ProductItem.model';
 import { ProductManagerService } from '../Services/product-manager.service';
 
@@ -20,24 +21,23 @@ export class AdminPanelComponent implements OnInit {
     listOfData: ProductItem[] = [];
     listOfSearch: ProductItem[] = [];
     searchText: string;
-
     deleteProduct(id: number) {
       this.spinner.show('mySpinner');
       this.productService.RemoveProduct(id).subscribe(
         (data: ApiResponse) => {
-          if(data.status === 200){
-            this.notifier.notify('success', 'User removed!');
+          if (data.status === 200) {
+            this.notifier.notify('success', 'Game removed!');
 
             this.listOfData = this.listOfData.filter(t => t.id !== id);
             this.listOfSearch = this.listOfSearch.filter(t => t.id !== id);
-            this.spinner.hide();
+            this.spinner.hide('mySpinner');
           } else {
             for ( let i = 0; i < data.errors; i++) {
               this.notifier.notify('error', data.errors[i]);
             }
           }
         }
-      )
+      );
     }
 
   ngOnInit() {
@@ -50,7 +50,7 @@ export class AdminPanelComponent implements OnInit {
   });
   }
 
-  Search(){
+  Search() {
     this.listOfSearch = this.listOfData.filter(t => t.name.includes(this.searchText) ||
     t.companyName.includes(this.searchText));
   }

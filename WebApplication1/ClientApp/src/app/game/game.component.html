@@ -1,9 +1,9 @@
-<H1>Wolfenstein: The New Order</H1>
+<H1>{{product.name}}</H1>
 <hr>
 <div>
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/201810/header.jpg?t=1574179370">
+<img src="../../assets/img/{{product.imageHead}}">
 
-<button>BUY</button>
+<button>BUY  {{product.price}}</button>
 
 <nz-carousel style=" height: 215px;" nzAutoPlay nzAutoPlaySpeed=6000>
   <div  nz-carousel-content *ngFor="let index of array">
@@ -14,40 +14,38 @@
 </nz-carousel>
 
 <p>
-  Wolfenstein®: The New Order reignites the series that created the first-person shooter genre. Under development at MachineGames, a studio comprised of a seasoned group of developers recognized for their work creating story-driven games, Wolfenstein offers a deep game narrative packed with action, adventure and first-person combat.
-
-  Intense, cinematic and rendered in stunning detail with id® Software’s id Tech® 5 engine, Wolfenstein sends players across Europe on a personal mission to bring down the Nazi war machine. With the help of a small group of resistance fighters, infiltrate their most heavily guarded facilities, battle high-tech Nazi legions, and take control of super-weapons that have conquered the earth – and beyond.
+  {{product.description}}
 </p>
 <p>
-  DEVELOPER: Machine Games
+  DEVELOPER: {{product.developer}}
 </p>
 <p>
-  PUBLISHER: Bethesda-Soft
+  PUBLISHER: {{product.publisher}}
 </p>
 <p>
-  RELEASE DATE: 20 May, 2014
+  RELEASE DATE:  {{product.data}}
 </p>
 <div class="Score">
-  <p>81</p>
+  <p> {{product.evaluation}}</p>
 </div>
 <div>
 <p>
     MINIMUM:
 </p>
 <p>
-  OS: 64-bit Windows 7/Windows 8
+  OS:  {{sysreqmin.os}}
 </p>
 <p>
-Processor: Intel Core i7 or equivalent AMD
+  Processor: {{sysreqmin.processor}}
 </p>
 <p>
-Memory: 4 GB RAM
+  Memory: {{sysreqmin.memory}}
 </p>
 <p>
-Graphics: GeForce 460, ATI Radeon HD 6850
+  Graphics: {{sysreqmin.graphics}}
 </p>
 <p>
-Storage: 50 GB available space
+  Storage: {{sysreqmin.storege}}
 </p>
 </div>
 <div>
@@ -55,23 +53,60 @@ Storage: 50 GB available space
     RECOMMENDED:
   </p>
   <p>
-    OS: 64-bit Windows 7/Windows 8
+    OS:  {{sysreqrec.os}}
   </p>
   <p>
-  Processor: Intel Core i7 or equivalent AMD
+    Processor: {{sysreqrec.processor}}
   </p>
   <p>
-  Memory: 4 GB RAM
+    Memory: {{sysreqrec.memory}}
   </p>
   <p>
-  Graphics: GeForce 460, ATI Radeon HD 6850
+    Graphics: {{sysreqrec.graphics}}
   </p>
   <p>
-  Storage: 50 GB available space
+    Storage: {{sysreqrec.storege}}
   </p>
   </div>
 
   <p>GENRE: Action  </p>
-  <p>FRANCHISE: Wolfenstein</p>
   <p>Languages: English,French,Italian,Russian,Polish</p>
+  <nz-table
+      [nzData]="listOfDataLang" [nzFrontPagination]="false" [nzShowPagination]="false"
+    >
+      <thead>
+        <tr>
+          <th>Languages</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of listOfDataLang">
+          <td>{{ data.nameLanguage }}</td>
+        </tr>
+      </tbody>
+    </nz-table>
+
+    <nz-table
+      [nzData]="listOfDataCateg" [nzFrontPagination]="false" [nzShowPagination]="false"
+    >
+      <thead>
+        <tr>
+          <th>Ganre</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of listOfDataCateg">
+          <td>{{ data.nameCategory }}</td>
+        </tr>
+      </tbody>
+    </nz-table>
+
 </div>
+<ngx-spinner name="mySpinner"
+bdColor="rgba(51,51,51,0.8)"
+size="medium"
+color="#fff"
+type="square-loader"
+>
+<p style="font-size: 20px; color: white">Loading...</p>
+</ngx-spinner>

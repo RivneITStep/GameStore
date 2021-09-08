@@ -7,27 +7,23 @@ namespace CourseworkDTO.Models.Product
 {
     public class GameFullItemDTO
     {
-
+        public int Id { get; set; }
         public string Name { get; set; }
 
-        public decimal Price { get; set; }
+        public double Price { get; set; }
 
         public string Description { get; set; }
 
-        public string CompanyName { get; set; }
-
-        public string Image { get; set; }
+        public string Developer { get; set; }
+        public string Publisher { get; set; }
+        public int Evaluation { get; set; }
+        public string ImageHead { get; set; }
+        public string Image1 { get; set; }
+        public string Image2 { get; set; }
+        public string Image3 { get; set; }
+        public string Image4 { get; set; }
 
         public DateTime Data { get; set; }
-
-
-        public SystemRequirementsAddDTO sysreqProduct { get; set; }
-
-
-
-        public List<int> listIdLang { get; set; }
-
-        public List<int> listIdCateg { get; set; }
 
     }
 }

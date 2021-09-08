@@ -1,7 +1,6 @@
 <hr>
 <H1>New</H1>
 
-
 <nz-carousel style=" height: 215px;" nzAutoPlay nzAutoPlaySpeed=6000>
   <div  nz-carousel-content *ngFor="let index of array">
     <div nz-row>
@@ -119,13 +118,45 @@
 
   </div></div>
 
-  
+
 
 </div>
 
 </div>
 
 <H1>All Games</H1>
+
+<input type="text" name="search" [(ngModel)]="searchText" (ngModelChange)=Search() nz-input placeholder="Search">
+
+<nz-table
+      #rowSelectionTable
+      nzShowPagination
+      nzShowSizeChanger
+      [nzData]="listOfSearch"
+    >
+      <thead>
+        <tr>
+          <th>Image</th>
+          <th nzWidth='30%'>Name</th>
+          <th>Price</th>
+          <th>Company Name</th>
+          <th>Data</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of rowSelectionTable.data">
+          <td><img src ="../../assets/img/{{data.image}}" alt="img" style="height: 75px;"></td>
+          <td>{{ data.name }}</td>
+          <td>{{ data.price }}</td>
+          <td>{{ data.companyName }}</td>
+          <td>{{ data.data }}</td>
+          <td>
+            <a nz-button nzType="primary" style="color: white; background-color: rgb(0,80,1); border-color: rgb(1, 58, 2);" [routerLink]="['/game',data.id]" >More</a>
+          </td>
+        </tr>
+      </tbody>
+    </nz-table>
+
 <hr>
 
 

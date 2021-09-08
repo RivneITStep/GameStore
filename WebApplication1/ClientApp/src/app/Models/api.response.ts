@@ -4,5 +4,4 @@ export class ApiResponse {
     public token: string;
     public data: any;
     public errors: any;
-
 }

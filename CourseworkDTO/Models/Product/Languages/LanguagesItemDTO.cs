@@ -10,5 +10,6 @@ namespace CourseworkDTO.Models.Product.Languages
 
         public string nameLanguage { get; set; }
 
+        public bool isChecked { get; set; }
     }
 }

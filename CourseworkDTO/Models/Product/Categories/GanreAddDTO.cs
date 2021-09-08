@@ -4,10 +4,9 @@ using System.Text;
 
 namespace CourseworkDTO.Models.Product.Categories
 {
-    public class CategoriesItemDTO
+    public class GanreAddDTO
     {
-        public int idCategory { get; set; }
-
         public string nameCategory { get; set; }
+
     }
 }

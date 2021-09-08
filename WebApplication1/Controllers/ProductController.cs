@@ -1,6 +1,11 @@
 ﻿using CourseworkAPIAngular.Helper;
 using CourseworkDTO.Models.Product;
+using CourseworkDTO.Models.Product.Categories;
+using CourseworkDTO.Models.Product.Languages;
+using CourseworkDTO.Models.Product.SystemRequirements;
 using DataAccess;
+using DataAccess.Entity.Store.Product;
+using DataAccess.Entity.Store.Product.Communication;
 using DTO.Models.Results;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -8,7 +13,9 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Linq;
+using System.Numerics;
 using System.Threading.Tasks;
 
 namespace APIAngular.Controllers
@@ -41,7 +48,9 @@ namespace APIAngular.Controllers
                 temp.CompanyName = item.Developer;
                 temp.Data = item.Data;
                 temp.Id = item.Id;
-                temp.ImageHead = item.ImageHead;
+                temp.Image = item.ImageHead;
+
+
                 temp.Name = item.Name;
                 temp.Price = item.Price;
 
@@ -51,6 +60,422 @@ namespace APIAngular.Controllers
             return data;
         }
 
+        [HttpPost("addProduct")]
+        public async Task<ResultDTO> AddProduct([FromBody] GameAddDTO model, [FromForm(Name = "file")] IFormFile uploadedImage)
+        {
+            if (!ModelState.IsValid)
+            {
+                return new ResultDTO
+                {
+                    Status = 500,
+                    Message = "Error",
+                    Errors = Validation.GetErrorsByModel(ModelState)
+                };
+            }
+            else
+            {
+                var game = new Game()
+                {
+                    Name = model.Name,
+                    Evaluation = model.Evaluation,
+                    Publisher = model.Publisher,
+                    Developer = model.Developer,
+                    Price = model.Price,
+                    Description = model.Description,
+                    ImageHead = "",
+                    Image1 = "",
+                    Image2 = "",
+                    Image3 = "",
+                    Image4 = "",
+                    Data = model.Data,
+                };
+                _context.Games.Add(game);
+                _context.SaveChanges();
+                int idProduct = (from v in _context.Games orderby v.Id descending select v).FirstOrDefault().Id;
+                var minsystemrequirements = new MinSystemRequirements()
+                {
+
+                    OS = model.sysreqProduct.OS,
+                    Processor = model.sysreqProduct.Processor,
+                    Graphics = model.sysreqProduct.Graphics,
+                    Memory = model.sysreqProduct.Memory,
+                    Storege = model.sysreqProduct.Storege,
+                    Id = idProduct
+                };
+                var recsystemrequirements = new RecSystemRequirements()
+                {
+
+                    OS = model.sysreqProduct.OS,
+                    Processor = model.sysreqProduct.Processor,
+                    Graphics = model.sysreqProduct.Graphics,
+                    Memory = model.sysreqProduct.Memory,
+                    Storege = model.sysreqProduct.Storege,
+                    Id = idProduct
+                };
+
+                _context.RecSystemRequirements.Add(recsystemrequirements);
+                _context.MinSystemRequirements.Add(minsystemrequirements);
+
+                foreach (var item in model.listIdLang)
+                {
+
+                    GameLangauges temp = new GameLangauges();
+
+                    temp.GameId = idProduct;
+                    temp.LanguageId = item;
+
+                    _context.GameLangauges.Add(temp);
+                }
+
+                foreach (var item in model.listIdCateg)
+                {
+
+                    GameGanres temp = new GameGanres();
+
+                    temp.GameId = idProduct;
+                    temp.GanreId = item;
+
+                    _context.GameGanres.Add(temp);
+                }
+
+
+                _context.SaveChanges();
+
+
+                return new ResultDTO
+                {
+                    Status = 200
+                };
+
+            }
+        }
+
+        [HttpGet("LanguagesProduct/{id}")]
+        public IEnumerable<LanguagesItemDTO> getLanguagesProduct(int id)
+        {
+
+            List<LanguagesItemDTO> data = new List<LanguagesItemDTO>();
+
+
+            foreach (var item in _context.GameLangauges)
+            {
+                if (item.GameId == id)
+                {
+                    Language temp = _context.Languages.FirstOrDefault(t => t.Id == item.LanguageId);
+
+                    LanguagesItemDTO tempItem = new LanguagesItemDTO();
+
+                    tempItem.idLanguage = temp.Id;
+                    tempItem.nameLanguage = temp.Name;
+
+                    data.Add(tempItem);
+                }
+            }
+            return data;
+
+        }
+
+        [HttpGet("CategoriesProduct/{id}")]
+        public IEnumerable<GanreItemDTO> getCategoriesProduct(int id)
+        {
+
+            List<GanreItemDTO> data = new List<GanreItemDTO>();
+
+
+            foreach (var item in _context.GameGanres)
+            {
+                if (item.GameId == id)
+                {
+                    Ganre temp = _context.Ganres.FirstOrDefault(t => t.Id == item.GanreId);
+
+                    GanreItemDTO tempItem = new GanreItemDTO();
+
+                    tempItem.idCategory = temp.Id;
+                    tempItem.nameCategory = temp.Name;
+
+                    data.Add(tempItem);
+                }
+            }
+            return data;
+
+        }
+
+        [HttpGet("GetLanguages")]
+        public IEnumerable<LanguagesItemDTO> GetLanguages()
+        {
+
+
+            List<LanguagesItemDTO> data = new List<LanguagesItemDTO>();
+            var dataFormDB = _context.Languages.ToList();
+            foreach (var item in dataFormDB)
+            {
+
+                LanguagesItemDTO temp = new LanguagesItemDTO();
+
+                temp.idLanguage = item.Id;
+                temp.nameLanguage = item.Name;
+
+                data.Add(temp);
+
+            }
+            return data;
+
+        }
+
+        [HttpGet("GetCategories")]
+        public IEnumerable<GanreItemDTO> GetCategories()
+        {
+
+
+            List<GanreItemDTO> data = new List<GanreItemDTO>();
+            var dataFormDB = _context.Ganres.ToList();
+            foreach (var item in dataFormDB)
+            {
+
+                GanreItemDTO temp = new GanreItemDTO();
+
+                temp.idCategory = item.Id;
+                temp.nameCategory = item.Name;
+
+                data.Add(temp);
+
+            }
+            return data;
+
+        }
+
+        [HttpPost("UploadImage")]
+        public ResultDTO UploadImage([FromForm(Name = "file")] IFormFile uploadedImage)
+        {
+            string fileName = Guid.NewGuid().ToString() + ".jpg";
+            string path = _appEnvironment.WebRootPath + @"\Images\" + fileName;
+            if (uploadedImage == null)
+                return new ResultDTO
+                {
+                    Status = 400,
+                    Errors = new List<string> { "Не вдалося завантажити файл" }
+                };
+            if (uploadedImage.Length == 0)
+                return new ResultDTO
+                {
+                    Status = 400,
+                    Errors = new List<string> { "Файл порожній" }
+                };
+            try
+            {
+                using (Bitmap bmp = new Bitmap(uploadedImage.OpenReadStream()))
+                {
+                    var saveImage = ImageWorker.CreateImage(bmp, 400, 365);
+                    int idProduct = (from v in _context.Games orderby v.Id descending select v).FirstOrDefault().Id;
+                    if (saveImage != null)
+                    {
+                        saveImage.Save(path, ImageFormat.Jpeg);
+                        var product = _context.Games.Find(idProduct);
+
+                        _context.Games.Find(idProduct).ImageHead = fileName;
+                        _context.SaveChanges();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return new ResultDTO
+                {
+                    Status = 400,
+                    Errors = new List<string> { "Не вдалося завантажити файл" },
+                    Message = ex.InnerException.Message
+                };
+            }
+            return new ResultDTO
+            {
+                Status = 200
+            };
+        }
+
+        [HttpPost("RemoveProduct/{id}")]
+        public ResultDTO RemoveProduct([FromRoute] int id)
+        {
+            try
+            {
+                var product = _context.Games.FirstOrDefault(t => t.Id == id);
+                var minsystemRequirementsProduct = _context.MinSystemRequirements.FirstOrDefault(t => t.Id == id);
+                var recsystemRequirementsProduct = _context.RecSystemRequirements.FirstOrDefault(t => t.Id == id);
+                _context.Games.Remove(product);
+                foreach (var item in _context.GameGanres)
+                {
+                    if (item.GanreId == id)
+                    {
+                        _context.GameGanres.Remove(item);
+                    }
+                }
+                foreach (var item in _context.GameLangauges)
+                {
+                    if (item.GameId == id)
+                    {
+                        _context.GameLangauges.Remove(item);
+                    }
+                }
+                if (minsystemRequirementsProduct != null)
+                {
+                    _context.MinSystemRequirements.Remove(minsystemRequirementsProduct);
+                }
+                if (recsystemRequirementsProduct != null)
+                {
+                    _context.RecSystemRequirements.Remove(recsystemRequirementsProduct);
+                }
+                _context.SaveChanges();
+                return new ResultDTO
+                {
+                    Status = 200,
+                    Message = "OK"
+                };
+
+            }
+            catch (Exception e)
+            {
+                List<string> temp = new List<string>();
+                temp.Add(e.Message);
+                return new ResultDTO
+                {
+                    Status = 500,
+                    Message = "ERROR",
+                    Errors = temp
+                };
+            }
+        }
+
+
+        [HttpGet("getProduct/{id}")]
+        public GameFullItemDTO getProduct([FromRoute] string id)
+        {
+
+            List<GameFullItemDTO> data = new List<GameFullItemDTO>();
+            var dataFormDB = _context.Games.ToList();
+            GameFullItemDTO temp = new GameFullItemDTO();
+            foreach (var item in dataFormDB)
+            {
+                if (item.Id == int.Parse(id))
+                {
+
+                    temp.Id = item.Id;
+                    temp.Name = item.Name;
+                    temp.Description = item.Description;
+                    temp.Developer = item.Developer;
+                    temp.Publisher = item.Publisher;
+                    temp.Evaluation = item.Evaluation;
+                    temp.Price = item.Price;
+                    temp.ImageHead = item.ImageHead;
+                    temp.Image1 = item.Image1;
+                    temp.Image2 = item.Image2;
+                    temp.Image3 = item.Image3;
+                    temp.Image4 = item.Image4;
+                    temp.Data = item.Data;
+                    break;
+                }
+
+            }
+            return temp;
+        }
+
+        [HttpGet("getSysReqMin/{id}")]
+        public SystemRequirementsItemDTo getSysReqMin([FromRoute] string id)
+        {
+
+            List<SystemRequirementsItemDTo> data = new List<SystemRequirementsItemDTo>();
+            var dataFormDB = _context.MinSystemRequirements.ToList();
+            SystemRequirementsItemDTo temp = new SystemRequirementsItemDTo();
+            foreach (var item in dataFormDB)
+            {
+                if (item.Id == int.Parse(id))
+                {
+
+                    temp.Graphics = item.Graphics;
+                    temp.Memory = item.Memory;
+                    temp.OS = item.OS;
+                    temp.Processor = item.Processor;
+                    temp.Storege = item.Storege;
+                    break;
+                }
+
+            }
+            return temp;
+        }
+        [HttpGet("getSysReqRec/{id}")]
+        public SystemRequirementsItemDTo getSysReqRec([FromRoute] string id)
+        {
+
+            List<SystemRequirementsItemDTo> data = new List<SystemRequirementsItemDTo>();
+            var dataFormDB = _context.RecSystemRequirements.ToList();
+            SystemRequirementsItemDTo temp = new SystemRequirementsItemDTo();
+            foreach (var item in dataFormDB)
+            {
+                if (item.Id == int.Parse(id))
+                {
+
+                    temp.Graphics = item.Graphics;
+                    temp.Memory = item.Memory;
+                    temp.OS = item.OS;
+                    temp.Processor = item.Processor;
+                    temp.Storege = item.Storege;
+                    break;
+                }
+
+            }
+            return temp;
+        }
+
+        [HttpGet("getLanguagesGame/{id}")]
+        public IEnumerable<LanguagesItemDTO> getLanguagesGame([FromRoute] string id)
+        {
+
+            List<LanguagesItemDTO> data = new List<LanguagesItemDTO>();
+            var dataFormDB = _context.Languages.ToList();
+
+            var dataFromDBCom = _context.GameLangauges.ToList();
+            List<int> list = new List<int>();
+            foreach (var item in dataFromDBCom)
+            {
+                if (item.GameId == int.Parse(id))
+                    list.Add(item.LanguageId);
+            }
+            for(int i=0;i<list.Count();i++)
+            {
+                LanguagesItemDTO temp = new LanguagesItemDTO();
+                temp.nameLanguage = dataFormDB[list[i]-1].Name;
+                temp.idLanguage = dataFormDB[list[i]-1].Id;
+                data.Add(temp);
+            }
+
+
+            return data;
+        }
+
+        [HttpGet("getGanreGame/{id}")]
+        public IEnumerable<GanreItemDTO> getGanreGame([FromRoute] string id)
+        {
+
+            List<GanreItemDTO> data = new List<GanreItemDTO>();
+            var dataFormDB = _context.Ganres.ToList();
+
+            var dataFromDBCom = _context.GameGanres.ToList();
+            List<int> list = new List<int>();
+            foreach (var item in dataFromDBCom)
+            {
+                if (item.GameId == int.Parse(id))
+                    list.Add(item.GanreId);
+            }
+            for (int i = 0; i < list.Count(); i++)
+            {
+                GanreItemDTO temp = new GanreItemDTO();
+                temp.nameCategory = dataFormDB[list[i]-1].Name;
+                temp.idCategory = dataFormDB[list[i]-1].Id;
+                data.Add(temp);
+            }
+
+
+            return data;
+        }
 
     }
+
 }

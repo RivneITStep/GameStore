@@ -3,9 +3,9 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
-import { NgxSpinnerModule, NgxSpinnerService } from "ngx-spinner";
+import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NotifierModule, NotifierOptions } from "angular-notifier";
+import { NotifierModule, NotifierOptions } from 'angular-notifier';
 
 
 import { AppComponent } from './app.component';
@@ -18,6 +18,8 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { GameComponent } from './game/game.component';
 import { LibraryComponent } from './library/library.component';
+import { AddProductComponent } from './admin-panel/add-product/add-product.component';
+import { EditProductComponent } from './admin-panel/edit-product/edit-product.component';
 
 import { TokenInterceptor } from './interceptor';
 
@@ -43,7 +45,7 @@ const configNotifier: NotifierOptions = {
 };
 
 @NgModule({
-  declarations: [				
+  declarations: [
     AppComponent,
     NavMenuComponent,
     HomeComponent,
@@ -53,7 +55,9 @@ const configNotifier: NotifierOptions = {
     SignInComponent,
     GameComponent,
     LibraryComponent,
-      AdminPanelComponent
+    AdminPanelComponent,
+    AddProductComponent,
+    EditProductComponent
    ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

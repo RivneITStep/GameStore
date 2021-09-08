@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-//import { ProductAdd } from '../Models/product-add.model';
 import { Observable } from 'rxjs';
 //import { ProductEdit } from '../Models/product-edit.model';
 import { ApiResponse } from '../Models/api.response';
+import { ProductAdd } from '../Models/product-add.model';
 @Injectable({
   providedIn: 'root'
 })
@@ -13,12 +13,32 @@ export class ProductManagerService {
   baseUrl = '/api/Product';
   headers: HttpHeaders;
 
-  //ProductAdd(model: ProductAdd): Observable<ApiResponse> {
-  //  return this.http.post<ApiResponse>(this.baseUrl + `/addProduct`, model);
-  //}
+  ProductAdd(model: ProductAdd): Observable<ApiResponse> {
+   return this.http.post<ApiResponse>(this.baseUrl + `/addProduct`, model);
+  }
 
   getAllProducts() {
     return this.http.get(this.baseUrl);
+  }
+
+  getProduct(id: string) {
+    return this.http.get(this.baseUrl + '/getProduct' + '/' + id);
+  }
+
+  getSysReqMin(id: string) {
+    return this.http.get(this.baseUrl + '/getSysReqMin' + '/' + id);
+  }
+
+  getLanguagesGame(id: string) {
+    return this.http.get(this.baseUrl + '/getLanguagesGame' + '/' + id);
+  }
+
+  getGanreGame(id: string) {
+    return this.http.get(this.baseUrl + '/getGanreGame' + '/' + id);
+  }
+
+  getSysReqRec(id: string) {
+    return this.http.get(this.baseUrl + '/getSysReqRec' + '/' + id);
   }
 
   getAllLanguages() {
@@ -29,30 +49,22 @@ export class ProductManagerService {
     return this.http.get(this.baseUrl + '/GetCategories');
   }
 
-  //editProduct(id: string, model: ProductEdit): Observable<ApiResponse> {
+  // editProduct(id: string, model: ProductEdit): Observable<ApiResponse> {
   //  return this.http.post<ApiResponse>(this.baseUrl + '/editProduct/' + id, model);
   // }
 
-  RemoveProduct(id: number){
+  RemoveProduct(id: number) {
     return this.http.post(this.baseUrl + '/RemoveProduct' + '/' + id, id);
 
   }
 
-  uploadPhoto(fileToUpload: File){
+  uploadPhoto(fileToUpload: File) {
     const formData: FormData = new FormData();
 
-    this.headers.append('Content-Type', 'multipart/form-data')
+    this.headers.append('Content-Type', 'multipart/form-data');
     formData.append('file', fileToUpload);
     console.log(formData.get('file'));
     return this.http.post<ApiResponse>(this.baseUrl + '/UploadImage' + '/' , formData, {headers: this.headers});
-  }
-
-  getLibrary(id: string) {
-    return this.http.get(this.baseUrl + '/getLibrary' + '/' + id);
-  }
-
-  getProductStore(id: number) {
-    return this.http.get(this.baseUrl + '/getProductStore' + '/' + id);
   }
 
 }

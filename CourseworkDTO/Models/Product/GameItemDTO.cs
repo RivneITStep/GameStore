@@ -17,7 +17,7 @@ namespace CourseworkDTO.Models.Product
 
         public string CompanyName { get; set; }
 
-        public string ImageHead { get; set; }
+        public string Image { get; set; }
 
         public DateTime Data { get; set; }
     }

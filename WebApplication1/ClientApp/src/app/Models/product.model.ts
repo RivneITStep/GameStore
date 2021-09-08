@@ -12,4 +12,4 @@ export class Product {
         this.description = Description;
         this.image = Image;
     }
-}
+  }

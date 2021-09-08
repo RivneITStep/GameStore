@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-
+import { ActivatedRoute } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { CategoriesItem } from '../Models/categories-item.model';
+import { LanguageItem } from '../Models/language-item.model';
+import { ProductFullItem } from '../Models/product-full-item';
+import { SysReqItem } from '../Models/sysreq-item.model';
+import { ProductManagerService } from '../Services/product-manager.service';
 @Component({
   selector: 'app-game',
   templateUrl: './game.component.html',
@@ -7,18 +13,61 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GameComponent implements OnInit {
 
-  array = [
-    "https://cdn.cloudflare.steamstatic.com/steam/apps/201810/ss_5a2e74c1d7290052d36a340fd22b350690e20069.600x338.jpg?t=1574179370", 
-    "https://cdn.cloudflare.steamstatic.com/steam/apps/201810/ss_7ca56142f1670fd1381d6fb66f22504fb376e671.600x338.jpg?t=1574179370", 
-    "https://cdn.cloudflare.steamstatic.com/steam/apps/201810/ss_a9e2ea041b2fe6a5d5a1eac69d5c8435cf54f481.600x338.jpg?t=1574179370", 
-    "https://cdn.cloudflare.steamstatic.com/steam/apps/201810/ss_5a2e74c1d7290052d36a340fd22b350690e20069.600x338.jpg?t=1574179370",
-    "https://cdn.cloudflare.steamstatic.com/steam/apps/201810/ss_0c5739cdf9028d1feade84f370b7f75d7e090f59.600x338.jpg?t=1574179370"];
+  idGame: string;
+  product: ProductFullItem;
+  sysreqmin: SysReqItem;
+  sysreqrec: SysReqItem;
+
+  listOfDataLang: LanguageItem[] = [];
+  listOfDataCateg: CategoriesItem[] = [];
+
+  constructor(
+    private router: ActivatedRoute,
+    private productService: ProductManagerService,
+    private spinner: NgxSpinnerService,
+    ) { }
+    array = [];
+
+    ngOnInit() {
+      this.spinner.show('mySpinner');
+      this.router.paramMap.subscribe(params => {
+        this.idGame = params.get('id');
+        console.log(this.idGame);
+        this.productService.getProduct(this.idGame).subscribe(
+          (prod: ProductFullItem) => { this.product = prod;    this.array = [
+            '../../assets/img' + '/' + this.product.image1,
+            '../../assets/img' + '/' + this.product.image2,
+            '../../assets/img' + '/' + this.product.image3,
+            '../../assets/img' + '/' + this.product.image4];
+            console.log(this.product);
+          }
+          );
+        });
+
+          this.productService.getSysReqMin(this.idGame).subscribe(
+            (sysreq: SysReqItem) => { this.sysreqmin = sysreq;
+              console.log(this.sysreqmin);
+            }
+          );
+          this.productService.getSysReqRec(this.idGame).subscribe(
+            (sysreq: SysReqItem) => { this.sysreqrec = sysreq;
+              console.log(this.sysreqrec);
+            }
+          );
+
+          this.productService.getLanguagesGame(this.idGame).subscribe(
+            (AllLanguages: LanguageItem[]) => {
+            this.listOfDataLang = AllLanguages;
+            });
+
+            this.productService.getGanreGame(this.idGame).subscribe(
+              (AllGanres: CategoriesItem[]) => {
+              this.listOfDataCateg = AllGanres;
+              });
+
+        this.spinner.hide('mySpinner');
+      }
 
 
-  constructor() { }
-
-  ngOnInit() {
-
-  }
 
 }
