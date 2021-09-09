@@ -742,6 +742,48 @@ namespace APIAngular.Controllers
             return data;
         }
 
+        [HttpPost("editProduct")]
+        public ResultDTO editProduct(GameEditDTO model)
+        {
+            try
+            {
+                var product = _context.Games.FirstOrDefault(t => t.Id == int.Parse(model.Id));
+
+                if (model.Name != null)
+                    product.Name = model.Name;
+                if (model.Description != null)
+                    product.Description = model.Description;
+                if (model.Evaluation != null)
+                    product.Evaluation = model.Evaluation;
+                if (model.Price != null)
+                    product.Price = model.Price;
+                if (model.Developer != null)
+                    product.Developer = model.Developer;
+                if (model.Publisher != null)
+                    product.Publisher = model.Publisher;
+                if (model.Data != null)
+                    product.Data = model.Data;
+
+                _context.SaveChanges();
+                return new ResultDTO
+                {
+                    Status = 200,
+                    Message = "OK"
+                };
+            }
+            catch (Exception e)
+            {
+                List<string> temp = new List<string>();
+                temp.Add(e.Message);
+                return new ResultDTO
+                {
+                    Status = 500,
+                    Message = "ERROR",
+                    Errors = temp
+                };
+            }
+        }
+
     }
 
 }

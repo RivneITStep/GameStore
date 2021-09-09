@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-//import { ProductEdit } from '../Models/product-edit.model';
 import { ApiResponse } from '../Models/api.response';
 import { ProductAdd } from '../Models/product-add.model';
+import { ProductEdit } from '../Models/product-edit.model';
 @Injectable({
   providedIn: 'root'
 })
@@ -17,6 +17,10 @@ export class ProductManagerService {
    return this.http.post<ApiResponse>(this.baseUrl + `/addProduct`, model);
   }
 
+  editProduct(model: ProductEdit): Observable<ApiResponse> {
+    return this.http.post<ApiResponse>(this.baseUrl + '/editProduct' , model);
+  }
+  
   getAllProducts() {
     return this.http.get(this.baseUrl);
   }
