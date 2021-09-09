@@ -22,7 +22,7 @@ export class SignInComponent implements OnInit {
     private router: Router) { }
 
   model = new SignInModel();
-  decoded :any;
+  decoded: any;
   login() {
     this.spinner.show('mySpinner');
    //this.spinner.show();
@@ -43,7 +43,7 @@ export class SignInComponent implements OnInit {
           if (data.status === 200) {
             window.localStorage.setItem('token', data.token);
             this.decoded = jwt_decode(data.token);
-       
+
             if (this.decoded.roles === "Admin") {
               this.router.navigate(['/admin']);
             }

@@ -442,7 +442,8 @@ namespace APIAngular.Controllers
             {
                 LanguagesItemDTO temp = new LanguagesItemDTO();
                 temp.nameLanguage = dataFormDB[list[i]-1].Name;
-                temp.idLanguage = dataFormDB[list[i]-1].Id;
+                temp.idLanguage = dataFormDB[list[i]-1
+                    ].Id;
                 data.Add(temp);
             }
 
@@ -472,6 +473,61 @@ namespace APIAngular.Controllers
                 data.Add(temp);
             }
 
+
+            return data;
+        }
+
+        [HttpGet("getPopular")]
+        public IEnumerable<GameItemDTO> getPopular([FromRoute] string id)
+        {
+            List<GameItemDTO> data = new List<GameItemDTO>();
+            var dataFormDB = _context.Games.ToList();
+            int i = 0;
+            foreach (var item in dataFormDB)
+            {
+                GameItemDTO temp = new GameItemDTO();
+
+                temp.CompanyName = item.Developer;
+                temp.Data = item.Data;
+                temp.Id = item.Id;
+                temp.Image = item.ImageHead;
+
+
+                temp.Name = item.Name;
+                temp.Price = item.Price;
+                i++;
+                data.Add(temp);
+                if (i == 8)
+                    break;
+            }
+            return data;
+        }
+
+        [HttpGet("getNews")]
+        public IEnumerable<GameItemDTO> getNews([FromRoute] string id)
+        {
+            List<GameItemDTO> data = new List<GameItemDTO>();
+            var dataFormDB = _context.Games.ToList();
+            DateTime thisDay = DateTime.Today;
+
+            foreach (var item in dataFormDB)
+            {
+                if (item.Data > thisDay && thisDay.AddDays(-32) < thisDay)
+                {
+                    GameItemDTO temp = new GameItemDTO();
+
+                    temp.CompanyName = item.Developer;
+                    temp.Data = item.Data;
+                    temp.Id = item.Id;
+                    temp.Image = item.ImageHead;
+
+
+                    temp.Name = item.Name;
+                    temp.Price = item.Price;
+
+                    data.Add(temp);
+                }
+            }
 
             return data;
         }
