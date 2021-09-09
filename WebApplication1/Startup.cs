@@ -15,6 +15,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Text;
+using APIAngular.Helper;
 
 namespace WebApplication1
 
@@ -128,6 +129,8 @@ namespace WebApplication1
                     spa.UseAngularCliServer(npmScript: "start");
                 }
             });
+            // SeederDatabase.SeedData(app.ApplicationServices, env, Configuration);
+
         }
     }
 }

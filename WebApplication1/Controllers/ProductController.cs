@@ -61,7 +61,7 @@ namespace APIAngular.Controllers
         }
 
         [HttpPost("addProduct")]
-        public async Task<ResultDTO> AddProduct([FromBody] GameAddDTO model, [FromForm(Name = "file")] IFormFile uploadedImage)
+        public async Task<ResultDTO> addProduct([FromBody] GameAddDTO model, [FromForm(Name = "file")] IFormFile uploadedImage)
         {
             if (!ModelState.IsValid)
             {
@@ -95,11 +95,11 @@ namespace APIAngular.Controllers
                 var minsystemrequirements = new MinSystemRequirements()
                 {
 
-                    OS = model.sysreqProduct.OS,
-                    Processor = model.sysreqProduct.Processor,
-                    Graphics = model.sysreqProduct.Graphics,
-                    Memory = model.sysreqProduct.Memory,
-                    Storege = model.sysreqProduct.Storege,
+                    OS = model.sysminProduct.OS,
+                    Processor = model.sysminProduct.Processor,
+                    Graphics = model.sysminProduct.Graphics,
+                    Memory = model.sysminProduct.Memory,
+                    Storege = model.sysminProduct.Storege,
                     Id = idProduct
                 };
                 var recsystemrequirements = new RecSystemRequirements()
@@ -138,7 +138,8 @@ namespace APIAngular.Controllers
                     _context.GameGanres.Add(temp);
                 }
 
-
+                var product = _context.Games.FirstOrDefault(t => t.Id == idProduct-1);
+                _context.Games.Remove(product);
                 _context.SaveChanges();
 
 
@@ -248,7 +249,7 @@ namespace APIAngular.Controllers
         public ResultDTO UploadImage([FromForm(Name = "file")] IFormFile uploadedImage)
         {
             string fileName = Guid.NewGuid().ToString() + ".jpg";
-            string path = _appEnvironment.WebRootPath + @"\Images\" + fileName;
+            string path = _appEnvironment.ContentRootPath + @"\ClientApp\src\assets\img\" + fileName;
             if (uploadedImage == null)
                 return new ResultDTO
                 {
@@ -265,7 +266,7 @@ namespace APIAngular.Controllers
             {
                 using (Bitmap bmp = new Bitmap(uploadedImage.OpenReadStream()))
                 {
-                    var saveImage = ImageWorker.CreateImage(bmp, 400, 365);
+                    var saveImage = ImageWorker.CreateImage(bmp, 460, 215);
                     int idProduct = (from v in _context.Games orderby v.Id descending select v).FirstOrDefault().Id;
                     if (saveImage != null)
                     {
@@ -291,6 +292,215 @@ namespace APIAngular.Controllers
                 Status = 200
             };
         }
+
+        [HttpPost("UploadImage1")]
+        public ResultDTO UploadImage1([FromForm(Name = "file")] IFormFile uploadedImage)
+        {
+ 
+                string fileName = Guid.NewGuid().ToString() + ".jpg";
+                string path = _appEnvironment.ContentRootPath + @"\ClientApp\src\assets\img\" + fileName;
+                if (uploadedImage == null)
+                    return new ResultDTO
+                    {
+                        Status = 400,
+                        Errors = new List<string> { "Не вдалося завантажити файл" }
+                    };
+                if (uploadedImage.Length == 0)
+                    return new ResultDTO
+                    {
+                        Status = 400,
+                        Errors = new List<string> { "Файл порожній" }
+                    };
+                try
+                {
+                    using (Bitmap bmp = new Bitmap(uploadedImage.OpenReadStream()))
+                    {
+                        var saveImage = ImageWorker.CreateImage(bmp, 600, 337);
+                        int idProduct = (from v in _context.Games orderby v.Id descending select v).FirstOrDefault().Id;
+                        if (saveImage != null)
+                        {
+                            saveImage.Save(path, ImageFormat.Jpeg);
+                            var product = _context.Games.Find(idProduct);
+
+                         _context.Games.Find(idProduct).Image1 = fileName; 
+     
+                            _context.SaveChanges();
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    return new ResultDTO
+                    {
+                        Status = 400,
+                        Errors = new List<string> { "Не вдалося завантажити файл" },
+                        Message = ex.InnerException.Message
+                    };
+                }
+            
+                return new ResultDTO
+                {
+                    Status = 200
+                };
+            
+        }
+
+        [HttpPost("UploadImage2")]
+        public ResultDTO UploadImage2([FromForm(Name = "file")] IFormFile uploadedImage)
+        {
+
+            string fileName = Guid.NewGuid().ToString() + ".jpg";
+            string path = _appEnvironment.ContentRootPath + @"\ClientApp\src\assets\img\" + fileName;
+            if (uploadedImage == null)
+                return new ResultDTO
+                {
+                    Status = 400,
+                    Errors = new List<string> { "Не вдалося завантажити файл" }
+                };
+            if (uploadedImage.Length == 0)
+                return new ResultDTO
+                {
+                    Status = 400,
+                    Errors = new List<string> { "Файл порожній" }
+                };
+            try
+            {
+                using (Bitmap bmp = new Bitmap(uploadedImage.OpenReadStream()))
+                {
+                    var saveImage = ImageWorker.CreateImage(bmp, 600, 337);
+                    int idProduct = (from v in _context.Games orderby v.Id descending select v).FirstOrDefault().Id;
+                    if (saveImage != null)
+                    {
+                        saveImage.Save(path, ImageFormat.Jpeg);
+                        var product = _context.Games.Find(idProduct);
+
+                        _context.Games.Find(idProduct).Image2 = fileName;
+
+                        _context.SaveChanges();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return new ResultDTO
+                {
+                    Status = 400,
+                    Errors = new List<string> { "Не вдалося завантажити файл" },
+                    Message = ex.InnerException.Message
+                };
+            }
+
+            return new ResultDTO
+            {
+                Status = 200
+            };
+
+        }
+
+        [HttpPost("UploadImage3")]
+        public ResultDTO UploadImage3([FromForm(Name = "file")] IFormFile uploadedImage)
+        {
+
+            string fileName = Guid.NewGuid().ToString() + ".jpg";
+            string path = _appEnvironment.ContentRootPath + @"\ClientApp\src\assets\img\" + fileName;
+            if (uploadedImage == null)
+                return new ResultDTO
+                {
+                    Status = 400,
+                    Errors = new List<string> { "Не вдалося завантажити файл" }
+                };
+            if (uploadedImage.Length == 0)
+                return new ResultDTO
+                {
+                    Status = 400,
+                    Errors = new List<string> { "Файл порожній" }
+                };
+            try
+            {
+                using (Bitmap bmp = new Bitmap(uploadedImage.OpenReadStream()))
+                {
+                    var saveImage = ImageWorker.CreateImage(bmp, 600, 337);
+                    int idProduct = (from v in _context.Games orderby v.Id descending select v).FirstOrDefault().Id;
+                    if (saveImage != null)
+                    {
+                        saveImage.Save(path, ImageFormat.Jpeg);
+                        var product = _context.Games.Find(idProduct);
+
+                        _context.Games.Find(idProduct).Image3 = fileName;
+
+                        _context.SaveChanges();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return new ResultDTO
+                {
+                    Status = 400,
+                    Errors = new List<string> { "Не вдалося завантажити файл" },
+                    Message = ex.InnerException.Message
+                };
+            }
+
+            return new ResultDTO
+            {
+                Status = 200
+            };
+
+        }
+
+        [HttpPost("UploadImage4")]
+        public ResultDTO UploadImage4([FromForm(Name = "file")] IFormFile uploadedImage)
+        {
+
+            string fileName = Guid.NewGuid().ToString() + ".jpg";
+            string path = _appEnvironment.ContentRootPath + @"\ClientApp\src\assets\img\" + fileName;
+            if (uploadedImage == null)
+                return new ResultDTO
+                {
+                    Status = 400,
+                    Errors = new List<string> { "Не вдалося завантажити файл" }
+                };
+            if (uploadedImage.Length == 0)
+                return new ResultDTO
+                {
+                    Status = 400,
+                    Errors = new List<string> { "Файл порожній" }
+                };
+            try
+            {
+                using (Bitmap bmp = new Bitmap(uploadedImage.OpenReadStream()))
+                {
+                    var saveImage = ImageWorker.CreateImage(bmp, 600, 337);
+                    int idProduct = (from v in _context.Games orderby v.Id descending select v).FirstOrDefault().Id;
+                    if (saveImage != null)
+                    {
+                        saveImage.Save(path, ImageFormat.Jpeg);
+                        var product = _context.Games.Find(idProduct);
+
+                        _context.Games.Find(idProduct).Image4 = fileName;
+
+                        _context.SaveChanges();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return new ResultDTO
+                {
+                    Status = 400,
+                    Errors = new List<string> { "Не вдалося завантажити файл" },
+                    Message = ex.InnerException.Message
+                };
+            }
+
+            return new ResultDTO
+            {
+                Status = 200
+            };
+
+        }
+
 
         [HttpPost("RemoveProduct/{id}")]
         public ResultDTO RemoveProduct([FromRoute] int id)

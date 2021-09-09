@@ -21,8 +21,6 @@ export class ProductAdd {
   listidLang: number[];
   listidCateg: number[];
 
-
-
   constructor() {
     this.name = null;
     this.price = null;

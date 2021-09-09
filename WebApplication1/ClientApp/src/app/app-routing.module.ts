@@ -21,7 +21,7 @@ const routes: Routes = [
     { path: 'library', component: LibraryComponent},
     { path: 'admin', component: AdminPanelComponent},
     { path: 'add', component: AddProductComponent},
-    { path: 'edit', component: EditProductComponent},
+    { path: 'edit/:id', component: EditProductComponent},
 ];
 
 @NgModule({

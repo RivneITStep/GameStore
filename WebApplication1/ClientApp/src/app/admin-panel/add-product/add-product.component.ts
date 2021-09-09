@@ -30,7 +30,6 @@ export class AddProductComponent implements OnInit {
   modelSysReq = new SysReqAdd;
   modelSysMin = new SysReqAdd;
   model = new ProductAdd;
-  confirmPassword: string;
   isError: boolean;
   constructor(
     private productService: ProductManagerService,
@@ -51,12 +50,6 @@ export class AddProductComponent implements OnInit {
       this.listOfDataCateg = AllCategories;
       this.spiner.hide('mySpinner');
       });
-      //for (let i = 0; i < this.listOfDataCateg.length; i++) {
-      //  this.listOfDataCateg[i].isChecked = false;
-      //}
-      //for (let i = 0; i < this.listOfDataLang.length; i++) {
-      //  this.listOfDataLang[i].isChecked = false;
-      //}
 
   }
 
@@ -88,8 +81,34 @@ export class AddProductComponent implements OnInit {
     }
   }
 
-  setImage(files: FileList) {
-    this.imageBlobHead = files.item(0);
+  setImage(file: FileList) {
+    this.imageBlobHead = file.item(0);
+    console.log(file.item(0));
+    console.log(this.imageBlobHead);
+  }
+
+  setImage1(file: FileList) {
+    this.imageBlob1 = file.item(0);
+    console.log(file);
+    console.log(this.imageBlob1);
+  }
+
+  setImage2(file: FileList) {
+    this.imageBlob2 = file.item(0);
+    console.log(file);
+    console.log(this.imageBlob2);
+  }
+
+  setImage3(file: FileList) {
+    this.imageBlob3 = file.item(0);
+    console.log(file);
+    console.log(this.imageBlob3);
+  }
+
+  setImage4(file: FileList) {
+    this.imageBlob4 = file.item(0);
+    console.log(file);
+    console.log(this.imageBlob4);
   }
 
   onSubmit() {
@@ -163,28 +182,67 @@ export class AddProductComponent implements OnInit {
       this.model.listidCateg = this.selectedCategies;
       this.model.listidLang = this.selectedLanguages;
 
-      console.log(this.model);
       const date = new Date().valueOf();
-        let text = '';
-        const possibleText = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-        for (let i = 0; i < 5; i++) {
-          text += possibleText.charAt(Math.floor(Math.random() * possibleText.length));
-        }
-        // Replace extension according to your media type
+      let text = '';
+      const possibleText = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+      for (let i = 0; i < 5; i++) {
+        text += possibleText.charAt(Math.floor(Math.random() * possibleText.length));
+      }
+      // Replace extension according to your media type
 
-        const imageName = date + '.' + text + '.jpg';
+      const imageName = date + '.' + text + '.jpg';
+      console.log(imageName);
       const imageFile = new File([this.imageBlobHead], imageName, { type: 'image/jpeg' });
-      this.productService.ProductAdd(this.model).subscribe(
+      console.log(imageFile);
+
+
+
+      const imageFile1 = new File([this.imageBlob1], 1 + imageName, { type: 'image/jpeg' });
+      const imageFile2 = new File([this.imageBlob2], 2 + imageName, { type: 'image/jpeg' });
+      const imageFile3 = new File([this.imageBlob3], 3 + imageName, { type: 'image/jpeg' });
+      const imageFile4 = new File([this.imageBlob4], 4 + imageName, { type: 'image/jpeg' });
+
+      // tslint:disable-next-line:no-shadowed-variable
+
+      // tslint:disable-next-line:no-shadowed-variable
+
+      this.productService.addProduct(this.model).subscribe(
         data => {
           console.log(data);
           if (data.status === 200) {
             this.notifier.notify('success', 'Add product!');
+
+            // tslint:disable-next-line:no-shadowed-variable
+            this.productService.uploadPhoto1(imageFile1).subscribe( data => {
+              console.log(data);
+            }, error => {
+              console.log(error);
+            });
+            // tslint:disable-next-line:no-shadowed-variable
+            this.productService.uploadPhoto2(imageFile2).subscribe( data => {
+              console.log(data);
+            }, error => {
+              console.log(error);
+            });
+            // tslint:disable-next-line:no-shadowed-variable
+            this.productService.uploadPhoto3(imageFile3).subscribe( data => {
+              console.log(data);
+            }, error => {
+              console.log(error);
+            });
+            // tslint:disable-next-line:no-shadowed-variable
+            this.productService.uploadPhoto4(imageFile4).subscribe( data => {
+              console.log(data);
+            }, error => {
+              console.log(error);
+            });
             // tslint:disable-next-line:no-shadowed-variable
             this.productService.uploadPhoto(imageFile).subscribe( data => {
               console.log(data);
             }, error => {
               console.log(error);
             });
+            // tslint:disable-next-line:no-shadowed-variable
             this.router.navigate(['/admin']);
           } else {
             for (let i = 0; i < data.errors.length; i++) {
@@ -196,7 +254,8 @@ export class AddProductComponent implements OnInit {
         errors => {
           console.log(errors);
         });
-    }
+        console.log(this.model);
+      }
 
     this.selectedCategies = [];
     this.selectedLanguages = [];

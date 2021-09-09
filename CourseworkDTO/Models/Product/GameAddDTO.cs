@@ -22,7 +22,6 @@ namespace CourseworkDTO.Models.Product
         public string Publisher { get; set; }
         [Required(ErrorMessage = "Data is Rrequired!")]
         public DateTime Data { get; set; }
-        [Required(ErrorMessage = "ImageHead is Rrequired!")]
         public string ImageHead { get; set; }
 
         public string Image1 { get; set; }

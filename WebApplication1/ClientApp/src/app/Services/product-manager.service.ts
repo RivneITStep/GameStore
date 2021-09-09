@@ -13,7 +13,7 @@ export class ProductManagerService {
   baseUrl = '/api/Product';
   headers: HttpHeaders;
 
-  ProductAdd(model: ProductAdd): Observable<ApiResponse> {
+  addProduct(model: ProductAdd): Observable<ApiResponse> {
    return this.http.post<ApiResponse>(this.baseUrl + `/addProduct`, model);
   }
 
@@ -73,6 +73,42 @@ export class ProductManagerService {
     formData.append('file', fileToUpload);
     console.log(formData.get('file'));
     return this.http.post<ApiResponse>(this.baseUrl + '/UploadImage' + '/' , formData, {headers: this.headers});
+  }
+
+  uploadPhoto1(fileToUpload: File) {
+    const formData: FormData = new FormData();
+
+    this.headers.append('Content-Type', 'multipart/form-data');
+    formData.append('file', fileToUpload);
+    console.log(formData.get('file'));
+    return this.http.post<ApiResponse>(this.baseUrl + '/UploadImage1' + '/' , formData, {headers: this.headers});
+  }
+
+  uploadPhoto2(fileToUpload: File) {
+    const formData: FormData = new FormData();
+
+    this.headers.append('Content-Type', 'multipart/form-data');
+    formData.append('file', fileToUpload);
+    console.log(formData.get('file'));
+    return this.http.post<ApiResponse>(this.baseUrl + '/UploadImage2' + '/' , formData, {headers: this.headers});
+  }
+
+  uploadPhoto3(fileToUpload: File) {
+    const formData: FormData = new FormData();
+
+    this.headers.append('Content-Type', 'multipart/form-data');
+    formData.append('file', fileToUpload);
+    console.log(formData.get('file'));
+    return this.http.post<ApiResponse>(this.baseUrl + '/UploadImage3' + '/' , formData, {headers: this.headers});
+  }
+
+  uploadPhoto4(fileToUpload: File) {
+    const formData: FormData = new FormData();
+
+    this.headers.append('Content-Type', 'multipart/form-data');
+    formData.append('file', fileToUpload);
+    console.log(formData.get('file'));
+    return this.http.post<ApiResponse>(this.baseUrl + '/UploadImage4' + '/' , formData, {headers: this.headers});
   }
 
 }

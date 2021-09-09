@@ -1,3 +1,100 @@
-<p>
-  edit-product works!
-</p>
+<div class="form">
+  <h2>Edit product</h2>
+  <form  #myForm="ngForm" (ngSubmit)="onSubmit();">
+    <div>
+
+    <input nz-input type="text" placeholder="Name" [(ngModel)]="model.name" name="name"/>
+    <input nz-input type="number" placeholder="Price" [(ngModel)]="model.price" name="price"/>
+    <textarea nz-input placeholder="Controlled autosize" [nzAutosize]="{ minRows: 3, maxRows: 5 }" type="text" placeholder="Description" [(ngModel)]="model.description" name="description"></textarea>
+    <input nz-input type="text" placeholder="Developer" [(ngModel)]="model.developer" name="developer"/>
+    <input nz-input type="text" placeholder="Publisher" [(ngModel)]="model.publisher" name="publisher"/>
+    <input nz-input type="number" placeholder="Evaluation" [(ngModel)]="model.evaluation" name="evaluation"/>
+    <nz-date-picker nzFormat="yyyy-MM-dd HH:mm:ss" type="date" placeholder="Data"  [(ngModel)]="model.data" name="data"></nz-date-picker>
+    <input type="file" name="file" (change)="setImage($event.target.files)">
+    <input type="file" name="file1" (change)="setImage1($event.target.files)">
+    <input type="file" name="file2" (change)="setImage2($event.target.files)">
+    <input type="file" name="file3" (change)="setImage3($event.target.files)">
+    <input type="file" name="file4" (change)="setImage4($event.target.files)">
+    </div>
+
+    <h3>Min System requirement</h3>
+    <div>
+    <input nz-input type="text" placeholder="OS" [(ngModel)]="modelSysMin.os" name="os"/>
+    <input nz-input type="text" placeholder="Processor" [(ngModel)]="modelSysMin.processor" name="processor"/>
+    <input nz-input type="text" placeholder="Graphics" [(ngModel)]="modelSysMin.graphics" name="graphics"/>
+    <input nz-input type="text" placeholder="Memory" [(ngModel)]="modelSysMin.memory" name="memory"/>
+    <input nz-input type="text" placeholder="Storege"  [(ngModel)]="modelSysMin.storege" name="storege"/>
+    </div>
+
+    <h3>Rec System requirement</h3>
+    <div>
+    <input nz-input type="text" placeholder="OS" [(ngModel)]="modelSysReq.os" name="os"/>
+    <input nz-input type="text" placeholder="Processor" [(ngModel)]="modelSysReq.processor" name="processor"/>
+    <input nz-input type="text" placeholder="Graphics" [(ngModel)]="modelSysReq.graphics" name="graphics"/>
+    <input nz-input type="text" placeholder="Memory" [(ngModel)]="modelSysReq.memory" name="memory"/>
+    <input nz-input type="text" placeholder="Storege"  [(ngModel)]="modelSysReq.storege" name="storege"/>
+    </div>
+
+  <h3>Language</h3>
+
+  <nz-table
+  #rowSelectionTableLang
+  [nzFrontPagination]="false"
+  [nzShowPagination]="false"
+  [nzScroll]="{ y: '720px' }"
+  [nzData]="listOfDataLang" >
+  <thead>
+    <tr>
+      <th nzWidth='10%'></th>
+      <th>Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of rowSelectionTableLang.data">
+      <td>
+        <label  nz-checkbox type="checkbox" (click)="setLanguage(data.idLanguage)" ></label>
+      </td>
+      <td>{{ data.nameLanguage }}</td>
+    </tr>
+  </tbody>
+</nz-table>
+
+<h3>Caregory</h3>
+  <nz-table
+  #rowSelectionTableCategory
+  [nzFrontPagination]="false"
+  [nzShowPagination]="false"
+  [nzScroll]="{ y: '720px' }"
+  [nzData]="listOfDataCateg">
+  <thead>
+
+    <tr>
+      <th nzWidth='10%'></th>
+      <th>Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of rowSelectionTableCategory.data">
+      <td>
+        <label nz-checkbox type="checkbox" (click)="setCategory(data.idCategory)" ></label>
+      </td>
+      <td>{{ data.nameCategory }}</td>
+    </tr>
+  </tbody>
+</nz-table>
+
+
+
+<button nz-button nzType="primary" nzBlock type="submit" style="background-color: rgb(0,80,1) !important; border-color: rgb(1, 58, 2);" (click)="onSubmit()">Edit</button>
+
+</form>
+</div>
+
+<ngx-spinner name="mySpinner"
+bdColor="rgba(51,51,51,0.8)"
+size="medium"
+color="#fff"
+type="square-loader"
+>
+<p style="font-size: 20px; color: white">Loading...</p>
+</ngx-spinner>

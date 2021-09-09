@@ -26,7 +26,7 @@
           <td>{{ data.data }}</td>
           <td>
             <a nz-button nzType="primary" style="color: white; background-color: rgb(0,80,1); border-color: rgb(1, 58, 2);" nz-popconfirm nzPopconfirmTitle="Please" (nzOnConfirm)="deleteProduct(data.id)">Delete</a>
-            <a nz-button nzType="primary" style="background-color: rgb(0,80,1); border-color: rgb(1, 58, 2);"  [routerLink]="['/admin-panel/product-manager']" type="button">Edit</a>
+            <a nz-button nzType="primary" style="background-color: rgb(0,80,1); border-color: rgb(1, 58, 2);"  [routerLink]="['/edit',data.id]" type="button">Edit</a>
           </td>
         </tr>
       </tbody>

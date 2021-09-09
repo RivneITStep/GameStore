@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { threadId } from 'worker_threads';
 import { CategoriesItem } from '../Models/categories-item.model';
 import { LanguageItem } from '../Models/language-item.model';
 import { ProductFullItem } from '../Models/product-full-item';

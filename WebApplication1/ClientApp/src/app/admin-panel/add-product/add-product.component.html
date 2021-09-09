@@ -11,10 +11,10 @@
     <input nz-input type="number" placeholder="Evaluation" [(ngModel)]="model.evaluation" name="evaluation"/>
     <nz-date-picker nzFormat="yyyy-MM-dd HH:mm:ss" type="date" placeholder="Data"  [(ngModel)]="model.data" name="data"></nz-date-picker>
     <input type="file" name="file" (change)="setImage($event.target.files)">
-    <input type="file" name="file" (change)="setImage($event.target.files)">
-    <input type="file" name="file" (change)="setImage($event.target.files)">
-    <input type="file" name="file" (change)="setImage($event.target.files)">
-    <input type="file" name="file" (change)="setImage($event.target.files)">
+    <input type="file" name="file1" (change)="setImage1($event.target.files)">
+    <input type="file" name="file2" (change)="setImage2($event.target.files)">
+    <input type="file" name="file3" (change)="setImage3($event.target.files)">
+    <input type="file" name="file4" (change)="setImage4($event.target.files)">
     </div>
 
     <h3>Min System requirement</h3>

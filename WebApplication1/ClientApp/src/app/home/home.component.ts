@@ -67,7 +67,7 @@ export class HomeComponent {
     t.companyName.includes(this.searchText));
     setTimeout(() => {
       this.spiner.hide('mySpinner');
-    }, 1000);
+    }, 6000);
   }
 
 }
