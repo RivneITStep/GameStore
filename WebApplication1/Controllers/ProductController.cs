@@ -4,6 +4,7 @@ using CourseworkDTO.Models.Product.Categories;
 using CourseworkDTO.Models.Product.Languages;
 using CourseworkDTO.Models.Product.SystemRequirements;
 using DataAccess;
+using DataAccess.Entity.Communication;
 using DataAccess.Entity.Store.Product;
 using DataAccess.Entity.Store.Product.Communication;
 using DTO.Models.Results;
@@ -57,6 +58,46 @@ namespace APIAngular.Controllers
                 data.Add(temp);
 
             }
+            return data;
+        }
+
+        [HttpGet("getProductsUser/{id}")]
+        public IEnumerable<GameItemDTO> getProductsUser(string id)
+        {
+
+            List<GameItemDTO> data = new List<GameItemDTO>();
+            List<int> dataId = new List<int>();
+            var dataFormDB = _context.UserGames.ToList();
+            foreach (var item in dataFormDB)
+            {
+
+                if(item.UserId == id)
+                    dataId.Add(item.GameId);
+
+            }
+            var dataFormDBG = _context.Games.ToList();
+            foreach (var item in dataFormDBG)
+            {
+                foreach (var itemId in dataId)
+                {
+                    if (itemId == item.Id)
+                    {
+                        GameItemDTO temp = new GameItemDTO();
+
+                        temp.CompanyName = item.Developer;
+                        temp.Data = item.Data;
+                        temp.Id = item.Id;
+                        temp.Image = item.ImageHead;
+
+
+                        temp.Name = item.Name;
+                        temp.Price = item.Price;
+
+                        data.Add(temp);
+                    }
+                    }
+            }
+
             return data;
         }
 
@@ -763,6 +804,41 @@ namespace APIAngular.Controllers
                     product.Publisher = model.Publisher;
                 if (model.Data != null)
                     product.Data = model.Data;
+
+                _context.SaveChanges();
+                return new ResultDTO
+                {
+                    Status = 200,
+                    Message = "OK"
+                };
+            }
+            catch (Exception e)
+            {
+                List<string> temp = new List<string>();
+                temp.Add(e.Message);
+                return new ResultDTO
+                {
+                    Status = 500,
+                    Message = "ERROR",
+                    Errors = temp
+                };
+            }
+        }
+
+        [HttpPost("buyProduct")]
+        public ResultDTO buyProduct(List<string> id)
+        {
+            try
+            {
+
+                var userGames = new UserGames()
+                {
+                    UserId = id[0],
+                    GameId = int.Parse(id[1])
+                };
+
+                _context.UserGames.Add(userGames);
+                _context.SaveChanges();
 
                 _context.SaveChanges();
                 return new ResultDTO

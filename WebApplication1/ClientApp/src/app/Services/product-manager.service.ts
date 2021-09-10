@@ -20,7 +20,7 @@ export class ProductManagerService {
   editProduct(model: ProductEdit): Observable<ApiResponse> {
     return this.http.post<ApiResponse>(this.baseUrl + '/editProduct' , model);
   }
-  
+
   getAllProducts() {
     return this.http.get(this.baseUrl);
   }
@@ -31,6 +31,10 @@ export class ProductManagerService {
 
   getPopular() {
     return this.http.get(this.baseUrl + '/getPopular');
+  }
+
+  getProductsUser(id: string) {
+    return this.http.get(this.baseUrl + '/getProductsUser' + '/' + id);
   }
 
   getProduct(id: string) {
@@ -68,6 +72,10 @@ export class ProductManagerService {
   RemoveProduct(id: number) {
     return this.http.post(this.baseUrl + '/RemoveProduct' + '/' + id, id);
 
+  }
+
+  BuyProduct(id: string[] ) {
+    return this.http.post(this.baseUrl + '/buyProduct', id);
   }
 
   uploadPhoto(fileToUpload: File) {
@@ -116,3 +124,5 @@ export class ProductManagerService {
   }
 
 }
+
+

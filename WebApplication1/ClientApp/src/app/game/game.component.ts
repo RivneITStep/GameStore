@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { NotifierService } from 'angular-notifier';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { ApiResponse } from '../Models/api.response';
 import { CategoriesItem } from '../Models/categories-item.model';
 import { LanguageItem } from '../Models/language-item.model';
 import { ProductFullItem } from '../Models/product-full-item';
@@ -25,6 +27,7 @@ export class GameComponent implements OnInit {
     private router: ActivatedRoute,
     private productService: ProductManagerService,
     private spinner: NgxSpinnerService,
+    private notifier: NotifierService
     ) { }
     array = [];
 
@@ -64,6 +67,30 @@ export class GameComponent implements OnInit {
               (AllGanres: CategoriesItem[]) => {
               this.listOfDataCateg = AllGanres;
               });
+
+        this.spinner.hide('mySpinner');
+      }
+
+      buyProduct() {
+        this.spinner.show('mySpinner');
+        const token = localStorage.getItem('token');
+
+        const jwtToken = token.split('.')[1];
+        const decodedJwtJsonToken = window.atob(jwtToken);
+        const decodedJwtToken = JSON.parse(decodedJwtJsonToken);
+        const dataId: string[] = [decodedJwtToken.id, this.idGame];
+        this.productService.BuyProduct(dataId).subscribe(
+          (data: ApiResponse) => {
+            if (data.status === 200) {
+              this.notifier.notify('success', 'Game removed!');
+              this.spinner.hide('mySpinner');
+            } else {
+              for ( let i = 0; i < data.errors; i++) {
+                this.notifier.notify('error', data.errors[i]);
+              }
+            }
+          }
+        );;
 
         this.spinner.hide('mySpinner');
       }

@@ -3,7 +3,7 @@
 <div>
 <img src="../../assets/img/{{product.imageHead}}">
 
-<button>BUY  {{product.price}}</button>
+<button (click)="buyProduct()">BUY  {{product.price}}</button>
 
 <nz-carousel style=" height: 215px;" nzAutoPlay nzAutoPlaySpeed=6000>
   <div  nz-carousel-content *ngFor="let index of array">
