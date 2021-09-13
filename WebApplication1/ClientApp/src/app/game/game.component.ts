@@ -90,7 +90,7 @@ export class GameComponent implements OnInit {
               }
             }
           }
-        );;
+        );
 
         this.spinner.hide('mySpinner');
       }

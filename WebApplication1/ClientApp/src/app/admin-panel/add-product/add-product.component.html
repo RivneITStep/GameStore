@@ -52,7 +52,7 @@
   <tbody>
     <tr *ngFor="let data of rowSelectionTableLang.data">
       <td>
-        <label  nz-checkbox type="checkbox" (click)="setLanguage(data.idLanguage)" ></label>
+        <label  nz-checkbox type="checkbox" (change)="setLanguage(data.idLanguage)" ></label>
       </td>
       <td>{{ data.nameLanguage }}</td>
     </tr>
@@ -76,7 +76,7 @@
   <tbody>
     <tr *ngFor="let data of rowSelectionTableCategory.data">
       <td>
-        <label nz-checkbox type="checkbox" (click)="setCategory(data.idCategory)" ></label>
+        <label nz-checkbox type="checkbox" (change)="setCategory(data.idCategory)" ></label>
       </td>
       <td>{{ data.nameCategory }}</td>
     </tr>

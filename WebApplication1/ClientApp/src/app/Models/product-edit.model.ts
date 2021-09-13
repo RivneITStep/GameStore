@@ -8,6 +8,8 @@ developer: string;
 publisher: string;
 data: any;
 
+listidLang: number[];
+listidCateg: number[];
 
 constructor() {
   this.name = null;

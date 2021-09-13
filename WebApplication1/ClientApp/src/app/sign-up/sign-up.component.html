@@ -7,9 +7,8 @@
         placeholder="Email" name="Email" />
       <input [(ngModel)]="model.Password" type="password" placeholder="Password" name="Password" />
       <input [(ngModel)]="confirmPassword" type="password" placeholder="Confirm password" name="confirmPassword" />
-      <input [(ngModel)]="model.Phone" type="text" placeholder="Phone number" prefix='+38' mask='(000) 000-00-00'
+      <input [(ngModel)]="model.PhoneNumber" type="text" placeholder="Phone number" prefix='+38' mask='(000) 000-00-00'
         name="PhoneNumber" />
-      <input [(ngModel)]="model.Address" type="text" placeholder="Address" name="Address" />
       <button type="submit" class="btn btn-primary my-btn">Sign up</button>
       <p class="message">Already a member? <a [routerLink]="['/sign-in']">Sign In</a></p>
     </form>

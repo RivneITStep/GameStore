@@ -7,6 +7,7 @@ using DataAccess;
 using DataAccess.Entity.Communication;
 using DataAccess.Entity.Store.Product;
 using DataAccess.Entity.Store.Product.Communication;
+using DTO.Models.Product.SystemRequirements;
 using DTO.Models.Results;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -693,8 +694,8 @@ namespace APIAngular.Controllers
             {
                 LanguagesItemDTO temp = new LanguagesItemDTO();
                 temp.nameLanguage = dataFormDB[list[i]-1].Name;
-                temp.idLanguage = dataFormDB[list[i]-1
-                    ].Id;
+                temp.idLanguage = dataFormDB[list[i]-1].Id;
+                temp.isChecked = true;
                 data.Add(temp);
             }
 
@@ -721,6 +722,7 @@ namespace APIAngular.Controllers
                 GanreItemDTO temp = new GanreItemDTO();
                 temp.nameCategory = dataFormDB[list[i]-1].Name;
                 temp.idCategory = dataFormDB[list[i]-1].Id;
+                temp.isChecked = true;
                 data.Add(temp);
             }
 
@@ -789,6 +791,46 @@ namespace APIAngular.Controllers
             try
             {
                 var product = _context.Games.FirstOrDefault(t => t.Id == int.Parse(model.Id));
+                var dataFormDBL = _context.GameLangauges.ToList();
+                var dataFormDBC = _context.GameGanres.ToList();
+
+                foreach (var item in dataFormDBL)
+                {
+                    if (item.GameId == int.Parse(model.Id))
+                        _context.GameLangauges.Remove(item);
+                }
+
+
+                foreach (var item in dataFormDBC)
+                {
+                    if (item.GameId == int.Parse(model.Id))
+                        _context.GameGanres.Remove(item);
+                }
+
+                _context.SaveChanges();
+                foreach (var item in model.listIdLang)
+                {
+
+                    GameLangauges temp = new GameLangauges();
+
+                    temp.GameId = int.Parse(model.Id);
+                    temp.LanguageId = item;
+
+                    _context.GameLangauges.Add(temp);
+                }
+
+
+                foreach (var item in model.listIdCateg)
+                {
+
+                    GameGanres temp = new GameGanres();
+
+                    temp.GameId = int.Parse(model.Id);
+                    temp.GanreId = item;
+
+                    _context.GameGanres.Add(temp);
+                }
+                _context.SaveChanges();
 
                 if (model.Name != null)
                     product.Name = model.Name;
@@ -804,6 +846,82 @@ namespace APIAngular.Controllers
                     product.Publisher = model.Publisher;
                 if (model.Data != null)
                     product.Data = model.Data;
+
+                _context.SaveChanges();
+                return new ResultDTO
+                {
+                    Status = 200,
+                    Message = "OK"
+                };
+            }
+            catch (Exception e)
+            {
+                List<string> temp = new List<string>();
+                temp.Add(e.Message);
+                return new ResultDTO
+                {
+                    Status = 500,
+                    Message = "ERROR",
+                    Errors = temp
+                };
+            }
+        }
+
+        [HttpPost("editRecSysReq")]
+        public ResultDTO editRecSysReq(SystemRequirementsEditDTO model)
+        {
+            try
+            {
+                var product = _context.RecSystemRequirements.FirstOrDefault(t => t.Id == int.Parse(model.Id));
+
+                if (model.Graphics != null)
+                    product.Graphics = model.Graphics;
+                if (model.Memory != null)
+                    product.Memory = model.Memory;
+                if (model.OS != null)
+                    product.OS = model.OS;
+                if (model.Processor != null)
+                    product.Processor = model.Processor;
+                if (model.Storege != null)
+                    product.Storege = model.Storege;
+
+                _context.SaveChanges();
+                return new ResultDTO
+                {
+                    Status = 200,
+                    Message = "OK"
+                };
+            }
+            catch (Exception e)
+            {
+                List<string> temp = new List<string>();
+                temp.Add(e.Message);
+                return new ResultDTO
+                {
+                    Status = 500,
+                    Message = "ERROR",
+                    Errors = temp
+                };
+            }
+        }
+
+        [HttpPost("editMinSysReq")]
+        public ResultDTO editMinSysReq(SystemRequirementsEditDTO model)
+        {
+            try
+            {
+                var product = _context.MinSystemRequirements.FirstOrDefault(t => t.Id == int.Parse(model.Id));
+
+                if (model.Graphics != null)
+                    product.Graphics = model.Graphics;
+                if (model.Memory != null)
+                    product.Memory = model.Memory;
+                if (model.OS != null)
+                    product.OS = model.OS;
+                if (model.Processor != null)
+                    product.Processor = model.Processor;
+                if (model.Storege != null)
+                    product.Storege = model.Storege;
 
                 _context.SaveChanges();
                 return new ResultDTO

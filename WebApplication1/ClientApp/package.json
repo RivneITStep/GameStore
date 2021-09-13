@@ -25,6 +25,7 @@
     "@angular/router": "12.1.1",
     "@material/card": "^12.0.0",
     "@nguniversal/module-map-ngfactory-loader": "8.1.1",
+    "@syncfusion/ej2-angular-notifications": "^19.2.60",
     "angular-jwt": "^0.1.11",
     "angular-notifier": "^6.0.2",
     "angular-token": "^7.0.1",

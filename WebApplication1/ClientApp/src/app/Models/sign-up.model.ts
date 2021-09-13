@@ -2,18 +2,15 @@ export class SignUpModel {
     public Email: string = "";
     public Password: string = "";
     public FullName: string = "";
-    public Phone: string = "";
-    public Address: string = "";
+    public PhoneNumber: string = "";
 
     isValid(): boolean {
-        if (this.Email != ""
-            && this.FullName != ""
-            && this.Address != ""
-            && this.Phone != ""
-            && this.Password != "") {
+        if (this.Email !== ''
+            && this.FullName !== ''
+            && this.PhoneNumber !== ''
+            && this.Password !== '') {
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     }

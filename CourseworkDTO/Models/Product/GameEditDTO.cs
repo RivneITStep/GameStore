@@ -22,6 +22,9 @@ namespace CourseworkDTO.Models.Product
 
         public DateTime Data { get; set; }
 
+        public List<int> listIdLang { get; set; }
+        public List<int> listIdCateg { get; set; }
+
 
     }
 }

@@ -18,9 +18,6 @@ namespace DTO.Models
         public string password { get; set; }
         [Required(ErrorMessage = "Phone Number is Rrequired!")]
         public string phoneNumber { get; set; }
-        [Required(ErrorMessage = "Age is Rrequired!")]
-        public int age { get; set; }
-        [Required(ErrorMessage = "Address is Rrequired!")]
-        public string address { get; set; }
+
     }
 }

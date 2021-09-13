@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { ApiResponse } from '../Models/api.response';
 import { ProductAdd } from '../Models/product-add.model';
 import { ProductEdit } from '../Models/product-edit.model';
+import { SysReqEdit } from '../Models/sysreq-edit.model';
 @Injectable({
   providedIn: 'root'
 })
@@ -19,6 +20,14 @@ export class ProductManagerService {
 
   editProduct(model: ProductEdit): Observable<ApiResponse> {
     return this.http.post<ApiResponse>(this.baseUrl + '/editProduct' , model);
+  }
+
+  editRecSysReq(model: SysReqEdit): Observable<ApiResponse> {
+    return this.http.post<ApiResponse>(this.baseUrl + '/editRecSysReq' , model);
+  }
+
+  editMinSysReq(model: SysReqEdit): Observable<ApiResponse> {
+    return this.http.post<ApiResponse>(this.baseUrl + '/editMinSysReq' , model);
   }
 
   getAllProducts() {

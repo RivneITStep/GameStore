@@ -4,6 +4,6 @@ export class LanguageItem {
   isChecked: boolean ;
 
   constructor() {
-    this.isChecked = false;
+      this.isChecked = false;
   }
 }
