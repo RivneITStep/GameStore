@@ -20,3 +20,15 @@ p{
 .Score{
     background-color:green;
 }
+
+tbody  {
+  background-color: black !important;
+  color: beige !important;
+}
+th{
+  background-color: black !important;
+  color: beige !important;
+}
+img{
+  max-height: 400px;
+}

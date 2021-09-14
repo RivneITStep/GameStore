@@ -1,0 +1,100 @@
+button{
+  color: beige; background-color: darkorchid; border-color: darkorchid !important;
+}
+
+button:hover, button:active, button:focus {
+  background:blueviolet !important; border-color: beige!important;
+}
+hr{
+  background-color: beige;
+  color:beige;
+  height: 15px;
+  margin: 0px;
+}
+h1{
+  padding: 10px;
+  padding-left: 16px;
+  margin-bottom: 0px;
+  background-color: black;
+  color: beige;
+}
+h3{
+  padding: 10px;
+  padding-left: 16px;
+  margin-bottom: 0px;
+  margin-top: 20px;
+  background-color: black;
+  color: beige;
+}
+
+input{
+  background-color: black;
+  color: beige;
+}
+
+textarea{
+  background-color: black;
+  color: beige;
+}
+
+textarea:hover, textarea:active, textarea:focus {
+ border-color: beige;
+}
+
+input:hover, input:active, input:focus {
+  border-color: beige;
+ }
+
+tbody  {
+  background-color: black !important;
+  color: beige !important;
+}
+th{
+  background-color: black !important;
+  color: beige !important;
+}
+
+nz-date-picker{
+  background-color: black;
+  color: beige;
+}
+
+nz-date-picker:hover, nz-date-picker:active, nz-date-picker:focus {
+ border-color: beige;
+}
+
+input[type="file"] {
+  display: none;
+  background-color: black;
+  border: 1px solid blueviolet;
+  display: inline-block;
+  color: beige;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+input[type="file"] {
+  width: 100%;
+  display: none;
+  background-color: black;
+  border: 1px solid black;
+  display: inline-block;
+  color: beige;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+/* Собственно стилизируем кнопку в соответствии с нужным внешним видом */
+
+input[type="file"]:hover, input[type="file"]:active, input[type="file"]:focus {
+  background-color: black;
+  border: 1px solid beige;
+  display: inline-block;
+  color: beige;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+p{
+  color: beige;
+}

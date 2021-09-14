@@ -6,7 +6,7 @@
     <base href="/" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="assets/icon.png" />
       <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -14,8 +14,24 @@
   <body class="mat-typography">
     <app-root>
 
+      <html>
+        <head>
 
+        </head>
+        <body>
+           <app-root>
+             <div class="app-loading">
+               <div class="logo"></div>
+               <svg class="spinner" viewBox="25 25 50 50">
+                 <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
+               </svg>
+             </div>
+
+           </app-root>
+        </body>
+        </html>
 
     </app-root>
   </body>
+
 </html>

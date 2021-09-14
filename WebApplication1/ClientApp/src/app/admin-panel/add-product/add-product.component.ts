@@ -7,6 +7,7 @@ import { LanguageItem } from 'src/app/Models/language-item.model';
 import { ProductAdd } from 'src/app/Models/product-add.model';
 import { SysReqAdd } from 'src/app/Models/sysreq-add.model';
 import { ProductManagerService } from 'src/app/Services/product-manager.service';
+import {ThemePalette} from '@angular/material/core';
 
 @Component({
   selector: 'app-add-product',
@@ -27,6 +28,7 @@ export class AddProductComponent implements OnInit {
   imageBlob3: File;
   imageBlob4: File;
 
+  color: ThemePalette = 'primary';
   modelSysReq = new SysReqAdd;
   modelSysMin = new SysReqAdd;
   model = new ProductAdd;
@@ -37,6 +39,7 @@ export class AddProductComponent implements OnInit {
     private spiner: NgxSpinnerService,
     private router: Router
     ) { }
+
 
   ngOnInit() {
     this.isError = false;

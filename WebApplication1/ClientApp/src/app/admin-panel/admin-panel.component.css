@@ -1,0 +1,42 @@
+a{
+  color: beige; background-color: darkorchid; border-color: darkorchid !important; margin-left: 5px;
+}
+
+a:hover, a:active, a:focus {
+  background:blueviolet !important; border-color: beige!important;
+}
+hr{
+  background-color: beige;
+  color:beige;
+  height: 15px;
+  margin: 0px;
+}
+h1{
+  padding: 10px;
+  padding-left: 16px;
+  margin-bottom: 0px;
+  background-color: black;
+  color: beige;
+}
+
+input{
+  background-color: black;
+  color: beige;
+}
+
+input:hover, input:active, input:focus {
+ border-color: beige;
+}
+
+span.ant-btn-primary{
+  color: beige !important; background-color: darkorchid !important; border-color: darkorchid !important;
+}
+
+tbody  {
+  background-color: black !important;
+  color: beige !important;
+}
+th{
+  background-color: black !important;
+  color: beige !important;
+}

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ThemePalette } from '@angular/material/core';
 import { ActivatedRoute } from '@angular/router';
 import { NotifierService } from 'angular-notifier';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -43,6 +44,7 @@ export class EditProductComponent implements OnInit {
     imageBlob4: File;
     isError: boolean;
 
+    color: ThemePalette = 'primary';
     game: ProductFullItem;
     sysreqmin: SysReqItem;
     sysreqrec: SysReqItem;
@@ -105,6 +107,8 @@ export class EditProductComponent implements OnInit {
 
       }
     }
+
+
 
     setLanguage(id: number) {
       for (let i = 0; i < this.listOfDataLang.length; i++) {

@@ -41,6 +41,7 @@ export class HomeComponent {
   // tslint:disable-next-line:use-lifecycle-interface
   ngOnInit() {
     this.spiner.show('mySpinner');
+
     this.productService.getAllProducts().subscribe(
     (AllGames: ProductItem[]) => {
     this.listOfData = AllGames;
@@ -58,16 +59,15 @@ export class HomeComponent {
   });
     setTimeout(() => {
     this.spiner.hide('mySpinner');
-  }, 1000);
+  }, 2000);
   }
 
   Search() {
     this.spiner.show('mySpinner');
     this.listOfSearch = this.listOfData.filter(t => t.name.includes(this.searchText) ||
     t.companyName.includes(this.searchText));
-    setTimeout(() => {
       this.spiner.hide('mySpinner');
-    }, 6000);
+
   }
 
 }

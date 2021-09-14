@@ -1,0 +1,27 @@
+footer{
+  padding: 5px;
+  height: auto;
+  background: black;
+  flex-grow: 0;
+  flex-shrink: 0;
+  flex-basis: auto;
+  width: auto;
+}
+
+hr {
+  margin: -5px;
+  color: beige!important;
+  height: 1px !important;
+  border: 0;
+  opacity: 1;
+}
+
+img{
+  height: 25px;
+
+}
+
+div{
+  margin-top: 5px;
+  margin-left: 25px !important;
+}

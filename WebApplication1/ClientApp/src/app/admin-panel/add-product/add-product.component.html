@@ -1,5 +1,5 @@
 <div class="form">
-  <h2>Add product</h2>
+  <h1>Add product</h1>
   <form  #myForm="ngForm" (ngSubmit)="onSubmit();">
     <div>
 
@@ -10,11 +10,23 @@
     <input nz-input type="text" placeholder="Publisher" [(ngModel)]="model.publisher" name="publisher"/>
     <input nz-input type="number" placeholder="Evaluation" [(ngModel)]="model.evaluation" name="evaluation"/>
     <nz-date-picker nzFormat="yyyy-MM-dd HH:mm:ss" type="date" placeholder="Data"  [(ngModel)]="model.data" name="data"></nz-date-picker>
+    <h3>Head image</h3>
+    <div nz-row>
     <input type="file" name="file" (change)="setImage($event.target.files)">
+    </div>
+    <h3>Images</h3>
+    <div nz-row>
     <input type="file" name="file1" (change)="setImage1($event.target.files)">
+    </div>
+    <div nz-row>
     <input type="file" name="file2" (change)="setImage2($event.target.files)">
+    </div>
+    <div nz-row>
     <input type="file" name="file3" (change)="setImage3($event.target.files)">
+    </div>
+    <div nz-row>
     <input type="file" name="file4" (change)="setImage4($event.target.files)">
+    </div>
     </div>
 
     <h3>Min System requirement</h3>
@@ -52,14 +64,14 @@
   <tbody>
     <tr *ngFor="let data of rowSelectionTableLang.data">
       <td>
-        <label  nz-checkbox type="checkbox" (change)="setLanguage(data.idLanguage)" ></label>
+        <mat-checkbox [color]="color" (change)="setLanguage(data.idLanguage)" ></mat-checkbox>
       </td>
       <td>{{ data.nameLanguage }}</td>
     </tr>
   </tbody>
 </nz-table>
 
-<h3>Caregory</h3>
+<h3>Category</h3>
   <nz-table
   #rowSelectionTableCategory
   [nzFrontPagination]="false"
@@ -76,7 +88,7 @@
   <tbody>
     <tr *ngFor="let data of rowSelectionTableCategory.data">
       <td>
-        <label nz-checkbox type="checkbox" (change)="setCategory(data.idCategory)" ></label>
+        <mat-checkbox [color]="color" (change)="setCategory(data.idCategory)" ></mat-checkbox>
       </td>
       <td>{{ data.nameCategory }}</td>
     </tr>
@@ -85,7 +97,7 @@
 
 
 
-<button nz-button nzType="primary" nzBlock type="submit" style="background-color: rgb(0,80,1) !important; border-color: rgb(1, 58, 2);" (click)="onSubmit()">Add</button>
+<button nz-button nzType="primary" nzBlock type="submit" (click)="onSubmit()">Add</button>
 
 </form>
 </div>

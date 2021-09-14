@@ -30,6 +30,7 @@ import { NZ_I18N, en_US } from 'ng-zorro-antd/i18n';
 import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
+import { FooterComponent } from './footer/footer.component';
 
 registerLocaleData(en);
 
@@ -45,7 +46,7 @@ const configNotifier: NotifierOptions = {
 };
 
 @NgModule({
-  declarations: [
+  declarations: [	
     AppComponent,
     NavMenuComponent,
     HomeComponent,
@@ -57,7 +58,8 @@ const configNotifier: NotifierOptions = {
     LibraryComponent,
     AdminPanelComponent,
     AddProductComponent,
-    EditProductComponent
+    EditProductComponent,
+      FooterComponent
    ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

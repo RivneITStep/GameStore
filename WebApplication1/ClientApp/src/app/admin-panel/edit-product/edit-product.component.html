@@ -1,5 +1,5 @@
 <div class="form">
-  <h2>Edit product</h2>
+  <h1>Edit product</h1>
   <form  #myForm="ngForm">
     <div>
 
@@ -52,7 +52,7 @@
   <tbody>
     <tr *ngFor="let data of rowSelectionTableLang.data">
       <td>
-        <label name="{{data.nameLanguage}}" nz-checkbox type="checkbox" [(ngModel)] = "data.isChecked"  (change)="setLanguage(data.idLanguage)" ></label>
+        <mat-checkbox [color]="color" [(ngModel)] = "data.isChecked"  (ngModelChange)="setLanguage(data.idLanguage)" ></mat-checkbox>
       </td>
       <td>{{ data.nameLanguage }}</td>
     </tr>
@@ -76,7 +76,7 @@
   <tbody>
     <tr *ngFor="let data of rowSelectionTableCategory.data">
       <td>
-        <label name="{{data.nameCategory}}" nz-checkbox type="checkbox" [(ngModel)] = "data.isChecked" (change)="setCategory(data.idCategory)" ></label>
+        <mat-checkbox [color]="color" [(ngModel)] = "data.isChecked" (click)="setCategory(data.idCategory)" ></mat-checkbox>
       </td>
       <td>{{ data.nameCategory }}</td>
     </tr>
@@ -85,7 +85,7 @@
 
 
 
-<button nz-button nzType="primary" nzBlock type="submit" style="background-color: rgb(0,80,1) !important; border-color: rgb(1, 58, 2);" (click)="onSubmit()">Edit</button>
+<button nz-button nzType="primary" nzBlock type="submit" (click)="onSubmit()">Edit</button>
 
 </form>
 </div>

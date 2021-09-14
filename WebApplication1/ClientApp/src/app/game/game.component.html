@@ -69,11 +69,10 @@
   </p>
   </div>
 
-  <p>GENRE: Action  </p>
-  <p>Languages: English,French,Italian,Russian,Polish</p>
-  <nz-table
-      [nzData]="listOfDataLang" [nzFrontPagination]="false" [nzShowPagination]="false"
-    >
+  <div nz-row>
+    <div nz-col nzFlex="2">
+    <nz-table
+      [nzData]="listOfDataLang" [nzFrontPagination]="false" [nzShowPagination]="false">
       <thead>
         <tr>
           <th>Languages</th>
@@ -86,9 +85,10 @@
       </tbody>
     </nz-table>
 
-    <nz-table
-      [nzData]="listOfDataCateg" [nzFrontPagination]="false" [nzShowPagination]="false"
-    >
+    </div>
+    <div nz-col nzFlex="2">
+      <nz-table
+      [nzData]="listOfDataCateg" [nzFrontPagination]="false" [nzShowPagination]="false">
       <thead>
         <tr>
           <th>Ganre</th>
@@ -100,6 +100,10 @@
         </tr>
       </tbody>
     </nz-table>
+    </div>
+  </div>
+
+
 
 </div>
 <ngx-spinner name="mySpinner"
