@@ -1,3 +1,4 @@
+import { ScrollStrategyOptions } from '@angular/cdk/overlay';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NotifierService } from 'angular-notifier';
@@ -23,6 +24,8 @@ export class GameComponent implements OnInit {
   listOfDataLang: LanguageItem[] = [];
   listOfDataCateg: CategoriesItem[] = [];
 
+  colors = ['Maroon', 'Red', 'DarkOrange', 'GoldenRod', 'OliveDrab', 'ForestGreen' , 'Green' , 'DarkGreen' ];
+
   constructor(
     private router: ActivatedRoute,
     private productService: ProductManagerService,
@@ -30,6 +33,33 @@ export class GameComponent implements OnInit {
     private notifier: NotifierService
     ) { }
     array = [];
+
+    getColor(num) {
+      if ( num > 99) {
+        return this.colors[7];
+      }
+      if ( num > 94) {
+        return this.colors[6];
+      }
+      if ( num > 89) {
+        return this.colors[5];
+      }
+      if ( num > 84) {
+        return this.colors[4];
+      }
+      if ( num > 74) {
+        return this.colors[3];
+      }
+      if ( num > 59) {
+        return this.colors[2];
+      }
+      if ( num > 39) {
+        return this.colors[1];
+      }
+      if ( num > 0) {
+        return this.colors[0];
+      }
+    }
 
     ngOnInit() {
       this.spinner.show('mySpinner');
@@ -68,7 +98,9 @@ export class GameComponent implements OnInit {
               this.listOfDataCateg = AllGanres;
               });
 
-        this.spinner.hide('mySpinner');
+              setTimeout(() => {
+                this.spinner.hide('mySpinner');
+              }, 2000);
       }
 
       buyProduct() {
@@ -92,7 +124,9 @@ export class GameComponent implements OnInit {
           }
         );
 
-        this.spinner.hide('mySpinner');
+        setTimeout(() => {
+          this.spinner.hide('mySpinner');
+        }, 2000);
       }
 
 

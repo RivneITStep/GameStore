@@ -14,6 +14,7 @@
           <th>Price</th>
           <th>Company Name</th>
           <th>Data</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -24,7 +25,7 @@
           <td>{{ data.companyName }}</td>
           <td>{{ data.data }}</td>
           <td>
-            <a nz-button nzType="primary" style="color: white; background-color: rgb(0,80,1); border-color: rgb(1, 58, 2);" [routerLink]="['/game',data.id]" >More</a>
+            <a nz-button nzType="primary" [routerLink]="['/game',data.id]" >More</a>
           </td>
         </tr>
       </tbody>

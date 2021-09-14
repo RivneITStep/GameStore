@@ -6,7 +6,7 @@ export class ProductFullItem {
   evaluation: number;
   developer: string;
   publisher: string;
-  data: any;
+  data: Date;
 
   imageHead: string;
   image1: string;

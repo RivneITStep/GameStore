@@ -25,7 +25,6 @@ export class SignInComponent implements OnInit {
   decoded: any;
   login() {
     this.spinner.show('mySpinner');
-   //this.spinner.show();
     this.notifier.hideAll();
 
     if (!this.model.isValid()) {
@@ -44,20 +43,15 @@ export class SignInComponent implements OnInit {
             window.localStorage.setItem('token', data.token);
             this.decoded = jwt_decode(data.token);
 
-            if (this.decoded.roles === "Admin") {
-              this.router.navigate(['/admin']);
+            if (this.decoded.roles === 'Admin') {
+              this.router.navigate(['/admin-panel/table']);
+            } else if (this.decoded.roles === 'User') {
+              this.router.navigate(['/library']);
             }
-            else if (this.decoded.roles === "User") {
-              this.router.navigate(['/client-panel']);
-            }
-            else if (this.decoded.roles === "Publisher") {
-              this.router.navigate(['/publisher-panel']);
-            }
-            localStorage.setItem("role", this.decoded.roles);
+            localStorage.setItem('role', this.decoded.roles);
             this.authService.statusLogin.emit(true);
 
-          }
-          else {
+          } else {
             for (var i = 0; i < data.errors.length; i++) {
               this.notifier.notify('error', data.errors[i]);
             }

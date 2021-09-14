@@ -17,9 +17,7 @@ div{
 p{
     color: beige;
 }
-.Score{
-    background-color:green;
-}
+
 
 tbody  {
   background-color: black !important;
@@ -29,6 +27,24 @@ th{
   background-color: black !important;
   color: beige !important;
 }
-img{
-  max-height: 400px;
+
+nz-carousel{
+  max-height: 337px;
+  max-width: 600px;
+  background : center center no-repeat;
+}
+
+p{padding: 5px;
+padding-right: 30px;}
+
+h2{
+  padding: 10px;
+}
+
+button{
+  color: beige; background-color: darkorchid; border-color: darkorchid !important;
+}
+
+button:hover, button:active, button:focus {
+  background:blueviolet !important; border-color: beige!important;
 }

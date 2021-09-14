@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { NotifierService } from 'angular-notifier';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { ApiResponse } from '../Models/api.response';
-import { LanguageItem } from '../Models/language-item.model';
-import { ProductItem } from '../Models/ProductItem.model';
-import { ProductManagerService } from '../Services/product-manager.service';
+import { ApiResponse } from 'src/app/Models/api.response';
+import { ProductItem } from 'src/app/Models/ProductItem.model';
+import { ProductManagerService } from 'src/app/Services/product-manager.service';
+
+
 
 @Component({
   selector: 'app-admin-panel',

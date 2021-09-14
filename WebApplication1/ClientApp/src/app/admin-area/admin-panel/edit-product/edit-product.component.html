@@ -5,7 +5,7 @@
 
     <input nz-input type="text" placeholder="{{game.name}}" [(ngModel)]="modelEdit.name" name="nameGame"/>
     <input nz-input type="number" placeholder="{{game.price}}" [(ngModel)]="modelEdit.price" name="price"/>
-    <textarea nz-input placeholder="{{game.description}}" [nzAutosize]="{ minRows: 3, maxRows: 5 }" type="text" placeholder="{{game.description}}" [(ngModel)]="modelEdit.description" name="description"></textarea>
+    <textarea nz-input placeholder="{{game.description}}" [nzAutosize]="{ minRows: 25, maxRows: 50 }" type="text" placeholder="{{game.description}}" [(ngModel)]="modelEdit.description" name="description"></textarea>
     <input nz-input type="text" placeholder="{{game.developer}}" [(ngModel)]="modelEdit.developer" name="developer"/>
     <input nz-input type="text" placeholder="{{game.publisher}}" [(ngModel)]="modelEdit.publisher" name="publisher"/>
     <input nz-input type="number" placeholder="{{game.evaluation}}" [(ngModel)]="modelEdit.evaluation" name="evaluation"/>

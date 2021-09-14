@@ -40,16 +40,15 @@ export class LibraryComponent implements OnInit {
 
     setTimeout(() => {
       this.spiner.hide('mySpinner');
-    }, 6000);
+    }, 2000);
   }
 
   Search() {
     this.spiner.show('mySpinner');
     this.listOfSearch = this.listOfData.filter(t => t.name.includes(this.searchText) ||
     t.companyName.includes(this.searchText));
-    setTimeout(() => {
       this.spiner.hide('mySpinner');
-    }, 6000);
+
   }
 
 }

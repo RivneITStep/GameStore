@@ -28,11 +28,11 @@
             <a class="nav-link text-light" [routerLink]="['/']">Home</a>
           </li>
 
-          <li> 
-            <a class="nav-link text-light" [routerLink]="['/admin']">Panel</a>
+          <li *ngIf="isAdmin === true" class="nav-item" [routerLinkActive]="['link-active']">
+            <a class="nav-link text-light" [routerLink]="['/admin-panel/table']">Panel</a>
           </li>
 
-          <li> 
+          <li *ngIf="isLogin === true && isAdmin === false" class="nav-item" [routerLinkActive]="['link-active']">
             <a class="nav-link text-light" [routerLink]="['/library']">Library</a>
           </li>
 

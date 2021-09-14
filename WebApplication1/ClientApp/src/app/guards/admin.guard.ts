@@ -24,10 +24,9 @@ export class AdminGuard implements CanActivate {
     check(url: string): boolean {
         if (this.authService.isAdmin()) {
             return true;
-        }
-        else {
+        } else {
             this.router.navigate(['/']);
-            this.notifier.notify("error", "You dont have access");
+            this.notifier.notify('error', 'You dont have access');
             return false;
         }
     }

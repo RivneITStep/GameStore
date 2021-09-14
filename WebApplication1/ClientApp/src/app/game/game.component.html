@@ -1,72 +1,83 @@
 <H1>{{product.name}}</H1>
 <hr>
 <div>
-<img src="../../assets/img/{{product.imageHead}}">
-
-<button (click)="buyProduct()">BUY  {{product.price}}</button>
-
-<nz-carousel style=" height: 215px;" nzAutoPlay nzAutoPlaySpeed=6000>
-  <div  nz-carousel-content *ngFor="let index of array">
-    <div nz-row>
-        <img  src="{{ index }}">
+  <div nz-row style="height: 144px;">
+    <div nz-col nzFlex="3" style="padding: 10px;">
+      <p>
+        DEVELOPER: {{product.developer}}
+      </p>
+      <p>
+        PUBLISHER: {{product.publisher}}
+      </p>
+      <p>
+        RELEASE DATE:  {{product.data | date:'yyyy-MM-dd'}}
+      </p>
     </div>
+  <div nz-col nzFlex="1" style = "width :100%;">
+    <img src="../../assets/img/{{product.imageHead}}" style = "width :100%; height: auto;">
+  </div>
+</div>
+<hr>
+<div nz-row>
+  <div nz-col nzFlex="2">
+<nz-carousel snzAutoPlay nzAutoPlaySpeed=4000>
+  <div  nz-carousel-content *ngFor="let index of array">
+        <img style="width: 100%; height: auto; " src="{{ index }}">
   </div>
 </nz-carousel>
+</div>
+<div nz-col nzFlex="2" style="min-height: 337px;">
+  <h2>ABOUT THIS GAME</h2>
+  <hr>
+  <p>
+    {{product.description}}
+  </p>
+</div>
+</div>
 
-<p>
-  {{product.description}}
-</p>
-<p>
-  DEVELOPER: {{product.developer}}
-</p>
-<p>
-  PUBLISHER: {{product.publisher}}
-</p>
-<p>
-  RELEASE DATE:  {{product.data}}
-</p>
-<div class="Score">
-  <p> {{product.evaluation}}</p>
-</div>
 <div>
-<p>
-    MINIMUM:
-</p>
-<p>
-  OS:  {{sysreqmin.os}}
-</p>
-<p>
-  Processor: {{sysreqmin.processor}}
-</p>
-<p>
-  Memory: {{sysreqmin.memory}}
-</p>
-<p>
-  Graphics: {{sysreqmin.graphics}}
-</p>
-<p>
-  Storage: {{sysreqmin.storege}}
-</p>
+  <p [ngStyle]="{'background': getColor(product.evaluation)}"> SGS-Score {{product.evaluation}}</p>
 </div>
+
+
+
+<button nz-button nzType="primary" nzBlock (click)="buyProduct()">BUY  {{product.price}} $</button>
+
+
 <div>
-  <p>
-    RECOMMENDED:
-  </p>
-  <p>
-    OS:  {{sysreqrec.os}}
-  </p>
-  <p>
-    Processor: {{sysreqrec.processor}}
-  </p>
-  <p>
-    Memory: {{sysreqrec.memory}}
-  </p>
-  <p>
-    Graphics: {{sysreqrec.graphics}}
-  </p>
-  <p>
-    Storage: {{sysreqrec.storege}}
-  </p>
+
+  <div nz-row >
+    <nz-table
+    [nzTemplateMode]="true" [nzFrontPagination]="false" [nzShowPagination]="false" nzTableLayout="fixed">
+      <thead>
+        <tr>
+          <th>SYSTEM REQUIREMENTS</th>
+          <th>OS</th>
+          <th>Processor</th>
+          <th>Memory</th>
+          <th>Graphics</th>
+          <th>Storege</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>MIN</td>
+          <td>{{ sysreqmin.os }}</td>
+          <td>{{ sysreqmin.processor }}</td>
+          <td>{{ sysreqmin.memory }}</td>
+          <td>{{ sysreqmin.graphics }}</td>
+          <td>{{ sysreqmin.storege }}</td>
+        </tr>
+        <tr>
+          <td>REC</td>
+          <td>{{ sysreqrec.os }}</td>
+          <td>{{ sysreqrec.processor }}</td>
+          <td>{{ sysreqrec.memory }}</td>
+          <td>{{ sysreqrec.graphics }}</td>
+          <td>{{ sysreqrec.storege }}</td>
+        </tr>
+      </tbody>
+    </nz-table>
   </div>
 
   <div nz-row>
@@ -75,7 +86,7 @@
       [nzData]="listOfDataLang" [nzFrontPagination]="false" [nzShowPagination]="false">
       <thead>
         <tr>
-          <th>Languages</th>
+          <th>LANGUAGES</th>
         </tr>
       </thead>
       <tbody>
@@ -91,7 +102,7 @@
       [nzData]="listOfDataCateg" [nzFrontPagination]="false" [nzShowPagination]="false">
       <thead>
         <tr>
-          <th>Ganre</th>
+          <th>GANRE</th>
         </tr>
       </thead>
       <tbody>

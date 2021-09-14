@@ -11,26 +11,24 @@ import { NotifierModule, NotifierOptions } from 'angular-notifier';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
-import { CounterComponent } from './counter/counter.component';
-import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { AppRoutingModule } from './app-routing.module';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { GameComponent } from './game/game.component';
 import { LibraryComponent } from './library/library.component';
-import { AddProductComponent } from './admin-panel/add-product/add-product.component';
-import { EditProductComponent } from './admin-panel/edit-product/edit-product.component';
 
 import { TokenInterceptor } from './interceptor';
 
 import { DemoMaterialModule } from './material.module';
 import { DemoNgZorroAntdModule } from './ng-zorro-antd.module';
-//import { DemoPrimeNGExport } from './primeng.module';
 import { NZ_I18N, en_US } from 'ng-zorro-antd/i18n';
 import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
-import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 import { FooterComponent } from './footer/footer.component';
+import { AdminAreaComponent } from './admin-area/admin-area.component';
+import { AddProductComponent } from './admin-area/admin-panel/add-product/add-product.component';
+import { AdminPanelComponent } from './admin-area/admin-panel/admin-panel.component';
+import { EditProductComponent } from './admin-area/admin-panel/edit-product/edit-product.component';
 
 registerLocaleData(en);
 
@@ -46,12 +44,10 @@ const configNotifier: NotifierOptions = {
 };
 
 @NgModule({
-  declarations: [	
+  declarations: [
     AppComponent,
     NavMenuComponent,
     HomeComponent,
-    CounterComponent,
-    FetchDataComponent,
     SignUpComponent,
     SignInComponent,
     GameComponent,
@@ -59,7 +55,8 @@ const configNotifier: NotifierOptions = {
     AdminPanelComponent,
     AddProductComponent,
     EditProductComponent,
-      FooterComponent
+      FooterComponent,
+      AdminAreaComponent
    ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

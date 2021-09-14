@@ -1,0 +1,24 @@
+tbody  {
+  background-color: black !important;
+  color: beige !important;
+}
+th{
+  background-color: black !important;
+  color: beige !important;
+}
+a{
+  color: beige; background-color: darkorchid; border-color: darkorchid !important;
+}
+
+a:hover, a:active, a:focus {
+  background:blueviolet !important; border-color: beige!important;
+}
+
+input{
+  background-color: black;
+  color: beige;
+}
+
+input:hover, input:active, input:focus {
+ border-color: beige;
+}

@@ -168,7 +168,7 @@ nzShowSizeChanger
     <td>{{ data.name }}</td>
     <td>{{ data.price }}</td>
     <td>{{ data.companyName }}</td>
-    <td>{{ data.data }}</td>
+    <td>{{ data.data | date:'yyyy-MM-dd'}}</td>
     <td>
       <a nz-button nzType="primary" style="" [routerLink]="['/game',data.id]" >More</a>
     </td>

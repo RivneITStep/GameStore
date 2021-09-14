@@ -292,8 +292,8 @@ export class EditProductComponent implements OnInit {
       console.log(this.modelSysReqEdit);
       console.log(this.modelSysMinEdit);
 
-      this.modelEdit.listidCateg = this.selectedCateg;
-      this.modelEdit.listidLang = this.selectedLang;
+      //this.modelEdit.listidCateg = this.selectedCateg;
+      //this.modelEdit.listidLang = this.selectedLang;
 
       console.log(this.modelEdit.listidCateg);
       console.log(this.modelEdit.listidLang);
