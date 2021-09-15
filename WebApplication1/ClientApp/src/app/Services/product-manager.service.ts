@@ -83,6 +83,11 @@ export class ProductManagerService {
 
   }
 
+  RemoveImage(name: string) {
+    return this.http.post(this.baseUrl + '/RemoveImage' + '/' + name, name);
+
+  }
+
   BuyProduct(id: string[] ) {
     return this.http.post(this.baseUrl + '/buyProduct', id);
   }

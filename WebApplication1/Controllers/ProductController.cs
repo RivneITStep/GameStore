@@ -16,6 +16,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Numerics;
 using System.Threading.Tasks;
@@ -543,6 +544,33 @@ namespace APIAngular.Controllers
 
         }
 
+        [HttpPost("RemoveImage/{name}")]
+        public ResultDTO RemoveImage([FromRoute] string name)
+        {
+            try
+            {
+                string path = _appEnvironment.ContentRootPath + @"\ClientApp\src\assets\img\";
+
+                System.IO.File.Delete(Path.Combine(path, name));
+
+                return new ResultDTO
+                {
+                    Status = 200,
+                    Message = "OK"
+                };
+            }
+            catch (Exception e)
+            {
+                List<string> temp = new List<string>();
+                temp.Add(e.Message);
+                return new ResultDTO
+                {
+                    Status = 500,
+                    Message = "ERROR",
+                    Errors = temp
+                };
+            }
+        }
 
         [HttpPost("RemoveProduct/{id}")]
         public ResultDTO RemoveProduct([FromRoute] int id)
@@ -977,6 +1005,8 @@ namespace APIAngular.Controllers
                 };
             }
         }
+
+
 
     }
 

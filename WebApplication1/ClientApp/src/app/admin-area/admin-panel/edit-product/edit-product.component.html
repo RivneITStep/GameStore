@@ -10,11 +10,23 @@
     <input nz-input type="text" placeholder="{{game.publisher}}" [(ngModel)]="modelEdit.publisher" name="publisher"/>
     <input nz-input type="number" placeholder="{{game.evaluation}}" [(ngModel)]="modelEdit.evaluation" name="evaluation"/>
     <nz-date-picker nzFormat="yyyy-MM-dd HH:mm:ss" type="date" placeholder="game.data"  [(ngModel)]="modelEdit.data" name="data"></nz-date-picker>
+    <h3>Head image</h3>
+    <div nz-row>
     <input type="file" name="file" (change)="setImage($event.target.files)">
+    </div>
+    <h3>Images</h3>
+    <div nz-row>
     <input type="file" name="file1" (change)="setImage1($event.target.files)">
+    </div>
+    <div nz-row>
     <input type="file" name="file2" (change)="setImage2($event.target.files)">
+    </div>
+    <div nz-row>
     <input type="file" name="file3" (change)="setImage3($event.target.files)">
+    </div>
+    <div nz-row>
     <input type="file" name="file4" (change)="setImage4($event.target.files)">
+    </div>
     </div>
 
     <h3>Min System requirement</h3>
@@ -52,7 +64,7 @@
   <tbody>
     <tr *ngFor="let data of rowSelectionTableLang.data">
       <td>
-        <mat-checkbox [color]="color" [(ngModel)] = "data.isChecked"  (ngModelChange)="setLanguage(data.idLanguage)" ></mat-checkbox>
+        <mat-checkbox [color]="color" [checked]="data.isChecked"  (change)="setLanguage(data.idLanguage)" ></mat-checkbox>
       </td>
       <td>{{ data.nameLanguage }}</td>
     </tr>
@@ -76,7 +88,7 @@
   <tbody>
     <tr *ngFor="let data of rowSelectionTableCategory.data">
       <td>
-        <mat-checkbox [color]="color" [(ngModel)] = "data.isChecked" (click)="setCategory(data.idCategory)" ></mat-checkbox>
+        <mat-checkbox [color]="color" [checked]="data.isChecked" (change)="setCategory(data.idCategory)" ></mat-checkbox>
       </td>
       <td>{{ data.nameCategory }}</td>
     </tr>

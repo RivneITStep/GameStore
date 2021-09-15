@@ -159,8 +159,6 @@ export class EditProductComponent implements OnInit {
             (AllGanres: CategoriesItemGame[]) => {
             this.listOfDataCategGame = AllGanres;
             console.log(AllGanres);
-
-
           for (let i = 0; i < this.listOfDataCateg.length; i++) {
             for (let j = 0; j < this.listOfDataCategGame.length; j++) {
               if (this.listOfDataCateg[i].idCategory ===  this.listOfDataCategGame[j].idCategory) {
@@ -200,22 +198,24 @@ export class EditProductComponent implements OnInit {
           this.productService.getAllCategories().subscribe(
             (AllCategories: CategoriesItem[]) => {
             this.listOfDataCateg = AllCategories;
-            this.spiner.hide('mySpinner');
+
             });
 
 
               this.isError = false;
-              this.spiner.show('mySpinner');
 
 
 
 
-        this.spiner.hide('mySpinner');
+              setTimeout(() => {
+                this.spiner.hide('mySpinner');
+              }, 2000);
 
     }
 
     onSubmit() {
 
+      this.spiner.show('mySpinner');
       for ( let i = 0; i < this.listOfDataLang.length ; i++) {
         if ( this.listOfDataLang[i].isChecked === true ) {
           this.selectedLang.push(this.listOfDataLang[i].idLanguage);
@@ -292,20 +292,19 @@ export class EditProductComponent implements OnInit {
       console.log(this.modelSysReqEdit);
       console.log(this.modelSysMinEdit);
 
-      //this.modelEdit.listidCateg = this.selectedCateg;
-      //this.modelEdit.listidLang = this.selectedLang;
+      this.modelEdit.listidCateg = this.selectedCateg;
+      this.modelEdit.listidLang = this.selectedLang;
 
       console.log(this.modelEdit.listidCateg);
       console.log(this.modelEdit.listidLang);
 
-      this.spiner.show('mySpinner');
       this.productService.editProduct(this.modelEdit).subscribe(
         (data: ApiResponse) => {
           if (data.status === 200) {
 
 
             this.notifier.notify('success', 'Game removed!');
-            this.spiner.hide('mySpinner');
+
             console.log(this.modelEdit);
           } else {
             for ( let i = 0; i < data.errors; i++) {
@@ -314,12 +313,12 @@ export class EditProductComponent implements OnInit {
           }
         }
       );
-      this.spiner.show('mySpinner');
+
       this.productService.editRecSysReq(this.modelSysReqEdit).subscribe(
         (data: ApiResponse) => {
           if (data.status === 200) {
             this.notifier.notify('success', 'Game removed!');
-            this.spiner.hide('mySpinner');
+
           } else {
             for ( let i = 0; i < data.errors; i++) {
               this.notifier.notify('error', data.errors[i]);
@@ -327,12 +326,12 @@ export class EditProductComponent implements OnInit {
           }
         }
       );
-      this.spiner.show('mySpinner');
+
       this.productService.editMinSysReq(this.modelSysMinEdit).subscribe(
         (data: ApiResponse) => {
           if (data.status === 200) {
             this.notifier.notify('success', 'Game removed!');
-            this.spiner.hide('mySpinner');
+
           } else {
             for ( let i = 0; i < data.errors; i++) {
               this.notifier.notify('error', data.errors[i]);
@@ -341,7 +340,137 @@ export class EditProductComponent implements OnInit {
         }
       );
 
+      const date = new Date().valueOf();
+      let text = '';
+      const possibleText = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+      for (let i = 0; i < 5; i++) {
+        text += possibleText.charAt(Math.floor(Math.random() * possibleText.length));
+      }
+      if (this.imageBlobHead != null) {
+        this.productService.RemoveImage(this.game.imageHead).subscribe(
+          (data: ApiResponse) => {
+            if (data.status === 200) {
+              this.notifier.notify('success', 'Image Head removed!');
+            } else {
+              for ( let i = 0; i < data.errors; i++) {
+                this.notifier.notify('error', data.errors[i]);
+              }
+            }
+          }
+          );
+          // Replace extension according to your media type
 
-    }
+          const imageName = date + '.' + text + '.jpg';
+          console.log(imageName);
+          const imageFile = new File([this.imageBlobHead], imageName, { type: 'image/jpeg' });
+        this.productService.uploadPhoto(imageFile).subscribe( data => {
+            console.log(data);
+        }, error => {
+            console.log(error);
+        });
+      }
+
+      if (this.imageBlob1 != null) {
+        this.productService.RemoveImage(this.game.image1).subscribe(
+          (data: ApiResponse) => {
+            if (data.status === 200) {
+              this.notifier.notify('success', 'Image 1 removed!');
+            } else {
+              for ( let i = 0; i < data.errors; i++) {
+                this.notifier.notify('error', data.errors[i]);
+              }
+            }
+          }
+          );
+          // Replace extension according to your media type
+
+          const imageName = date + '.' + text + '.jpg';
+          console.log(imageName);
+          const imageFile = new File([this.imageBlob1], imageName, { type: 'image/jpeg' });
+        this.productService.uploadPhoto1(imageFile).subscribe( data => {
+            console.log(data);
+        }, error => {
+            console.log(error);
+        });
+      }
+
+      if (this.imageBlob2 != null) {
+        this.productService.RemoveImage(this.game.image2).subscribe(
+          (data: ApiResponse) => {
+            if (data.status === 200) {
+              this.notifier.notify('success', 'Image 2 removed!');
+            } else {
+              for ( let i = 0; i < data.errors; i++) {
+                this.notifier.notify('error', data.errors[i]);
+              }
+            }
+          }
+          );
+          // Replace extension according to your media type
+
+          const imageName = date + '.' + text + '.jpg';
+          console.log(imageName);
+          const imageFile = new File([this.imageBlob2], imageName, { type: 'image/jpeg' });
+        this.productService.uploadPhoto2(imageFile).subscribe( data => {
+            console.log(data);
+        }, error => {
+            console.log(error);
+        });
+      }
+
+      if (this.imageBlob3 != null) {
+        this.productService.RemoveImage(this.game.image3).subscribe(
+          (data: ApiResponse) => {
+            if (data.status === 200) {
+              this.notifier.notify('success', 'Image 3 removed!');
+            } else {
+              for ( let i = 0; i < data.errors; i++) {
+                this.notifier.notify('error', data.errors[i]);
+              }
+            }
+          }
+          );
+          // Replace extension according to your media type
+
+          const imageName = date + '.' + text + '.jpg';
+          console.log(imageName);
+          const imageFile = new File([this.imageBlob3], imageName, { type: 'image/jpeg' });
+        this.productService.uploadPhoto3(imageFile).subscribe( data => {
+            console.log(data);
+        }, error => {
+            console.log(error);
+        });
+      }
+
+      if (this.imageBlob4 != null) {
+        this.productService.RemoveImage(this.game.image4).subscribe(
+          (data: ApiResponse) => {
+            if (data.status === 200) {
+              this.notifier.notify('success', 'Image 4 removed!');
+            } else {
+              for ( let i = 0; i < data.errors; i++) {
+                this.notifier.notify('error', data.errors[i]);
+              }
+            }
+          }
+          );
+          // Replace extension according to your media type
+
+          const imageName = date + '.' + text + '.jpg';
+          console.log(imageName);
+          const imageFile = new File([this.imageBlob4], imageName, { type: 'image/jpeg' });
+        this.productService.uploadPhoto4(imageFile).subscribe( data => {
+            console.log(data);
+        }, error => {
+            console.log(error);
+        });
+      }
+
+      setTimeout(() => {
+        this.spiner.hide('mySpinner');
+      }, 2000);
+      }
 
 }
+
+

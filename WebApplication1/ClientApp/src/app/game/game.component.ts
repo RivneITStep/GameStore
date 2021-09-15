@@ -8,6 +8,7 @@ import { CategoriesItem } from '../Models/categories-item.model';
 import { LanguageItem } from '../Models/language-item.model';
 import { ProductFullItem } from '../Models/product-full-item';
 import { SysReqItem } from '../Models/sysreq-item.model';
+import { AuthService } from '../Services/auth.service';
 import { ProductManagerService } from '../Services/product-manager.service';
 @Component({
   selector: 'app-game',
@@ -15,6 +16,9 @@ import { ProductManagerService } from '../Services/product-manager.service';
   styleUrls: ['./game.component.css']
 })
 export class GameComponent implements OnInit {
+
+  isLogin = false;
+  isAdmin = false;
 
   idGame: string;
   product: ProductFullItem;
@@ -30,7 +34,8 @@ export class GameComponent implements OnInit {
     private router: ActivatedRoute,
     private productService: ProductManagerService,
     private spinner: NgxSpinnerService,
-    private notifier: NotifierService
+    private notifier: NotifierService,
+    private authService: AuthService
     ) { }
     array = [];
 
@@ -63,6 +68,23 @@ export class GameComponent implements OnInit {
 
     ngOnInit() {
       this.spinner.show('mySpinner');
+
+      var token = localStorage.getItem('token');
+      if (token != null) {
+        this.isLogin = true;
+        this.isAdmin = this.authService.isAdmin();
+      } else {
+        this.isLogin = false;
+        this.isAdmin = false;
+      }
+
+      this.authService.statusLogin.subscribe(
+        (data) => {
+          this.isAdmin = this.authService.isAdmin();
+          this.isLogin = data;
+        }
+      );
+
       this.router.paramMap.subscribe(params => {
         this.idGame = params.get('id');
         console.log(this.idGame);

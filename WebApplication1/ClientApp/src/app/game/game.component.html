@@ -41,7 +41,8 @@
 
 
 
-<button nz-button nzType="primary" nzBlock (click)="buyProduct()">BUY  {{product.price}} $</button>
+<button *ngIf="isLogin === true && isAdmin === false" nz-button nzType="primary" nzBlock (click)="buyProduct()">BUY  {{product.price}} $</button>
+<button *ngIf="isAdmin === true" nz-button nzType="primary" nzBlock [routerLink]="['/admin-panel/edit',product.id]">Edit</button>
 
 
 <div>

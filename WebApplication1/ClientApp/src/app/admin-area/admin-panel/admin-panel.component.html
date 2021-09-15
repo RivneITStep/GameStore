@@ -26,8 +26,8 @@
           <td>{{ data.data }}</td>
           <td>
             <a nz-button nzType="primary" nz-popconfirm nzPopconfirmTitle="Please" (nzOnConfirm)="deleteProduct(data.id)">Delete</a>
-            <a nz-button nzType="primary"   [routerLink]="['/admin-panel/edit',data.id]" type="button">Edit</a>
-            <a nz-button nzType="primary" style="" [routerLink]="['/game',data.id]" >More</a>
+            <a nz-button nzType="primary" [routerLink]="['/admin-panel/edit',data.id]" type="button">Edit</a>
+            <a nz-button nzType="primary" [routerLink]="['/game',data.id]" >More</a>
           </td>
         </tr>
       </tbody>
