@@ -763,24 +763,42 @@ namespace APIAngular.Controllers
         {
             List<GameItemDTO> data = new List<GameItemDTO>();
             var dataFormDB = _context.Games.ToList();
+            var dataFormDBUG = _context.UserGames.ToList();
             int i = 0;
+
+            Dictionary<int, int> games = new Dictionary<int, int>();
             foreach (var item in dataFormDB)
             {
+                games.Add(item.Id, 0);
+            }
+            foreach (var item in games)
+            {
+                foreach (var itemUG in dataFormDBUG)
+                {
+                    if(item.Key == itemUG.GameId)
+                    {
+                        games[item.Key] += 1;
+                    }
+                }
+            }
+
+            foreach (var pair in games.OrderByDescending(pair => pair.Value))
+            {
                 GameItemDTO temp = new GameItemDTO();
-
-                temp.CompanyName = item.Developer;
-                temp.Data = item.Data;
-                temp.Id = item.Id;
-                temp.Image = item.ImageHead;
-
-
-                temp.Name = item.Name;
-                temp.Price = item.Price;
+                var product = _context.Games.FirstOrDefault(t => t.Id == pair.Key);
+                temp.CompanyName = product.Developer;
+                temp.Data = product.Data;
+                temp.Id = product.Id;
+                temp.Image = product.ImageHead;
+                temp.Name = product.Name;
+                temp.Price = product.Price;
                 i++;
                 data.Add(temp);
                 if (i == 8)
                     break;
             }
+
+
             return data;
         }
 

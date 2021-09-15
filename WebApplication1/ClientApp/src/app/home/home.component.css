@@ -90,18 +90,6 @@ li:hover, li:active, li:focus {
   background:blueviolet !important; border-color: beige;
 }
 
-a.ng-star-inserted{
-  color: blueviolet !important;
-  border-color: blueviolet !important;
-}
 
-nz-pagination{
 
-  color: blueviolet !important;
-  border-color: blueviolet !important;
-}
-
-.ant-pagination-item {
-  background-color: black !important;
-}
 

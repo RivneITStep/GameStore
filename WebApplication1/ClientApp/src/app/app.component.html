@@ -5,7 +5,13 @@
   <router-outlet></router-outlet>
 
 </div>
-<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="large" color="#e9a60a" type="square-jelly-box" [fullScreen]="true">
+<ngx-spinner name="mySpinner"
+bdColor="rgba(51,51,51,0.8)"
+size="medium"
+color="#fff"
+type="square-loader"
+>
+<p style="font-size: 20px; color: white">Loading...</p>
 </ngx-spinner>
 <notifier-container></notifier-container>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>

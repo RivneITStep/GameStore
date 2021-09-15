@@ -142,11 +142,14 @@ type="square-loader"
 
 </div>
 
+<hr>
+
 <H1>All Games</H1>
 
 <input type="text" name="search" [(ngModel)]="searchText" (ngModelChange)=Search() nz-input placeholder="Search">
 
 <nz-table
+
 #rowSelectionTable
 nzShowPagination
 nzShowSizeChanger
@@ -157,7 +160,7 @@ nzShowSizeChanger
     <th>Image</th>
     <th nzWidth='30%'>Name</th>
     <th>Price</th>
-    <th>Company Name</th>
+    <th>Delovoper</th>
     <th>Data</th>
     <th></th>
   </tr>
@@ -176,8 +179,11 @@ nzShowSizeChanger
 </tbody>
 </nz-table>
 
+
 <hr>
 
 
 
 </div>
+
+

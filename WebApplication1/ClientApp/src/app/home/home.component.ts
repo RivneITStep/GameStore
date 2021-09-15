@@ -5,6 +5,7 @@ import { stringify } from 'querystring';
 import { CategoriesItem } from '../Models/categories-item.model';
 import { ProductFullItem } from '../Models/product-full-item';
 import { ProductItem } from '../Models/ProductItem.model';
+import { AuthService } from '../Services/auth.service';
 import { ProductManagerService } from '../Services/product-manager.service';
 
 
@@ -20,18 +21,22 @@ interface ItemData {
   styleUrls: ['./home.component.css']
 })
 
-export class HomeComponent {
+export class HomeComponent implements OnInit {
 
   constructor(
     private productService: ProductManagerService,
     private spiner: NgxSpinnerService,
-    private notifier: NotifierService) { }
+    private notifier: NotifierService,
+    private authService: AuthService) { }
 
   listOfData: ProductItem[] = [];
   listOfNews: ProductItem[] = [];
   listOfPopular: ProductItem[] = [];
   listOfSearch: ProductItem[] = [];
   searchText: string;
+
+  isLogin = false;
+  isAdmin = false;
 
   product: ProductFullItem;
 
@@ -40,26 +45,26 @@ export class HomeComponent {
 
   // tslint:disable-next-line:use-lifecycle-interface
   ngOnInit() {
+
     this.spiner.show('mySpinner');
 
     this.productService.getAllProducts().subscribe(
     (AllGames: ProductItem[]) => {
     this.listOfData = AllGames;
     this.listOfSearch = AllGames;
-  });
-  this.productService.getNews().subscribe(
+    });
+    this.productService.getNews().subscribe(
     (AllNews: ProductItem[]) => {
     this.listOfNews = AllNews;
-    console.log(this.listOfNews);
-  });
-  this.productService.getPopular().subscribe(
-    (AllPopular: ProductItem[]) => {
-    this.listOfPopular = AllPopular;
-    console.log(this.listOfPopular);
-  });
+    });
+    this.productService.getPopular().subscribe(
+      (AllPopular: ProductItem[]) => {
+      this.listOfPopular = AllPopular;
+    });
+
     setTimeout(() => {
     this.spiner.hide('mySpinner');
-  }, 2000);
+  }, 3000);
   }
 
   Search() {

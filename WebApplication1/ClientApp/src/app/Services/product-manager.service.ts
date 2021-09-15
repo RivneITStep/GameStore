@@ -42,6 +42,10 @@ export class ProductManagerService {
     return this.http.get(this.baseUrl + '/getPopular');
   }
 
+  getRecommendations(id: string) {
+    return this.http.get(this.baseUrl + '/getRecommendations' + '/' + id);
+  }
+
   getProductsUser(id: string) {
     return this.http.get(this.baseUrl + '/getProductsUser' + '/' + id);
   }
