@@ -12,7 +12,7 @@ import { AdminAreaComponent } from './admin-area/admin-area.component';
 import { EditProductComponent } from './admin-area/admin-panel/edit-product/edit-product.component';
 import { AddProductComponent } from './admin-area/admin-panel/add-product/add-product.component';
 import { AdminPanelComponent } from './admin-area/admin-panel/admin-panel.component';
-import { DashboardComponent } from './admin-area/dashboard/dashboard.component';
+import { DashboardComponent } from './admin-area/admin-panel/dashboard/dashboard.component';
 import { NotFoundComponent } from './NotFound/NotFound.component';
 
 const routes: Routes = [
@@ -24,7 +24,7 @@ const routes: Routes = [
     { path: 'admin-panel' , component: AdminAreaComponent,
       canActivate: [AdminGuard],
       children: [
-      { path: 'dashboard', component: DashboardComponent},
+      { path: 'dashboard', component: DashboardComponent, pathMatch: 'full'},
       { path: 'table', component: AdminPanelComponent, pathMatch: 'full'},
       { path: 'add', component: AddProductComponent},
       { path: 'edit/:id', component: EditProductComponent},

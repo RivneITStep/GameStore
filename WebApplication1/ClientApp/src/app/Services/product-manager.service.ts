@@ -78,6 +78,29 @@ export class ProductManagerService {
     return this.http.get(this.baseUrl + '/GetCategories');
   }
 
+
+
+  getAveragePriceForAdmin() {
+    return this.http.get(this.baseUrl + '/getAveragePriceForAdmin');
+  }
+  getLowestPriceForAdmin() {
+    return this.http.get(this.baseUrl + '/getLowestPriceForAdmin');
+  }
+  getHighestPriceForAdmin() {
+    return this.http.get(this.baseUrl + '/getHighestPriceForAdmin');
+  }
+  getPopularGameForAdmin() {
+    return this.http.get(this.baseUrl + '/getPopularGameForAdmin');
+  }
+  getPopularGanreForAdmin() {
+    return this.http.get(this.baseUrl + '/getPopularGanreForAdmin');
+  }
+  getCountSalesPriceForAdmin() {
+    return this.http.get(this.baseUrl + '/getCountSalesPriceForAdmin');
+  }
+  getSalesPriceForAdmin() {
+    return this.http.get(this.baseUrl + '/getSalesPriceForAdmin');
+  }
   // editProduct(id: string, model: ProductEdit): Observable<ApiResponse> {
   //  return this.http.post<ApiResponse>(this.baseUrl + '/editProduct/' + id, model);
   // }

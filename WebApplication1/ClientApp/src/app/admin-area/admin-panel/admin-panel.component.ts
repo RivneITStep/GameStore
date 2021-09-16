@@ -47,8 +47,8 @@ export class AdminPanelComponent implements OnInit {
     (AllUsers: ProductItem[]) => {
     this.listOfData = AllUsers;
     this.listOfSearch = AllUsers;
-    this.spinner.hide('mySpinner');
   });
+  this.spinner.hide('mySpinner');
   }
 
   Search() {

@@ -7,6 +7,8 @@ using DataAccess;
 using DataAccess.Entity.Communication;
 using DataAccess.Entity.Store.Product;
 using DataAccess.Entity.Store.Product.Communication;
+using DTO.Models.Product;
+using DTO.Models.Product.Categories;
 using DTO.Models.Product.SystemRequirements;
 using DTO.Models.Results;
 using Microsoft.AspNetCore.Hosting;
@@ -1024,6 +1026,312 @@ namespace APIAngular.Controllers
             }
         }
 
+        [HttpPost("addLanguage")]
+        public async Task<ResultDTO> addLanguage(string name) {
+
+            if (name!=null)
+            {
+                return new ResultDTO
+                {
+                    Status = 500,
+                    Message = "Error",
+                    Errors = Validation.GetErrorsByModel(ModelState)
+                };
+            }
+            else
+            {
+                var lang = new Language()
+                {
+                    Name = name,
+
+                };
+                _context.Languages.Add(lang);
+                _context.SaveChanges();
+
+                return new ResultDTO
+                {
+                    Status = 200
+                };
+            }
+
+            }
+        [HttpPost("RemoveLanguage/{id}")]
+        public ResultDTO RemoveLanguage([FromRoute] int id) {
+        
+        try
+            {
+                var Language = _context.Languages.FirstOrDefault(t => t.Id == id);
+                _context.Languages.Remove(Language);
+
+                foreach (var item in _context.GameLangauges)
+                {
+                    if (item.LanguageId == id)
+                    {
+                        _context.GameLangauges.Remove(item);
+                    }
+                }
+
+                _context.SaveChanges();
+                return new ResultDTO
+                {
+                    Status = 200,
+                    Message = "OK"
+                };
+
+            }
+            catch (Exception e)
+            {
+                List<string> temp = new List<string>();
+                temp.Add(e.Message);
+                return new ResultDTO
+                {
+                    Status = 500,
+                    Message = "ERROR",
+                    Errors = temp
+                };
+            }
+
+        }
+
+        [HttpPost("addGanre")]
+        public async Task<ResultDTO> addGanre(string name) {
+
+            if (name != null)
+            {
+                return new ResultDTO
+                {
+                    Status = 500,
+                    Message = "Error",
+                    Errors = Validation.GetErrorsByModel(ModelState)
+                };
+            }
+            else
+            {
+                var ganre = new Ganre()
+                {
+                    Name = name,
+
+                };
+                _context.Ganres.Add(ganre);
+                _context.SaveChanges();
+
+                return new ResultDTO
+                {
+                    Status = 200
+                };
+            }
+
+        }
+        [HttpPost("RemoveGanre/{id}")]
+        public ResultDTO RemoveGanre([FromRoute] int id) {
+
+            try
+            {
+                var Ganre = _context.Ganres.FirstOrDefault(t => t.Id == id);
+                _context.Ganres.Remove(Ganre);
+
+                foreach (var item in _context.GameGanres)
+                {
+                    if (item.GameId == id)
+                    {
+                        _context.GameGanres.Remove(item);
+                    }
+                }
+
+                _context.SaveChanges();
+                return new ResultDTO
+                {
+                    Status = 200,
+                    Message = "OK"
+                };
+
+            }
+            catch (Exception e)
+            {
+                List<string> temp = new List<string>();
+                temp.Add(e.Message);
+                return new ResultDTO
+                {
+                    Status = 500,
+                    Message = "ERROR",
+                    Errors = temp
+                };
+            }
+
+        }
+
+        [HttpGet("getPopularGanreForAdmin")]
+        public IEnumerable<GanrePopularDTO> getPopularGanreForAdmin()
+        {
+
+            List<GanrePopularDTO> data = new List<GanrePopularDTO>();
+            var dataFormDB = _context.Ganres.ToList();
+            var dataFormDBGG = _context.GameGanres.ToList();
+
+
+            Dictionary<int, int> ganres = new Dictionary<int, int>();
+            foreach (var item in dataFormDB)
+            {
+                ganres.Add(item.Id, 0);
+            }
+            foreach (var item in ganres)
+            {
+                foreach (var itemGG in dataFormDBGG)
+                {
+                    if (item.Key == itemGG.GanreId)
+                    {
+                        ganres[item.Key] += 1;
+                    }
+                }
+            }
+
+            foreach (var pair in ganres.OrderByDescending(pair => pair.Value))
+            {
+                GanrePopularDTO temp = new GanrePopularDTO();
+                var product = _context.Ganres.FirstOrDefault(t => t.Id == pair.Key);
+ 
+                temp.Name = product.Name;
+                temp.Games = pair.Value;
+
+                data.Add(temp);
+
+            }
+
+
+            return data;
+
+        }
+        [HttpGet("getPopularGameForAdmin")]
+        public IEnumerable<GameSalesDTO> getPopularGameForAdmin()
+        {
+
+            List<GameSalesDTO> data = new List<GameSalesDTO>();
+            var dataFormDB = _context.Games.ToList();
+            var dataFormDBUG = _context.UserGames.ToList();
+            int i = 0;
+
+            Dictionary<int, int> games = new Dictionary<int, int>();
+            foreach (var item in dataFormDB)
+            {
+                games.Add(item.Id, 0);
+            }
+            foreach (var item in games)
+            {
+                foreach (var itemUG in dataFormDBUG)
+                {
+                    if (item.Key == itemUG.GameId)
+                    {
+                        games[item.Key] += 1;
+                    }
+                }
+            }
+
+            foreach (var pair in games.OrderByDescending(pair => pair.Value))
+            {
+                GameSalesDTO temp = new GameSalesDTO();
+                var product = _context.Games.FirstOrDefault(t => t.Id == pair.Key);
+                temp.Id = product.Id;
+                temp.Image = product.ImageHead;
+                temp.Name = product.Name;
+                temp.Price = product.Price;
+                temp.Sales = pair.Value;
+                i++;
+                data.Add(temp);
+                if (i == 16)
+                    break;
+            }
+
+
+            return data;
+
+        }
+        [HttpGet("getAveragePriceForAdmin")]
+        public double getAveragePriceForAdmin()
+        {
+            double price = 0;
+            int count = 0;
+            var dataFormDB = _context.Games.ToList();
+
+            foreach (var item in dataFormDB)
+            {
+                price += item.Price;
+                count++;
+            }
+
+            return Math.Round( price/count, 2);
+        }
+        [HttpGet("getLowestPriceForAdmin")]
+        public double getLowestPriceForAdmin()
+        {
+            double price = 0;
+            var dataFormDB = _context.Games.ToList();
+            int i = 0;
+            foreach(var item in dataFormDB)
+            {
+                if (i == 0)
+                {
+                    price = item.Price;
+                    i++;
+                }
+
+                if(price<item.Price)
+                {
+                    price = item.Price;
+                }
+
+            }
+
+            return price;
+        }
+        [HttpGet("getHighestPriceForAdmin")]
+        public double getHighestPriceForAdmin()
+        {
+            double price=0;
+            var dataFormDB = _context.Games.ToList();
+            int i = 0;
+            foreach (var item in dataFormDB)
+            {
+                if (i == 0)
+                {
+                    price = item.Price;
+                    i++;
+                }
+
+                if (price > item.Price)
+                {
+                    price = item.Price;
+                }
+
+            }
+            return price;
+        }
+        [HttpGet("getSalesPriceForAdmin")]
+        public double getSalesPriceForAdmin()
+        {
+            double price = 0;
+            var dataFormDB = _context.UserGames.ToList();
+
+            foreach (var item in dataFormDB)
+            {
+                var product = _context.Games.FirstOrDefault(t => t.Id == item.GameId);
+                price += product.Price;
+            }
+
+            return price;
+        }
+        [HttpGet("getCountSalesPriceForAdmin")]
+        public double getCountSalesPriceForAdmin()
+        {
+            int count = 0;
+            var dataFormDB = _context.UserGames.ToList();
+
+            foreach (var item in dataFormDB)
+            {
+                count++;
+            }
+
+            return count;
+        }
 
 
     }

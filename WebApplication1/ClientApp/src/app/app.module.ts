@@ -29,6 +29,7 @@ import { AdminAreaComponent } from './admin-area/admin-area.component';
 import { AddProductComponent } from './admin-area/admin-panel/add-product/add-product.component';
 import { AdminPanelComponent } from './admin-area/admin-panel/admin-panel.component';
 import { EditProductComponent } from './admin-area/admin-panel/edit-product/edit-product.component';
+import { DashboardComponent } from './admin-area/admin-panel/dashboard/dashboard.component';
 
 registerLocaleData(en);
 
@@ -56,7 +57,8 @@ const configNotifier: NotifierOptions = {
     AddProductComponent,
     EditProductComponent,
       FooterComponent,
-      AdminAreaComponent
+      AdminAreaComponent,
+      DashboardComponent
    ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

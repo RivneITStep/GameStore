@@ -1,0 +1,25 @@
+<H1>Dashboard</H1>
+<p>AveragePrice {{AveragePrice}}</p>
+<p>HighestPrice {{HighestPrice}}</p>
+<p>LowestPrice {{LowestPrice}}</p>
+<p>Price {{Price}}</p>
+<p>Count {{Count}}</p>
+
+<nz-row [nzGutter]="16">
+  <nz-col [nzSpan]="4">
+    <nz-statistic [nzValue]="(Price)" [nzTitle]="'Price'"></nz-statistic>
+  </nz-col>
+  <nz-col [nzSpan]="4">
+    <nz-statistic [nzValue]="(Count)" [nzTitle]="'Count'"></nz-statistic>
+  </nz-col>
+  <nz-col [nzSpan]="4">
+    <nz-statistic [nzValue]="(AveragePrice)" [nzTitle]="'AveragePrice'"></nz-statistic>
+  </nz-col>
+  <nz-col [nzSpan]="4">
+    <nz-statistic [nzValue]="(HighestPrice)" [nzTitle]="'HighestPrice'"></nz-statistic>
+  </nz-col>
+  <nz-col [nzSpan]="4">
+    <nz-statistic [nzValue]="(LowestPrice)" [nzTitle]="'LowestPrice'"></nz-statistic>
+  </nz-col>
+</nz-row>
+
