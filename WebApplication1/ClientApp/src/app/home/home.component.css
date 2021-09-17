@@ -1,5 +1,6 @@
 .ant-card{
-    background-color: black;
+    background-color: rgba(0, 0, 0, 0.75);
+    border-color: rgba(0, 0, 0, 0.85);
 }
 
 .divGameTrend{
@@ -17,7 +18,7 @@
     max-height: 215px !important;
     line-height: 200px;
     height: 215px !important;
-    background: black;
+    background: rgba(0, 0, 0, 0.8);
     color: beige;
     overflow: hidden;
   }
@@ -41,9 +42,15 @@ h1{
     background-color: black;
     color: beige;
 }
+h2{
+  padding: 10px;
+  padding-left: 16px;
+  margin-bottom: 0px;
+  color: beige;
+}
 
 input{
-  background-color: black;
+  background-color: rgba(0, 0, 0, 0.85);
   color: beige;
 }
 
@@ -52,42 +59,42 @@ input:hover, input:active, input:focus {
 }
 
 tbody  {
-  background-color: black !important;
+  background-color: rgba(0, 0, 0, 0.8) !important;
   color: beige !important;
 }
 th{
-  background-color: black !important;
+  background-color: rgba(0, 0, 0, 0.8) !important;
   color: beige !important;
 }
 
 a{
-  color: beige; background-color: darkorchid; border-color: darkorchid !important;
+  color: beige; background-color: rgba(153, 50, 204, 0.8); border-color: darkorchid !important;
 }
 
 a:hover, a:active, a:focus {
-  background:blueviolet !important; border-color: beige!important;
+  background:rgba(137, 43, 226, 0.8) !important; border-color: beige!important;
 }
 
 
 li.ant-pagination-item-active a, li.ant-pagination-item:focus-visible a,li.ant-pagination-item:hover a {
-    color: blueviolet !important;
-    border-color: blueviolet !important;
+    color: rgba(137, 43, 226, 0.8) !important;
+    border-color: rgba(137, 43, 226, 0.8) !important;
     background:  white;
 }
 
 li.ant-pagination-item-active {
   font-weight: 500;
   background: 0 0;
-  border-color: blueviolet !important;
+  border-color: rgba(137, 43, 226, 0.8) !important;
 }
 
 li{
-  color: blueviolet !important;
+  color: rgba(137, 43, 226, 0.8) !important;
 background-color: white;
 }
 
 li:hover, li:active, li:focus {
-  background:blueviolet !important; border-color: beige;
+  background:rgba(137, 43, 226, 0.8) !important; border-color: beige;
 }
 
 

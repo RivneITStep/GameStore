@@ -22,6 +22,13 @@ export class AdminPanelComponent implements OnInit {
     listOfData: ProductItem[] = [];
     listOfSearch: ProductItem[] = [];
     searchText: string;
+
+    nameLang: string;
+    nameGanre: string;
+
+    isVisibleLang = false;
+    isVisibleGanre = false;
+
     deleteProduct(id: number) {
       this.spinner.show('mySpinner');
       this.productService.RemoveProduct(id).subscribe(
@@ -55,4 +62,56 @@ export class AdminPanelComponent implements OnInit {
     this.listOfSearch = this.listOfData.filter(t => t.name.includes(this.searchText) ||
     t.companyName.includes(this.searchText));
   }
+  showModalLang(): void {
+    this.isVisibleLang = true;
+  }
+
+  handleOkLang(): void {
+    console.log('Button ok clicked!');
+    console.log(this.nameLang);
+    this.productService.addLanguage(this.nameLang).subscribe(
+      data => {
+        console.log(data);
+        if (data.status === 200) {
+          this.notifier.notify('success', 'Add lang!');
+        } else {
+          for (let i = 0; i < data.errors.length; i++) {
+            this.notifier.notify('error', data.errors[i]);
+          }
+        }
+      });
+      this.isVisibleLang = false;
+  }
+
+  handleCancelLang(): void {
+    console.log('Button cancel clicked!');
+    this.isVisibleLang = false;
+  }
+  showModalGanre(): void {
+    this.isVisibleGanre = true;
+  }
+
+  handleOkGanre(): void {
+    console.log('Button ok clicked!');
+    console.log(this.nameGanre);
+    this.productService.addGanre(this.nameGanre).subscribe(
+      data => {
+        console.log(data);
+        if (data.status === 200) {
+          this.notifier.notify('success', 'Add ganre!');
+        } else {
+          for (let i = 0; i < data.errors.length; i++) {
+            this.notifier.notify('error', data.errors[i]);
+          }
+        }
+      });
+      this.isVisibleGanre = false;
+    }
+
+  handleCancelGanre(): void {
+    console.log('Button cancel clicked!');
+    this.isVisibleGanre = false;
+  }
+
+
 }

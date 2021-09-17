@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { NotifierService } from 'angular-notifier';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { SignInModel } from '../Models/sign-in.model';
 import { AuthService } from '../Services/auth.service';
-import jwt_decode from "jwt-decode";
+import jwt_decode from 'jwt-decode';
 import { Router } from '@angular/router';
+import { NzNotificationService } from 'ng-zorro-antd/notification';
 
 
 @Component({
@@ -18,24 +18,31 @@ export class SignInComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private spinner: NgxSpinnerService,
-    private notifier: NotifierService,
-    private router: Router) { }
+    private router: Router,
+    private notification: NzNotificationService
+    ) { }
 
   model = new SignInModel();
   decoded: any;
   login() {
     this.spinner.show('mySpinner');
-    this.notifier.hideAll();
 
     if (!this.model.isValid()) {
-      this.notifier.notify('error', "Please, enter all field for login!");
+      this.notification.create(
+        'warning',
+        'Notification Title',
+        'Please, enter all field for login!'
+      );
       this.spinner.hide('mySpinner');
-    }
-    else if (!this.model.isEmail()) {
-      this.notifier.notify('error', "Please, enter correct email!");
+    } else if (!this.model.isEmail()) {
+      this.notification.create(
+        'warning',
+        'Notification Title',
+        'Please, enter correct email!'
+      );
       this.spinner.hide('mySpinner');
-    }
-    else {
+
+    } else {
       this.authService.SignIn(this.model).subscribe(
         data => {
           console.log(data);
@@ -52,18 +59,23 @@ export class SignInComponent implements OnInit {
             this.authService.statusLogin.emit(true);
 
           } else {
-            for (var i = 0; i < data.errors.length; i++) {
-              this.notifier.notify('error', data.errors[i]);
+            for ( let i = 0; i < data.errors.length; i++) {
+              this.notification.create(
+                'error',
+                'Notification Title',
+                data.errors[i]
+              );
             }
           }
           setTimeout(() => {
             this.spinner.hide('mySpinner');
           }, 1000);
         }
-      )
+      );
     }
 
   }
+
 
   ngOnInit() {
   }

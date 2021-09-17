@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { NotifierService } from 'angular-notifier';
+import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { SignUpModel } from '../Models/sign-up.model';
 import { AuthService } from '../Services/auth.service';
@@ -14,7 +14,7 @@ export class SignUpComponent implements OnInit {
 
   constructor(
     private spinner: NgxSpinnerService,
-    private notifier: NotifierService,
+    private notification: NzNotificationService,
     private authService: AuthService,
     private router: Router
   ) { }
@@ -24,36 +24,53 @@ export class SignUpComponent implements OnInit {
 
   register() {
     this.spinner.show('mySpinner');
-    this.notifier.hideAll();
+
     if (!this.model.isEmail()) {
       this.spinner.hide('mySpinner');
-      this.notifier.notify('error', "Please, enter correct email!");
-    }
-    else if (this.model.Password != this.confirmPassword) {
+      this.notification.create(
+        'warning',
+        'Notification Title',
+        'Please, enter correct email!'
+      );
+    } else if (this.model.Password !== this.confirmPassword) {
       this.spinner.hide('mySpinner');
-      this.notifier.notify('error', "Password dont match!");
+      this.notification.create(
+        'warning',
+        'Notification Title',
+        'Password dont match!'
+      );
     } else if (this.model.isValid()) {
       this.authService.SignUp(this.model).subscribe(
         data => {
           if (data.status === 200) {
-            this.notifier.notify('success', "You seccess registered in system!");
+            this.notification.create(
+              'success',
+              'Notification Title',
+              'You seccess registered in system!'
+            );
             this.router.navigate(['/sign-in']);
-          }
-          else {
-            for (var i = 0; i < data.errors.length; i++) {
-              this.notifier.notify('error', data.errors[i]);
+          } else {
+            for ( let i = 0; i < data.errors.length; i++) {
+              this.notification.create(
+                'error',
+                'Notification Title',
+                data.errors[i]
+              );
             }
           }
           setTimeout(() => {
-            this.spinner.hide('mySpinner')
+            this.spinner.hide('mySpinner');
           }, 1000);
 
         }
-      )
-    }
-    else {
+      );
+    } else {
       this.spinner.hide('mySpinner');
-      this.notifier.notify('error', "Please, enter all fieald for register!");
+      this.notification.create(
+        'error',
+        'Notification Title',
+        'Please, enter all fieald for register!'
+      );
     }
   }
 

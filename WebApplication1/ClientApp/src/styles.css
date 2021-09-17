@@ -17,6 +17,7 @@ code {
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-attachment: fixed !important;
    background: url("assets/zvyozdy_tumannost_svechenie_94217_1920x1080.jpg");}
 
 .app-loading {

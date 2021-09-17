@@ -18,6 +18,13 @@ export class ProductManagerService {
    return this.http.post<ApiResponse>(this.baseUrl + `/addProduct`, model);
   }
 
+  addLanguage(name: string): Observable<ApiResponse> {
+    return this.http.post<ApiResponse>(this.baseUrl + `/addLanguage`, name);
+  }
+  addGanre(name: string): Observable<ApiResponse> {
+    return this.http.post<ApiResponse>(this.baseUrl + `/addGanre`, name);
+  }
+
   editProduct(model: ProductEdit): Observable<ApiResponse> {
     return this.http.post<ApiResponse>(this.baseUrl + '/editProduct' , model);
   }

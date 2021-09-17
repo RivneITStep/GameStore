@@ -1,120 +1,129 @@
-<H1>{{product.name}}</H1>
-<hr>
-<div>
-  <div nz-row style="height: 144px;">
-    <div nz-col nzFlex="3" style="padding: 10px;">
-      <p>
-        DEVELOPER: {{product.developer}}
-      </p>
-      <p>
-        PUBLISHER: {{product.publisher}}
-      </p>
-      <p>
-        RELEASE DATE:  {{product.data | date:'yyyy-MM-dd'}}
-      </p>
-    </div>
-  <div nz-col nzFlex="1" style = "width :100%;">
-    <img src="../../assets/img/{{product.imageHead}}" style = "width :100%; height: auto;">
-  </div>
-</div>
-<hr>
-<div nz-row>
-  <div nz-col nzFlex="2">
-<nz-carousel snzAutoPlay nzAutoPlaySpeed=4000>
+<div class="Game-page">
+  <div style="width: 100%; color: rgba(0,0,0,0);">
+    <div style="width: 66.66%; float: left; padding: 5px; ">
+      <H1 style="background-color: rgba(0, 0, 0, 0.8);">{{product.name}}</H1>
+<div style="width: 100%; min-height: 337px; background-color: black; padding-left: auto; padding-right: auto;">
+  <nz-carousel style="height: 337px; margin-left: auto; margin-right: auto;" snzAutoPlay nzAutoPlaySpeed=4000>
   <div  nz-carousel-content *ngFor="let index of array">
-        <img style="width: 100%; height: auto; " src="{{ index }}">
+    <div style="width: 100%; margin-left: auto; margin-right: auto;">
+    <img style="width: 100%; height: 100%; " src="{{ index }}">
+    </div>
   </div>
 </nz-carousel>
 </div>
-<div nz-col nzFlex="2" style="min-height: 337px;">
+<div style="background-color: rgba(0, 0, 0, 0.8);">
+<div style="width: 100%; margin-top: 15px;">
+  <hr>
   <h2>ABOUT THIS GAME</h2>
   <hr>
-  <p>
+  <p style="padding: 25px;">
     {{product.description}}
   </p>
 </div>
+
+<hr>
+<div nz-row>
+<div style="width: 100%; height: auto;">
+  <div style="width: 50%; height: auto; float: left; padding: 25px; ">
+    <h3>Language</h3>
+    <nz-list nzSize="small">
+      <nz-list-item *ngFor="let item of listOfDataLang">{{item.nameLanguage}}</nz-list-item>
+
+    </nz-list>
+  </div>
+  <div style="width: 50%; height: auto; float: right; padding: 25px;">
+    <h3>Category</h3>
+    <nz-list nzSize="small">
+      <nz-list-item *ngFor="let item of listOfDataCateg">{{item.nameCategory}}</nz-list-item>
+    </nz-list>
+  </div>
+</div>
+</div>
+<div nz-row>
+<div style="width: 100%; height: 400px;">
+  <hr>
+  <h2>SYSTEM REQUIREMENTS</h2>
+  <hr>
+
+  <div style="width: 50%; float: left; padding: 25px; ">
+    <h3>MIN :</h3>
+    <h5>OS : {{ sysreqmin.os }}</h5>
+    <h5>Processor : {{ sysreqmin.processor }}</h5>
+    <h5>Memory : {{ sysreqmin.memory }}</h5>
+    <h5>Graphics : {{ sysreqmin.graphics }}</h5>
+    <h5>Storege : {{ sysreqmin.storege }}</h5>
+  </div>
+  <div style="width: 50%; float: right; padding: 25px;">
+    <h3>REC :</h3>
+    <h5>OS : {{ sysreqrec.os }}</h5>
+    <h5>Processor : {{ sysreqrec.processor }}</h5>
+    <h5>Memory : {{ sysreqrec.memory }}</h5>
+    <h5>Graphics : {{ sysreqrec.graphics }}</h5>
+    <h5>Storege : {{ sysreqrec.storege }}</h5>
+  </div>
+</div>
 </div>
 
-<div>
-  <p [ngStyle]="{'background': getColor(product.evaluation)}"> SGS-Score {{product.evaluation}}</p>
+
+
+
+
+</div>
+<!-- <div nz-row>
+  <div nz-col nzFlex="2">
+  <nz-table
+    [nzData]="listOfDataLang" [nzFrontPagination]="false" [nzShowPagination]="false">
+    <thead>
+      <tr>
+        <th>LANGUAGES</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of listOfDataLang">
+        <td>{{ data.nameLanguage }}</td>
+      </tr>
+    </tbody>
+  </nz-table>
+
+  </div>
+  <div nz-col nzFlex="2">
+    <nz-table
+    [nzData]="listOfDataCateg" [nzFrontPagination]="false" [nzShowPagination]="false">
+    <thead>
+      <tr>
+        <th>GANRE</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of listOfDataCateg">
+        <td>{{ data.nameCategory }}</td>
+      </tr>
+    </tbody>
+  </nz-table>
+  </div>
 </div>
 
-
-
-<button *ngIf="isLogin === true && isAdmin === false" nz-button nzType="primary" nzBlock (click)="buyProduct()">BUY  {{product.price}} $</button>
-<button *ngIf="isAdmin === true" nz-button nzType="primary" nzBlock [routerLink]="['/admin-panel/edit',product.id]">Edit</button>
-
-
-<div>
-
-  <div nz-row >
-    <nz-table
-    [nzTemplateMode]="true" [nzFrontPagination]="false" [nzShowPagination]="false" nzTableLayout="fixed">
-      <thead>
-        <tr>
-          <th>SYSTEM REQUIREMENTS</th>
-          <th>OS</th>
-          <th>Processor</th>
-          <th>Memory</th>
-          <th>Graphics</th>
-          <th>Storege</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>MIN</td>
-          <td>{{ sysreqmin.os }}</td>
-          <td>{{ sysreqmin.processor }}</td>
-          <td>{{ sysreqmin.memory }}</td>
-          <td>{{ sysreqmin.graphics }}</td>
-          <td>{{ sysreqmin.storege }}</td>
-        </tr>
-        <tr>
-          <td>REC</td>
-          <td>{{ sysreqrec.os }}</td>
-          <td>{{ sysreqrec.processor }}</td>
-          <td>{{ sysreqrec.memory }}</td>
-          <td>{{ sysreqrec.graphics }}</td>
-          <td>{{ sysreqrec.storege }}</td>
-        </tr>
-      </tbody>
-    </nz-table>
+</div> -->
+</div>
+<div style="width: 33.33%; float: right; padding: 5px;">
+  <div class="sticky">
+    <img src="../../assets/img/{{product.imageHead}}" style = "width :367px; height: auto;">
+    <div style="padding: 15px;">
+    <p>
+      DEVELOPER: {{product.developer}}
+    </p>
+    <p>
+      PUBLISHER: {{product.publisher}}
+    </p>
+    <p>
+      RELEASE DATE:  {{product.data | date:'yyyy-MM-dd'}}
+    </p>
+  <div>
+    <p [ngStyle]="{'background': getColor(product.evaluation)}"> SGS-Score {{product.evaluation}}</p>
   </div>
-
-  <div nz-row>
-    <div nz-col nzFlex="2">
-    <nz-table
-      [nzData]="listOfDataLang" [nzFrontPagination]="false" [nzShowPagination]="false">
-      <thead>
-        <tr>
-          <th>LANGUAGES</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let data of listOfDataLang">
-          <td>{{ data.nameLanguage }}</td>
-        </tr>
-      </tbody>
-    </nz-table>
-
-    </div>
-    <div nz-col nzFlex="2">
-      <nz-table
-      [nzData]="listOfDataCateg" [nzFrontPagination]="false" [nzShowPagination]="false">
-      <thead>
-        <tr>
-          <th>GANRE</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let data of listOfDataCateg">
-          <td>{{ data.nameCategory }}</td>
-        </tr>
-      </tbody>
-    </nz-table>
-    </div>
+  <button *ngIf="isLogin === true && isAdmin === false" nz-button nzType="primary" nzBlock (click)="buyProduct()">BUY  {{product.price}} $</button>
+  <button *ngIf="isAdmin === true" nz-button nzType="primary" nzBlock [routerLink]="['/admin-panel/edit',product.id]">Edit</button>
   </div>
-
-
-
+  </div>
+</div>
 </div>
