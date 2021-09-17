@@ -1,25 +1,77 @@
 <H1>Dashboard</H1>
-<p>AveragePrice {{AveragePrice}}</p>
-<p>HighestPrice {{HighestPrice}}</p>
-<p>LowestPrice {{LowestPrice}}</p>
-<p>Price {{Price}}</p>
-<p>Count {{Count}}</p>
+<div style="margin: 15px;">
+<div class='Statistic' nz-row>
+  <nz-col class='Statistic-Col'>
+    <nz-statistic [nzValue]="(Price)" [nzTitle]="'Total price'"></nz-statistic>
+  </nz-col>
+  <nz-col class='Statistic-Col'>
+    <nz-statistic [nzValue]="(Count)" [nzTitle]="'Count of games sold'"></nz-statistic>
+  </nz-col>
+  <nz-col class='Statistic-Col'>
+    <nz-statistic [nzValue]="(AveragePrice)" [nzTitle]="'The average price'"></nz-statistic>
+  </nz-col>
+  <nz-col class='Statistic-Col'>
+    <nz-statistic [nzValue]="(HighestPrice)" [nzTitle]="'The highest price'"></nz-statistic>
+  </nz-col>
+  <nz-col class='Statistic-Col'>
+    <nz-statistic [nzValue]="(LowestPrice)" [nzTitle]="'The lowest price'"></nz-statistic>
+  </nz-col>
+</div>
+</div>
+<div style="margin: 15px;">
+  <div class='Statistic' nz-row>
+    <nz-col class='Statistic-Col-2'>
+      <nz-statistic [nzValue]="(CountUser)" [nzTitle]="'Count user'"></nz-statistic>
+    </nz-col>
+    <nz-col class='Statistic-Col-2'>
+      <nz-statistic [nzValue]="(Games[0].name)" [nzTitle]="'The most popular game'"></nz-statistic>
+    </nz-col>
+    <nz-col class='Statistic-Col-2'>
+      <nz-statistic [nzValue]="(Ganres[0].name)" [nzTitle]="'The most popular genre'"></nz-statistic>
+    </nz-col>
+  </div>
+  </div>
 
-<nz-row [nzGutter]="16">
-  <nz-col [nzSpan]="4">
-    <nz-statistic [nzValue]="(Price)" [nzTitle]="'Price'"></nz-statistic>
-  </nz-col>
-  <nz-col [nzSpan]="4">
-    <nz-statistic [nzValue]="(Count)" [nzTitle]="'Count'"></nz-statistic>
-  </nz-col>
-  <nz-col [nzSpan]="4">
-    <nz-statistic [nzValue]="(AveragePrice)" [nzTitle]="'AveragePrice'"></nz-statistic>
-  </nz-col>
-  <nz-col [nzSpan]="4">
-    <nz-statistic [nzValue]="(HighestPrice)" [nzTitle]="'HighestPrice'"></nz-statistic>
-  </nz-col>
-  <nz-col [nzSpan]="4">
-    <nz-statistic [nzValue]="(LowestPrice)" [nzTitle]="'LowestPrice'"></nz-statistic>
-  </nz-col>
-</nz-row>
+  <div style="margin: 15px;">
+    <div class='Statistic' nz-row>
+      <nz-col class='Statistic-Col-3'>
+        <nz-statistic [nzValue]="(CountGames)" [nzTitle]="'Count games'"></nz-statistic>
+      </nz-col>
+    </div>
+    </div>
+
+  <div style="margin: 15px;">
+  <nz-card class="Table" nzTitle="Most popular games">
+    <div nz-card-grid class="Card"><p>{{Games[0].sales}}</p><p>{{Games[0].name}}</p></div>
+    <div nz-card-grid class="Card"><p>{{Games[1].sales}}</p><p>{{Games[1].name}}</p></div>
+    <div nz-card-grid class="Card"><p>{{Games[2].sales}}</p><p>{{Games[2].name}}</p></div>
+    <div nz-card-grid class="Card"><p>{{Games[3].sales}}</p><p>{{Games[3].name}}</p></div>
+    <div nz-card-grid class="Card"><p>{{Games[4].sales}}</p><p>{{Games[4].name}}</p></div>
+    <div nz-card-grid class="Card"><p>{{Games[5].sales}}</p><p>{{Games[5].name}}</p></div>
+    <div nz-card-grid class="Card"><p>{{Games[6].sales}}</p><p>{{Games[6].name}}</p></div>
+    <div nz-card-grid class="Card"><p>{{Games[7].sales}}</p><p>{{Games[7].name}}</p></div>
+    <div nz-card-grid class="Card"><p>{{Games[8].sales}}</p><p>{{Games[8].name}}</p></div>
+    <div nz-card-grid class="Card"><p>{{Games[9].sales}}</p><p>{{Games[9].name}}</p></div>
+    <div nz-card-grid class="Card"><p>{{Games[10].sales}}</p><p>{{Games[10].name}}</p></div>
+    <div nz-card-grid class="Card"><p>{{Games[11].sales}}</p><p>{{Games[11].name}}</p></div>
+    <div nz-card-grid class="Card"><p>{{Games[12].sales}}</p><p>{{Games[12].name}}</p></div>
+    <div nz-card-grid class="Card"><p>{{Games[13].sales}}</p><p>{{Games[13].name}}</p></div>
+    <div nz-card-grid class="Card"><p>{{Games[14].sales}}</p><p>{{Games[14].name}}</p></div>
+    <div nz-card-grid class="Card"><p>{{Games[15].sales}}</p><p>{{Games[15].name}}</p></div>
+  </nz-card></div>
+  <div style="margin: 15px;"><div class='Pie'>
+    <H2>Pie chart of the most popular genres</H2>
+  <div style="display: block">
+    <canvas baseChart
+            [data]="pieChartData"
+            [labels]="pieChartLabels"
+            [chartType]="pieChartType"
+            [colors]="pieChartColors"
+            [options]="pieChartOptions"
+            (chartHover)="chartHovered($event)"
+            (chartClick)="chartClicked($event)"></canvas>
+  </div>
+  </div></div>
+
+
 

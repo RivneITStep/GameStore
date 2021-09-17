@@ -15,9 +15,6 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
 
-    this.spiner.show('mySpinner');
-
-
   }
 
 }

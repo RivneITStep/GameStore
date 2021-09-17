@@ -7,7 +7,6 @@ import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NotifierModule, NotifierOptions } from 'angular-notifier';
 
-
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
@@ -30,6 +29,7 @@ import { AddProductComponent } from './admin-area/admin-panel/add-product/add-pr
 import { AdminPanelComponent } from './admin-area/admin-panel/admin-panel.component';
 import { EditProductComponent } from './admin-area/admin-panel/edit-product/edit-product.component';
 import { DashboardComponent } from './admin-area/admin-panel/dashboard/dashboard.component';
+import { ChartsModule } from 'ng2-charts';
 
 registerLocaleData(en);
 
@@ -66,6 +66,7 @@ const configNotifier: NotifierOptions = {
     HttpClientModule,
     FormsModule,
     AppRoutingModule,
+    ChartsModule,
     NgxSpinnerModule,
     BrowserAnimationsModule,
     DemoMaterialModule,

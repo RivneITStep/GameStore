@@ -9,3 +9,41 @@ p{
   color: beige;
 }
 
+.Statistic{
+  background-color: rgba(0, 0, 0, 0.8) !important;
+  padding: 15px;
+  text-align: center;
+}
+.Pie{
+  background-color: rgba(0, 0, 0, 0.8) !important;
+  padding: 15px;
+}
+
+.Statistic-Col{
+  width: 20%;
+}
+.Statistic-Col-2{
+  width: 33.33%;
+}
+.Statistic-Col-3{
+  width: 100%;
+}
+
+.Card{
+  background-color: rgba(0, 0, 0, 0.8);
+  width: 25%;
+  color: beige;
+  text-align: center;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.Card-Game{
+  color: beige;
+  background-color: rgba(0, 0, 0, 1) !important;
+  opacity: 1 !important;
+}
+.Table{
+  background-color: rgba(0, 0, 0, 0.8);
+}
+

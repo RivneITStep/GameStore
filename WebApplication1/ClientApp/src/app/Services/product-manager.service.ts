@@ -101,6 +101,15 @@ export class ProductManagerService {
   getSalesPriceForAdmin() {
     return this.http.get(this.baseUrl + '/getSalesPriceForAdmin');
   }
+
+  getCountUserForAdmin() {
+    return this.http.get(this.baseUrl + '/getCountUserForAdmin');
+  }
+
+  getCountGameForAdmin() {
+    return this.http.get(this.baseUrl + '/getCountGameForAdmin');
+  }
+
   // editProduct(id: string, model: ProductEdit): Observable<ApiResponse> {
   //  return this.http.post<ApiResponse>(this.baseUrl + '/editProduct/' + id, model);
   // }

@@ -1168,7 +1168,7 @@ namespace APIAngular.Controllers
             var dataFormDB = _context.Ganres.ToList();
             var dataFormDBGG = _context.GameGanres.ToList();
 
-
+            int i = 0;
             Dictionary<int, int> ganres = new Dictionary<int, int>();
             foreach (var item in dataFormDB)
             {
@@ -1189,12 +1189,13 @@ namespace APIAngular.Controllers
             {
                 GanrePopularDTO temp = new GanrePopularDTO();
                 var product = _context.Ganres.FirstOrDefault(t => t.Id == pair.Key);
- 
+                i++;
                 temp.Name = product.Name;
                 temp.Games = pair.Value;
 
                 data.Add(temp);
-
+                if (i == 16)
+                    break;
             }
 
 
@@ -1324,6 +1325,34 @@ namespace APIAngular.Controllers
         {
             int count = 0;
             var dataFormDB = _context.UserGames.ToList();
+
+            foreach (var item in dataFormDB)
+            {
+                count++;
+            }
+
+            return count;
+        }
+
+        [HttpGet("getCountUserForAdmin")]
+        public int getCountUserForAdmin()
+        {
+            int count = 0;
+            var dataFormDB = _context.Users.ToList();
+
+            foreach (var item in dataFormDB)
+            {
+                count++;
+            }
+
+            return count;
+        }
+
+        [HttpGet("getCountGameForAdmin")]
+        public int getCountGameForAdmin()
+        {
+            int count = 0;
+            var dataFormDB = _context.Games.ToList();
 
             foreach (var item in dataFormDB)
             {
