@@ -23,17 +23,17 @@ export class SignUpComponent implements OnInit {
   confirmPassword: string;
 
   register() {
-    this.spinner.show('mySpinner');
+    this.spinner.show();
 
     if (!this.model.isEmail()) {
-      this.spinner.hide('mySpinner');
+      this.spinner.hide();
       this.notification.create(
         'warning',
         'Notification Title',
         'Please, enter correct email!'
       );
     } else if (this.model.Password !== this.confirmPassword) {
-      this.spinner.hide('mySpinner');
+      this.spinner.hide();
       this.notification.create(
         'warning',
         'Notification Title',
@@ -59,13 +59,13 @@ export class SignUpComponent implements OnInit {
             }
           }
           setTimeout(() => {
-            this.spinner.hide('mySpinner');
+            this.spinner.hide();
           }, 1000);
 
         }
       );
     } else {
-      this.spinner.hide('mySpinner');
+      this.spinner.hide();
       this.notification.create(
         'error',
         'Notification Title',

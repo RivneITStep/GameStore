@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { NotifierService } from 'angular-notifier';
+import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { CategoriesItem } from 'src/app/Models/categories-item.model';
 import { LanguageItem } from 'src/app/Models/language-item.model';
@@ -35,7 +35,7 @@ export class AddProductComponent implements OnInit {
   isError: boolean;
   constructor(
     private productService: ProductManagerService,
-    private notifier: NotifierService,
+    private notification: NzNotificationService,
     private spiner: NgxSpinnerService,
     private router: Router
     ) { }
@@ -43,7 +43,7 @@ export class AddProductComponent implements OnInit {
 
   ngOnInit() {
     this.isError = false;
-    this.spiner.show('mySpinner');
+    this.spiner.show();
     this.productService.getAllLanguages().subscribe(
       (AllLanguages: LanguageItem[]) => {
       this.listOfDataLang = AllLanguages;
@@ -51,7 +51,7 @@ export class AddProductComponent implements OnInit {
     this.productService.getAllCategories().subscribe(
       (AllCategories: CategoriesItem[]) => {
       this.listOfDataCateg = AllCategories;
-      this.spiner.hide('mySpinner');
+      this.spiner.hide();
       });
 
   }
@@ -131,52 +131,96 @@ export class AddProductComponent implements OnInit {
     console.log(this.selectedLanguages);
 
 
-    this.spiner.show('mySpinner');
-    setTimeout(() => {
-      this.spiner.hide('mySpinner');
-    }, 4500);
+    this.spiner.show();
+    this.spiner.hide();
+
+
     if (this.model.name === null) {
-      this.notifier.notify('error', 'Please, enter full name!');
+      this.notification.create(
+        'warning',
+        'Notification Title',
+        'Please, enter full name!'
+      );
       this.isError = true;
     }
     if (this.model.developer === null) {
-      this.notifier.notify('error', 'Please, enter Company Name!');
+      this.notification.create(
+        'warning',
+        'Notification Title',
+        'Please, enter Company Name!'
+      );
       this.isError = true;
     }
     if (this.model.data === null) {
-      this.notifier.notify('error', 'Please, enter data!');
+      this.notification.create(
+        'warning',
+        'Notification Title',
+        'Please, enter data!'
+      );
       this.isError = true;
     }
     if (this.model.description === null) {
-      this.notifier.notify('error', 'Please, enter description!');
+      this.notification.create(
+        'warning',
+        'Notification Title',
+        'Please, enter description!'
+      );
       this.isError = true;
     }
     if (this.imageBlobHead === null) {
-      this.notifier.notify('error', 'Please, enter image!');
+      this.notification.create(
+        'warning',
+        'Notification Title',
+        'Please, enter image!'
+      );
       this.isError = true;
     }
     if (this.model.price === null) {
-      this.notifier.notify('error', 'Please, enter price!');
+      this.notification.create(
+        'warning',
+        'Notification Title',
+        'Please, enter price!'
+      );
       this.isError = true;
     }
     if (this.modelSysReq.os === null) {
-      this.notifier.notify('error', 'Please, enter OS!');
+      this.notification.create(
+        'warning',
+        'Notification Title',
+        'Please, enter OS!'
+      );
       this.isError = true;
     }
     if (this.modelSysReq.processor === null) {
-      this.notifier.notify('error', 'Please, enter Processor!');
+      this.notification.create(
+        'warning',
+        'Notification Title',
+        'Please, enter Processor!'
+      );
       this.isError = true;
     }
     if (this.modelSysReq.graphics === null) {
-      this.notifier.notify('error', 'Please, enter Graphics!');
+      this.notification.create(
+        'warning',
+        'Notification Title',
+        'Please, enter Graphics!'
+      );
       this.isError = true;
     }
     if (this.modelSysReq.memory === null) {
-      this.notifier.notify('error', 'Please, enter Memory!');
+      this.notification.create(
+        'warning',
+        'Notification Title',
+        'Please, enter Memory!'
+      );
       this.isError = true;
     }
     if (this.modelSysReq.storege === null) {
-      this.notifier.notify('error', 'Please, enter Storege!');
+      this.notification.create(
+        'warning',
+        'Notification Title',
+        'Please, enter Storege!'
+      );
       this.isError = true;
     }
     if (this.isError === false) {
@@ -213,7 +257,11 @@ export class AddProductComponent implements OnInit {
         data => {
           console.log(data);
           if (data.status === 200) {
-            this.notifier.notify('success', 'Add product!');
+            this.notification.create(
+              'success',
+              'Notification Title',
+              'Add product!'
+            );
 
             // tslint:disable-next-line:no-shadowed-variable
             this.productService.uploadPhoto1(imageFile1).subscribe( data => {
@@ -246,10 +294,14 @@ export class AddProductComponent implements OnInit {
               console.log(error);
             });
             // tslint:disable-next-line:no-shadowed-variable
-            this.router.navigate(['/admin']);
+            this.router.navigate(['/admin-panel/table']);
           } else {
             for (let i = 0; i < data.errors.length; i++) {
-              this.notifier.notify('error', data.errors[i]);
+              this.notification.create(
+                'error',
+                'Notification Title',
+                data.errors[i]
+              );
             }
           }
 
@@ -258,6 +310,7 @@ export class AddProductComponent implements OnInit {
           console.log(errors);
         });
         console.log(this.model);
+
       }
 
     this.selectedCategies = [];

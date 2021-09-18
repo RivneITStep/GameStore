@@ -58,7 +58,7 @@ const configNotifier: NotifierOptions = {
     EditProductComponent,
       FooterComponent,
       AdminAreaComponent,
-      DashboardComponent
+      DashboardComponent,
    ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

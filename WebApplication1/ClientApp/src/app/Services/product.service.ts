@@ -12,7 +12,7 @@ export class ProductService {
     private http: HttpClient
   ) { }
 
-  baseUrl = "/api/Product";
+  baseUrl = '/api/Product';
 
   getAllProduct(): Observable<Product[]> {
     return this.http.get<Product[]>(this.baseUrl);

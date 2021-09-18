@@ -20,5 +20,7 @@ namespace CourseworkDTO.Models.Product
         public string Image { get; set; }
 
         public DateTime Data { get; set; }
+
+        public int CountSales { get; set; }
     }
 }

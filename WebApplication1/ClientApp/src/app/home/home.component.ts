@@ -34,7 +34,7 @@ export class HomeComponent implements OnInit {
     this.StartSite();
     setTimeout(() => {
       this.spiner.hide();
-    }, 3000);
+    }, 4000);
 
   }
 

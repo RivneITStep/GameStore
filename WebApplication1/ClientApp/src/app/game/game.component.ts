@@ -69,7 +69,7 @@ export class GameComponent implements OnInit {
     }
 
     ngOnInit() {
-      this.spinner.show('mySpinner');
+      this.spinner.show();
 
       // tslint:disable-next-line:prefer-const
       let token = localStorage.getItem('token');
@@ -134,12 +134,12 @@ export class GameComponent implements OnInit {
                 }
               }); }
 
-              this.spinner.hide('mySpinner');
+              this.spinner.hide();
 
       }
 
       buyProduct() {
-        this.spinner.show('mySpinner');
+        this.spinner.show();
         const token = localStorage.getItem('token');
 
         const jwtToken = token.split('.')[1];
@@ -155,7 +155,7 @@ export class GameComponent implements OnInit {
                 'Notification Title',
                 'You seccess buy game!'
               );
-              this.spinner.hide('mySpinner');
+              this.spinner.hide();
             } else {
               for ( let i = 0; i < data.errors; i++) {
                 this.notification.create(
@@ -169,7 +169,7 @@ export class GameComponent implements OnInit {
         );
 
         setTimeout(() => {
-          this.spinner.hide('mySpinner');
+          this.spinner.hide();
         }, 2000);
       }
 

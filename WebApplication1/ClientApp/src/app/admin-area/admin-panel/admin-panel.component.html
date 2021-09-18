@@ -36,25 +36,5 @@
     </nz-table>
     <div ng-row>
       <nz-col><a nz-button nzType="primary" [routerLink]="['/admin-panel/add']" type="button">Add Game</a>    </nz-col>
-      <nz-col>
-        <a nz-button [nzType]="'primary'" (click)="showModalLang()"><span>Add Language</span></a>
-        <nz-modal [(nzVisible)]="isVisibleLang" nzTitle="The first Modal" (nzOnCancel)="handleCancelLang()" (nzOnOk)="handleOkLang()">
-          <ng-container style="background-color: rgba(0, 0, 0, 0.8) !important ;" *nzModalContent>
-            <input [(ngModel)]="nameLang">
-          </ng-container>
-        </nz-modal>
-      </nz-col>
-      <nz-col>
-        <a nz-button [nzType]="'primary'" (click)="showModalGanre()"><span>Add Ganre</span></a>
-        <nz-modal [(nzVisible)]="isVisibleGanre" nzTitle="The first Modal" (nzOnCancel)="handleCancelGanre()" (nzOnOk)="handleOkGanre()">
-          <ng-container style="background-color: rgba(0, 0, 0, 0.8) !important ;" *nzModalContent>
-            <input [(ngModel)]="nameGanre">
-          </ng-container>
-        </nz-modal>
-      </nz-col>
-    <nz-col><a nz-button nzType="primary" [routerLink]="['/admin-panel/add']" type="button">Edit Language</a>    </nz-col>
-    <nz-col><a nz-button nzType="primary" [routerLink]="['/admin-panel/add']" type="button">Edit Ganre</a>    </nz-col>
-    <nz-col><a nz-button nzType="primary" [routerLink]="['/admin-panel/add']" type="button">Delete Language</a>    </nz-col>
-    <nz-col><a nz-button nzType="primary" [routerLink]="['/admin-panel/add']" type="button">Delete Ganre</a>    </nz-col>
-    </div>
+     </div>
 

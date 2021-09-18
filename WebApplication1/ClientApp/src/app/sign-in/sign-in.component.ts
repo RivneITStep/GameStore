@@ -25,7 +25,7 @@ export class SignInComponent implements OnInit {
   model = new SignInModel();
   decoded: any;
   login() {
-    this.spinner.show('mySpinner');
+    this.spinner.show();
 
     if (!this.model.isValid()) {
       this.notification.create(
@@ -33,14 +33,14 @@ export class SignInComponent implements OnInit {
         'Notification Title',
         'Please, enter all field for login!'
       );
-      this.spinner.hide('mySpinner');
+      this.spinner.hide();
     } else if (!this.model.isEmail()) {
       this.notification.create(
         'warning',
         'Notification Title',
         'Please, enter correct email!'
       );
-      this.spinner.hide('mySpinner');
+      this.spinner.hide();
 
     } else {
       this.authService.SignIn(this.model).subscribe(
@@ -68,7 +68,7 @@ export class SignInComponent implements OnInit {
             }
           }
           setTimeout(() => {
-            this.spinner.hide('mySpinner');
+            this.spinner.hide();
           }, 1000);
         }
       );

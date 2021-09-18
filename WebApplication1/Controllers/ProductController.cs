@@ -45,6 +45,7 @@ namespace APIAngular.Controllers
 
             List<GameItemDTO> data = new List<GameItemDTO>();
             var dataFormDB = _context.Games.ToList();
+            var dataFormDBUG = _context.UserGames.ToList();
             foreach (var item in dataFormDB)
             {
 
@@ -58,7 +59,11 @@ namespace APIAngular.Controllers
 
                 temp.Name = item.Name;
                 temp.Price = item.Price;
-
+                foreach (var itemUG in dataFormDBUG)
+                { 
+                    if(itemUG.GameId == temp.Id)
+                       temp.CountSales++;
+                }
                 data.Add(temp);
 
             }
@@ -1238,7 +1243,7 @@ namespace APIAngular.Controllers
                 temp.Sales = pair.Value;
                 i++;
                 data.Add(temp);
-                if (i == 16)
+                if (i == 18)
                     break;
             }
 

@@ -47,3 +47,7 @@ p{
   background-color: rgba(0, 0, 0, 0.8);
 }
 
+.ant-card{
+  background-color: rgba(0, 0, 0, 0.75);
+  border-color: rgba(0, 0, 0, 0.85);
+}

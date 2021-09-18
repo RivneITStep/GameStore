@@ -22,7 +22,7 @@ export class LibraryComponent implements OnInit {
     listOfData: ProductItem[] = [];
     listOfDataUser: ProductItem[] = [];
   ngOnInit() {
-    this.spiner.show('mySpinner');
+    this.spiner.show();
     const token = localStorage.getItem('token');
 
     const jwtToken = token.split('.')[1];
@@ -36,15 +36,15 @@ export class LibraryComponent implements OnInit {
   });
 
     setTimeout(() => {
-      this.spiner.hide('mySpinner');
+      this.spiner.hide();
     }, 2000);
   }
 
   Search() {
-    this.spiner.show('mySpinner');
+    this.spiner.show();
     this.listOfSearch = this.listOfData.filter(t => t.name.includes(this.searchText) ||
     t.companyName.includes(this.searchText));
-      this.spiner.hide('mySpinner');
+      this.spiner.hide();
 
   }
 

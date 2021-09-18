@@ -1,17 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { ThemePalette } from '@angular/material/core';
-import { ActivatedRoute } from '@angular/router';
-import { NotifierService } from 'angular-notifier';
+import { ActivatedRoute, Router } from '@angular/router';
+import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ApiResponse } from 'src/app/Models/api.response';
 import { CategoriesItem } from 'src/app/Models/categories-item.model';
 import { CategoriesItemGame } from 'src/app/Models/categories-item.model copy';
 import { LanguageItemGame } from 'src/app/Models/language-item-game.model copy';
 import { LanguageItem } from 'src/app/Models/language-item.model';
-import { ProductAdd } from 'src/app/Models/product-add.model';
 import { ProductEdit } from 'src/app/Models/product-edit.model';
 import { ProductFullItem } from 'src/app/Models/product-full-item';
-import { SysReqAdd } from 'src/app/Models/sysreq-add.model';
 import { SysReqEdit } from 'src/app/Models/sysreq-edit.model';
 import { SysReqItem } from 'src/app/Models/sysreq-item.model';
 import { ProductManagerService } from 'src/app/Services/product-manager.service';
@@ -25,9 +23,10 @@ export class EditProductComponent implements OnInit {
 
   constructor(
     private productService: ProductManagerService,
-    private notifier: NotifierService,
+    private notification: NzNotificationService,
     private spiner: NgxSpinnerService,
-    private router: ActivatedRoute
+    private arouter: ActivatedRoute,
+    private router: Router
     ) { }
     idGame: string;
     listOfDataLangedit: LanguageItem[] = [];
@@ -134,8 +133,8 @@ export class EditProductComponent implements OnInit {
 
     ngOnInit() {
       this.isError = false;
-      this.spiner.show('mySpinner');
-      this.router.paramMap.subscribe(params => {
+      this.spiner.show();
+      this.arouter.paramMap.subscribe(params => {
         this.idGame = params.get('id');
         console.log(this.idGame);
         this.productService.getLanguagesGame(this.idGame).subscribe(
@@ -208,14 +207,14 @@ export class EditProductComponent implements OnInit {
 
 
               setTimeout(() => {
-                this.spiner.hide('mySpinner');
+                this.spiner.hide();
               }, 2000);
 
     }
 
     onSubmit() {
 
-      this.spiner.show('mySpinner');
+      this.spiner.show();
       for ( let i = 0; i < this.listOfDataLang.length ; i++) {
         if ( this.listOfDataLang[i].isChecked === true ) {
           this.selectedLang.push(this.listOfDataLang[i].idLanguage);
@@ -301,14 +300,20 @@ export class EditProductComponent implements OnInit {
       this.productService.editProduct(this.modelEdit).subscribe(
         (data: ApiResponse) => {
           if (data.status === 200) {
-
-
-            this.notifier.notify('success', 'Game removed!');
+            this.notification.create(
+              'success',
+              'Notification Title',
+              'Game edit!'
+            );
 
             console.log(this.modelEdit);
           } else {
             for ( let i = 0; i < data.errors; i++) {
-              this.notifier.notify('error', data.errors[i]);
+              this.notification.create(
+                'error',
+                'Notification Title',
+                data.errors[i]
+              );
             }
           }
         }
@@ -317,11 +322,19 @@ export class EditProductComponent implements OnInit {
       this.productService.editRecSysReq(this.modelSysReqEdit).subscribe(
         (data: ApiResponse) => {
           if (data.status === 200) {
-            this.notifier.notify('success', 'Game removed!');
+            this.notification.create(
+              'success',
+              'Notification Title',
+              'Rec System reqirements edit!'
+            );
 
           } else {
             for ( let i = 0; i < data.errors; i++) {
-              this.notifier.notify('error', data.errors[i]);
+              this.notification.create(
+                'error',
+                'Notification Title',
+                data.errors[i]
+              );
             }
           }
         }
@@ -330,11 +343,19 @@ export class EditProductComponent implements OnInit {
       this.productService.editMinSysReq(this.modelSysMinEdit).subscribe(
         (data: ApiResponse) => {
           if (data.status === 200) {
-            this.notifier.notify('success', 'Game removed!');
+            this.notification.create(
+              'success',
+              'Notification Title',
+              'Min System reqirements edit!'
+            );
 
           } else {
             for ( let i = 0; i < data.errors; i++) {
-              this.notifier.notify('error', data.errors[i]);
+              this.notification.create(
+                'error',
+                'Notification Title',
+                data.errors[i]
+              );
             }
           }
         }
@@ -350,10 +371,18 @@ export class EditProductComponent implements OnInit {
         this.productService.RemoveImage(this.game.imageHead).subscribe(
           (data: ApiResponse) => {
             if (data.status === 200) {
-              this.notifier.notify('success', 'Image Head removed!');
+              this.notification.create(
+                'success',
+                'Notification Title',
+                'ImageHead edit!'
+              );
             } else {
               for ( let i = 0; i < data.errors; i++) {
-                this.notifier.notify('error', data.errors[i]);
+                this.notification.create(
+                  'error',
+                  'Notification Title',
+                  data.errors[i]
+                );
               }
             }
           }
@@ -374,10 +403,18 @@ export class EditProductComponent implements OnInit {
         this.productService.RemoveImage(this.game.image1).subscribe(
           (data: ApiResponse) => {
             if (data.status === 200) {
-              this.notifier.notify('success', 'Image 1 removed!');
+              this.notification.create(
+                'success',
+                'Notification Title',
+                'Image 1 edit!'
+              );
             } else {
               for ( let i = 0; i < data.errors; i++) {
-                this.notifier.notify('error', data.errors[i]);
+                this.notification.create(
+                  'error',
+                  'Notification Title',
+                  data.errors[i]
+                );
               }
             }
           }
@@ -398,10 +435,18 @@ export class EditProductComponent implements OnInit {
         this.productService.RemoveImage(this.game.image2).subscribe(
           (data: ApiResponse) => {
             if (data.status === 200) {
-              this.notifier.notify('success', 'Image 2 removed!');
+              this.notification.create(
+                'success',
+                'Notification Title',
+                'Image 2 edit!'
+              );
             } else {
               for ( let i = 0; i < data.errors; i++) {
-                this.notifier.notify('error', data.errors[i]);
+                this.notification.create(
+                  'error',
+                  'Notification Title',
+                  data.errors[i]
+                );
               }
             }
           }
@@ -422,10 +467,18 @@ export class EditProductComponent implements OnInit {
         this.productService.RemoveImage(this.game.image3).subscribe(
           (data: ApiResponse) => {
             if (data.status === 200) {
-              this.notifier.notify('success', 'Image 3 removed!');
+              this.notification.create(
+                'success',
+                'Notification Title',
+                'Image 3 edit!'
+              );
             } else {
               for ( let i = 0; i < data.errors; i++) {
-                this.notifier.notify('error', data.errors[i]);
+                this.notification.create(
+                  'error',
+                  'Notification Title',
+                  data.errors[i]
+                );
               }
             }
           }
@@ -446,10 +499,18 @@ export class EditProductComponent implements OnInit {
         this.productService.RemoveImage(this.game.image4).subscribe(
           (data: ApiResponse) => {
             if (data.status === 200) {
-              this.notifier.notify('success', 'Image 4 removed!');
+              this.notification.create(
+                'success',
+                'Notification Title',
+                'Image 4 edit!'
+              );
             } else {
               for ( let i = 0; i < data.errors; i++) {
-                this.notifier.notify('error', data.errors[i]);
+                this.notification.create(
+                  'error',
+                  'Notification Title',
+                  data.errors[i]
+                );
               }
             }
           }
@@ -465,9 +526,9 @@ export class EditProductComponent implements OnInit {
             console.log(error);
         });
       }
-
+      this.router.navigate(['/admin-panel/table']);
       setTimeout(() => {
-        this.spiner.hide('mySpinner');
+        this.spiner.hide();
       }, 2000);
       }
 

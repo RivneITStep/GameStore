@@ -126,6 +126,17 @@ export class ProductManagerService {
 
   }
 
+  RemoveGanre(id: number) {
+    return this.http.post(this.baseUrl + '/RemoveGanre' + '/' + id, id);
+
+  }
+
+  RemoveLanguage(id: number) {
+    return this.http.post(this.baseUrl + '/RemoveLanguage' + '/' + id, id);
+
+  }
+
+
   RemoveImage(name: string) {
     return this.http.post(this.baseUrl + '/RemoveImage' + '/' + name, name);
 

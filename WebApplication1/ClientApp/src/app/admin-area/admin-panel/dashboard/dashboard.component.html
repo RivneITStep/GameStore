@@ -40,25 +40,33 @@
     </div>
     </div>
 
+  <H2 style="margin: 15px; padding: 5px; background-color: rgba(0, 0, 0, 0.8);">Most popular game</H2>
   <div style="margin: 15px;">
-  <nz-card class="Table" nzTitle="Most popular games">
-    <div nz-card-grid class="Card"><p>{{Games[0].sales}}</p><p>{{Games[0].name}}</p></div>
-    <div nz-card-grid class="Card"><p>{{Games[1].sales}}</p><p>{{Games[1].name}}</p></div>
-    <div nz-card-grid class="Card"><p>{{Games[2].sales}}</p><p>{{Games[2].name}}</p></div>
-    <div nz-card-grid class="Card"><p>{{Games[3].sales}}</p><p>{{Games[3].name}}</p></div>
-    <div nz-card-grid class="Card"><p>{{Games[4].sales}}</p><p>{{Games[4].name}}</p></div>
-    <div nz-card-grid class="Card"><p>{{Games[5].sales}}</p><p>{{Games[5].name}}</p></div>
-    <div nz-card-grid class="Card"><p>{{Games[6].sales}}</p><p>{{Games[6].name}}</p></div>
-    <div nz-card-grid class="Card"><p>{{Games[7].sales}}</p><p>{{Games[7].name}}</p></div>
-    <div nz-card-grid class="Card"><p>{{Games[8].sales}}</p><p>{{Games[8].name}}</p></div>
-    <div nz-card-grid class="Card"><p>{{Games[9].sales}}</p><p>{{Games[9].name}}</p></div>
-    <div nz-card-grid class="Card"><p>{{Games[10].sales}}</p><p>{{Games[10].name}}</p></div>
-    <div nz-card-grid class="Card"><p>{{Games[11].sales}}</p><p>{{Games[11].name}}</p></div>
-    <div nz-card-grid class="Card"><p>{{Games[12].sales}}</p><p>{{Games[12].name}}</p></div>
-    <div nz-card-grid class="Card"><p>{{Games[13].sales}}</p><p>{{Games[13].name}}</p></div>
-    <div nz-card-grid class="Card"><p>{{Games[14].sales}}</p><p>{{Games[14].name}}</p></div>
-    <div nz-card-grid class="Card"><p>{{Games[15].sales}}</p><p>{{Games[15].name}}</p></div>
-  </nz-card></div>
+
+    <div class="divGameTrend">
+      <nz-table #rowSelectionTable [nzData]="Games"
+      [nzShowPagination]="false"
+      [nzPageSize] = 18>
+      </nz-table>
+      <div  nz-row [nzGutter]="[4, 24]">
+        <div *ngFor="let data of rowSelectionTable.data" nz-col class="gutter-row" [nzSpan]="4"><div class="inner-box">
+
+          <div class="cardGame" [routerLink]="['/game',data.id]" >
+            <nz-card nzHoverable [nzCover]="coverTemplate1">
+              <nz-card-meta nzTitle="{{data.name}}">
+              </nz-card-meta>
+              <p>{{data.sales}}</p>
+            </nz-card>
+            <ng-template #coverTemplate1>
+              <img alt="example" src="../../assets/img/{{data.image}}" />
+            </ng-template></div>
+
+          </div></div>
+
+        </div>
+
+        </div>
+
   <div style="margin: 15px;"><div class='Pie'>
     <H2>Pie chart of the most popular genres</H2>
   <div style="display: block">
