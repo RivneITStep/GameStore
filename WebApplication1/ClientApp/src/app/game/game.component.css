@@ -1,4 +1,16 @@
-h1{
+
+p{
+    color: beige;
+}
+@media  screen and (min-width: 1024px) {
+  .header-pc {
+    display: block
+  }
+  .header-mobile {
+    display: none
+  }
+
+  h1{
     padding: 10px;
     padding-left: 16px;
     color: beige;
@@ -8,10 +20,6 @@ hr{
     color:beige;
     height: 15px;
     margin: 0px;
-}
-
-p{
-    color: beige;
 }
 
 
@@ -57,4 +65,19 @@ button:hover, button:active, button:focus {
   right: auto;
   float: left;
   background-color: rgba(0, 0, 0, 0.7);
+}
+
+}
+
+@media  screen and (max-width: 1024px) {
+  .header-pc {
+    display: none
+  }
+  .header-mobile {
+    display: block
+  }
+
+  div{
+    background-color: rgba(0, 0, 0, 0.75);
+  }
 }

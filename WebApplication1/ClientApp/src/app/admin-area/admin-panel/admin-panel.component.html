@@ -16,6 +16,7 @@
           <th>Company Name</th>
           <th>Data</th>
           <th>Actions</th>
+          <th>Count sales</th>
         </tr>
       </thead>
       <tbody>
@@ -29,6 +30,7 @@
             <a nz-button nzType="primary" [routerLink]="['/admin-panel/edit',data.id]" type="button">Edit</a>
             <a nz-button nzType="primary" [routerLink]="['/game',data.id]" >More</a>
           </td>
+          <td>{{ data.countSales }}</td>
         </tr>
       </tbody>
     </nz-table>

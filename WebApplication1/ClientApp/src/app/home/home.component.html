@@ -1,141 +1,133 @@
 
-<div class="content">
+
+<div class="header-pc"><div class="content">
   <hr>
   <H1>New</H1>
 
   <nz-carousel style=" height: 215px;" nzAutoPlay nzAutoPlaySpeed=6000>
     <div  nz-carousel-content *ngFor="let index of listOfNews">
-      <div nz-row>
+      <div nz-row  [routerLink]="['/game',index.id]" >
         <div nz-col nzFlex="2" >
           <img  src="../../assets/img/{{index.image}}">
         </div>
         <div nz-col nzFlex="3">
           <h2>{{ index.name }}</h2>
-          <a nz-button nzType="primary"  [routerLink]="['/game',index.id]" >More</a>
+          <h3>Made {{ index.companyName }}</h3>
+          <h3>Release {{ index.data | date:'yyyy-MM-dd' }}</h3>
+          <h3>Price {{ index.price  }} $</h3>
         </div>
       </div>
     </div>
   </nz-carousel>
 
-  <hr>
-  <H1>Trending</H1>
+<hr>
+<H1>Trending</H1>
 
-  <div class="divGameTrend">
-    <div nz-row [nzGutter]="[16, 24]">
-      <div nz-col class="gutter-row" [nzSpan]="6"><div class="inner-box">
+<div class="divGameTrend">
+  <nz-table #basicTable [nzData]="listOfPopular"
+  [nzShowPagination]="false">
+  </nz-table>
+  <div  nz-row [nzGutter]="[16, 24]">
+    <div *ngFor="let data of basicTable.data" nz-col class="gutter-row" [nzSpan]="6"><div class="inner-box">
 
-
-        <div class="cardGame" [routerLink]="['/game',listOfPopular[0].id]" >
-          <nz-card nzHoverable [nzCover]="coverTemplate1">
-            <nz-card-meta nzTitle="{{listOfPopular[0].name}}">
-            </nz-card-meta>
-          </nz-card>
-          <ng-template #coverTemplate1>
-            <img alt="example" src="../../assets/img/{{listOfPopular[0].image}}" />
-          </ng-template></div>
-
-        </div></div>
-
-        <div nz-col class="gutter-row" [nzSpan]="6"><div class="inner-box">
-
-          <div class="cardGame" [routerLink]="['/game',listOfPopular[1].id]" >
-            <nz-card nzHoverable [nzCover]="coverTemplate2">
-              <nz-card-meta nzTitle="{{listOfPopular[1].name}}">
-              </nz-card-meta>
-            </nz-card>
-            <ng-template #coverTemplate2>
-              <img alt="example" src="../../assets/img/{{listOfPopular[1].image}}" />
-            </ng-template></div>
-
-          </div></div>
-
-          <div nz-col class="gutter-row" [nzSpan]="6"><div class="inner-box">
-
-
-            <div class="cardGame" [routerLink]="['/game',listOfPopular[2].id]" >
-              <nz-card nzHoverable [nzCover]="coverTemplate3">
-                <nz-card-meta nzTitle="{{listOfPopular[2].name}}">
-                </nz-card-meta>
-              </nz-card>
-              <ng-template #coverTemplate3>
-                <img alt="example" src="../../assets/img/{{listOfPopular[2].image}}" />
-              </ng-template></div>
-
-            </div></div>
-
-            <div nz-col class="gutter-row" [nzSpan]="6"><div class="inner-box">
-
-              <div class="cardGame" [routerLink]="['/game',listOfPopular[3].id]" >
-                <nz-card nzHoverable [nzCover]="coverTemplate4">
-                  <nz-card-meta nzTitle="{{listOfPopular[3].name}}">
-                  </nz-card-meta>
-                </nz-card>
-                <ng-template #coverTemplate4>
-                  <img alt="example" src="../../assets/img/{{listOfPopular[3].image}}" />
-                </ng-template></div>
-
-  </div></div>
-
-  <div nz-col class="gutter-row" [nzSpan]="6"><div class="inner-box">
-
-    <div class="cardGame" [routerLink]="['/game',listOfPopular[4].id]" >
-      <nz-card nzHoverable [nzCover]="coverTemplate5">
-        <nz-card-meta nzTitle="{{listOfPopular[4].name}}">
-        </nz-card-meta>
-      </nz-card>
-      <ng-template #coverTemplate5>
-        <img alt="example" src="../../assets/img/{{listOfPopular[4].image}}" />
-      </ng-template></div>
-
-    </div></div>
-
-    <div nz-col class="gutter-row" [nzSpan]="6"><div class="inner-box">
-
-      <div class="cardGame" [routerLink]="['/game',listOfPopular[5].id]" >
-        <nz-card nzHoverable [nzCover]="coverTemplate6">
-        <nz-card-meta nzTitle="{{listOfPopular[5].name}}">
-        </nz-card-meta>
-      </nz-card>
-      <ng-template #coverTemplate6>
-        <img alt="example" src="../../assets/img/{{listOfPopular[5].image}}" />
-      </ng-template></div>
-
-    </div></div>
-
-    <div nz-col class="gutter-row" [nzSpan]="6"><div class="inner-box">
-
-      <div class="cardGame" [routerLink]="['/game',listOfPopular[6].id]" >
-        <nz-card nzHoverable [nzCover]="coverTemplate7">
-          <nz-card-meta nzTitle="{{listOfPopular[6].name}}">
+      <div class="cardGame" [routerLink]="['/game',data.id]" >
+        <nz-card nzHoverable [nzCover]="coverTemplate1">
+          <nz-card-meta nzTitle="{{data.name}}">
           </nz-card-meta>
         </nz-card>
-        <ng-template #coverTemplate7>
-          <img alt="example" src="../../assets/img/{{listOfPopular[6].image}}" />
+        <ng-template #coverTemplate1>
+          <img alt="example" src="../../assets/img/{{data.image}}" />
         </ng-template></div>
 
       </div></div>
 
-      <div nz-col class="gutter-row" [nzSpan]="6"><div class="inner-box">
+    </div>
 
+    </div>
+    <hr>
 
-        <div class="cardGame" [routerLink]="['/game',listOfPopular[7].id]" >
-      <nz-card nzHoverable [nzCover]="coverTemplate8">
-        <nz-card-meta nzTitle="{{listOfPopular[7].name}}">
-        </nz-card-meta>
-      </nz-card>
-      <ng-template #coverTemplate8>
-        <img alt="example" src="../../assets/img/{{listOfPopular[7].image}}" />
-      </ng-template></div>
+    <H1>All Games</H1>
 
-    </div></div>
+    <input type="text" name="search" [(ngModel)]="searchText" (ngModelChange)=Search() nz-input placeholder="Search">
 
+    <nz-table
 
-
+    #rowSelectionTable
+    nzShowPagination
+    nzShowSizeChanger
+    [nzData]="listOfSearch"
+    >
+    <thead>
+      <tr>
+        <th>Image</th>
+        <th nzWidth='30%'>Name</th>
+        <th>Price</th>
+        <th>Delovoper</th>
+        <th>Data</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody >
+      <tr *ngFor="let data of rowSelectionTable.data">
+        <td><img src ="../../assets/img/{{data.image}}" alt="img" style="height: 75px;"></td>
+        <td>{{ data.name }}</td>
+        <td>{{ data.price }}</td>
+        <td>{{ data.companyName }}</td>
+        <td>{{ data.data | date:'yyyy-MM-dd'}}</td>
+        <td>
+          <a nz-button nzType="primary" [routerLink]="['/game',data.id]" >More</a>
+        </td>
+      </tr>
+    </tbody>
+    </nz-table>
   </div>
-
 </div>
 
-<hr>
+
+
+
+<div class="header-mobile">
+
+  <H1>New</H1>
+
+  <nz-carousel style=" max-height: 337px; background-color: black;" nzAutoPlay nzAutoPlaySpeed=6000>
+    <div  nz-carousel-content *ngFor="let index of listOfNews"       [routerLink]="['/game',index.id]">
+
+        <div nz-row>
+          <img  src="../../assets/img/{{index.image}}">
+        </div>
+        <div nz-row>
+          <h2 style="float: left;">{{ index.name }}</h2>
+      </div>
+    </div>
+  </nz-carousel>
+
+  <H1>Trending</H1>
+
+  <div class="divGameTrend">
+    <nz-table #basicTable [nzData]="listOfPopular"
+    [nzShowPagination]="false">
+    </nz-table>
+    <div  nz-row [nzGutter]="[16, 24]">
+      <div *ngFor="let data of basicTable.data" nz-col class="gutter-row" [nzSpan]="24"><div class="inner-box">
+
+        <div class="cardGame" [routerLink]="['/game',data.id]" >
+          <nz-card nzHoverable [nzCover]="coverTemplate1">
+            <nz-card-meta nzTitle="{{data.name}}">
+            </nz-card-meta>
+          </nz-card>
+          <ng-template #coverTemplate1>
+            <img alt="example" src="../../assets/img/{{data.image}}" />
+          </ng-template></div>
+
+        </div></div>
+
+      </div>
+
+      </div>
+
+
+  <hr>
 
 <H1>All Games</H1>
 
@@ -151,32 +143,17 @@ nzShowSizeChanger
 <thead>
   <tr>
     <th>Image</th>
-    <th nzWidth='30%'>Name</th>
-    <th>Price</th>
-    <th>Delovoper</th>
-    <th>Data</th>
+    <th nzWidth='40%'>Name</th>
     <th></th>
   </tr>
 </thead>
 <tbody >
-  <tr *ngFor="let data of rowSelectionTable.data">
+  <tr *ngFor="let data of rowSelectionTable.data"  [routerLink]="['/game',data.id]" >
     <td><img src ="../../assets/img/{{data.image}}" alt="img" style="height: 75px;"></td>
     <td>{{ data.name }}</td>
     <td>{{ data.price }}</td>
-    <td>{{ data.companyName }}</td>
-    <td>{{ data.data | date:'yyyy-MM-dd'}}</td>
-    <td>
-      <a nz-button nzType="primary" style="" [routerLink]="['/game',data.id]" >More</a>
-    </td>
   </tr>
 </tbody>
 </nz-table>
 
-
-<hr>
-
-
-
 </div>
-
-

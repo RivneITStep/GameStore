@@ -28,9 +28,6 @@ export class LibraryComponent implements OnInit {
     const jwtToken = token.split('.')[1];
     const decodedJwtJsonToken = window.atob(jwtToken);
     const decodedJwtToken = JSON.parse(decodedJwtJsonToken);
-
-    console.log(decodedJwtToken.id);
-
     this.productService.getProductsUser(decodedJwtToken.id).subscribe(
       (AllGames: ProductItem[]) => {
 

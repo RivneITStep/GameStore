@@ -5,4 +5,5 @@ export class ProductItem {
   companyName: string;
   image: string;
   data: any;
+  countSales: number;
 }

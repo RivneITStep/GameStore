@@ -22,3 +22,20 @@ input{
 input:hover, input:active, input:focus {
  border-color: beige;
 }
+@media  screen and (min-width: 525px) {
+  .header-pc {
+    display: block
+  }
+  .header-mobile {
+    display: none
+  }
+}
+
+@media  screen and (max-width: 525px) {
+  .header-pc {
+    display: none
+  }
+  .header-mobile {
+    display: block
+  }
+}

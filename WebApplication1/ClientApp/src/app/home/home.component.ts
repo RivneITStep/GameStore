@@ -9,12 +9,6 @@ import { AuthService } from '../Services/auth.service';
 import { ProductManagerService } from '../Services/product-manager.service';
 
 
-interface ItemData {
-  id: string;
-  name: string;
-  age: number;
-  address: string;
-}
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -25,9 +19,8 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private productService: ProductManagerService,
-    private spiner: NgxSpinnerService,
-    private notifier: NotifierService,
-    private authService: AuthService) { }
+    private spiner: NgxSpinnerService
+    ) { }
 
   listOfData: ProductItem[] = [];
   listOfNews: ProductItem[] = [];
@@ -35,19 +28,17 @@ export class HomeComponent implements OnInit {
   listOfSearch: ProductItem[] = [];
   searchText: string;
 
-  isLogin = false;
-  isAdmin = false;
-
-  product: ProductFullItem;
-
-  arrayGenre: CategoriesItem[] = [];
-
-
-  // tslint:disable-next-line:use-lifecycle-interface
   ngOnInit() {
 
-    this.spiner.show('mySpinner');
+    this.spiner.show();
+    this.StartSite();
+    setTimeout(() => {
+      this.spiner.hide();
+    }, 3000);
 
+  }
+
+  StartSite() {
     this.productService.getAllProducts().subscribe(
     (AllGames: ProductItem[]) => {
     this.listOfData = AllGames;
@@ -62,16 +53,14 @@ export class HomeComponent implements OnInit {
       this.listOfPopular = AllPopular;
     });
 
-    setTimeout(() => {
-    this.spiner.hide('mySpinner');
-  }, 3000);
   }
 
+
   Search() {
-    this.spiner.show('mySpinner');
+    this.spiner.show();
     this.listOfSearch = this.listOfData.filter(t => t.name.includes(this.searchText) ||
     t.companyName.includes(this.searchText));
-      this.spiner.hide('mySpinner');
+      this.spiner.hide();
 
   }
 

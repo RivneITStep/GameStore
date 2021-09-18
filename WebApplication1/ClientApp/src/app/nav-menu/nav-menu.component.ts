@@ -16,7 +16,7 @@ export class NavMenuComponent implements OnInit {
 
   ngOnInit() {
 
-    var token = localStorage.getItem('token');
+    const token = localStorage.getItem('token');
     if (token != null) {
       this.isLogin = true;
       this.isAdmin = this.authService.isAdmin();
