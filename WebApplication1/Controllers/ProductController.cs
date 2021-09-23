@@ -372,8 +372,7 @@ namespace APIAngular.Controllers
                             saveImage.Save(path, ImageFormat.Jpeg);
                             var product = _context.Games.Find(idProduct);
 
-                         _context.Games.Find(idProduct).Image1 = fileName; 
-     
+                            _context.Games.Find(idProduct).Image1 = fileName; 
                             _context.SaveChanges();
                         }
                     }
